@@ -6,12 +6,4 @@
     <AssemblyName>hospi</AssemblyName>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Content Remove="wwwroot\Download\downloadtest.zip" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\Download\downloadtest.zip" />
-  </ItemGroup>
-
 </Project>
