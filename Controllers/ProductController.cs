@@ -20,7 +20,7 @@ namespace hospi_web_project.Controllers
 
         public ActionResult DownloadFile(string filePath)
         {
-            string fullName = @"D:\hospi\files\" + filePath;
+            string fullName = @"C:\hospi\files\" + filePath;
 
             byte[] fileBytes = GetFile(fullName);
             return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, filePath);
