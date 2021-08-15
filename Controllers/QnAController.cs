@@ -8,7 +8,12 @@ namespace hospi_web_project.Controllers
 {
     public class QnAController : Controller
     {
-        public IActionResult Inquiry()
+        public IActionResult GeneralInquiry()
+        {
+            return View();
+        }
+
+        public IActionResult ProductInquiry()
         {
             return View();
         }

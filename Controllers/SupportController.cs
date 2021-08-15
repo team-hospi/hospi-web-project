@@ -8,17 +8,12 @@ namespace hospi_web_project.Controllers
 {
     public class SupportController : Controller
     {
+        public IActionResult ProductAuthGuide()
+        {
+            return View();
+        }
+
         public IActionResult ProductSupport()
-        {
-            return View();
-        }
-
-        public IActionResult PurchaseInformation()
-        {
-            return View();
-        }
-
-        public IActionResult RemoteAssistance()
         {
             return View();
         }

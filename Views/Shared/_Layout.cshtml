@@ -16,9 +16,9 @@
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom box-shadow mb-3" id="nav_custom">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Hospi</a>
+                <a class="navbar-brand" style="color: #46C200" asp-area="" asp-controller="Home" asp-action="Index">Hospi</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -27,20 +27,11 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                소개
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Introduce" asp-action="CompanyIntroduction">회사소개</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Introduce" asp-action="ProductIntroduction">제품소개</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 제품
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Product" asp-action="Purchasing">구매하기</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Product" asp-action="Download">다운로드</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Product" asp-action="Windows">Windows</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Product" asp-action="Android">Android</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
@@ -48,7 +39,8 @@
                                 QnA
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" asp-area="" asp-controller="QnA" asp-action="Inquiry">질문</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="QnA" asp-action="GeneralInquiry">일반문의</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="QnA" asp-action="ProductInquiry">제품문의</a></li>
                                 <li><a class="dropdown-item" asp-area="" asp-controller="QnA" asp-action="FrequentlyInquiry">자주하는 질문</a></li>
                             </ul>
                         </li>
@@ -57,13 +49,16 @@
                                 고객지원
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Support" asp-action="ProductAuthGuide">제품인증 안내</a></li>
                                 <li><a class="dropdown-item" asp-area="" asp-controller="Support" asp-action="ProductSupport">제품지원</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Support" asp-action="PurchaseInformation">구매안내</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="Support" asp-action="RemoteAssistance">원격지원</a></li>
                                 <li><a class="dropdown-item" asp-area="" asp-controller="Support" asp-action="Notice">공지사항</a></li>
                             </ul>
                         </li>
                     </ul>
+                    <span class="navbar-text">
+                        <a asp-area="" asp-controller="Home" asp-action="Login">로그인</a>
+                        <a asp-area="" asp-controller="Home" asp-action="Login">회원가입</a>
+                    </span>
                 </div>
             </div>
         </nav>

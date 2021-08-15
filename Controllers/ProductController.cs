@@ -8,16 +8,18 @@ namespace hospi_web_project.Controllers
 {
     public class ProductController : Controller
     {
-        public IActionResult Purchasing()
+        public IActionResult Windows()
         {
             return View();
         }
 
-        public IActionResult Download()
+        public IActionResult Android()
         {
             return View();
         }
 
+        // 제품 다운로드
+        /*
         public ActionResult DownloadFile(string filePath)
         {
             string fullName = @"C:\hospi\files\" + filePath;
@@ -35,5 +37,6 @@ namespace hospi_web_project.Controllers
                 throw new System.IO.IOException(s);
             return data;
         }
+        */
     }
 }
