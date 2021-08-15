@@ -12,6 +12,12 @@
             display: block;
             margin-top: 0;
         }
+        footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
     </style>
 </head>
 <body>
@@ -26,7 +32,7 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 제품
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -35,17 +41,17 @@
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                QnA
+                            <a class="nav-link active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                문의
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" asp-area="" asp-controller="QnA" asp-action="GeneralInquiry">일반문의</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="QnA" asp-action="ProductInquiry">제품문의</a></li>
-                                <li><a class="dropdown-item" asp-area="" asp-controller="QnA" asp-action="FrequentlyInquiry">자주하는 질문</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Inquiry" asp-action="GeneralInquiry">일반문의</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Inquiry" asp-action="ProductInquiry">제품문의</a></li>
+                                <li><a class="dropdown-item" asp-area="" asp-controller="Inquiry" asp-action="FrequentlyInquiry">자주하는 질문</a></li>
                             </ul>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 고객지원
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -57,7 +63,8 @@
                     </ul>
                     <span class="navbar-text">
                         <a asp-area="" asp-controller="Home" asp-action="Login">로그인</a>
-                        <a asp-area="" asp-controller="Home" asp-action="Login">회원가입</a>
+                        <span>&nbsp&nbsp|&nbsp&nbsp</span>
+                        <a asp-area="" asp-controller="Home" asp-action="SignUp">회원가입</a>
                     </span>
                 </div>
             </div>
@@ -69,9 +76,12 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top card-footer text-muted" style="bottom: 0">
         <div class="container">
-            &copy; 2021 - Hospi - <a asp-area="" asp-controller="Home" asp-action="Privacy">개인정보 처리방침</a>
+            <a style="float: left" asp-area="" asp-controller="Home" asp-action="Privacy">개인정보처리방침</a><br /><br />
+            경기도 부천시 000번길 0, 0000 0층&nbsp;&nbsp;&nbsp;&nbsp;고객지원(평일 9시-18시): 0000-0000<br />
+            사업자등록번호 000-00-00000&nbsp;&nbsp;&nbsp;&nbsp;통신판매신고번호 0000-0000-0000&nbsp;&nbsp;&nbsp;&nbsp;(주)Hospi 대표자: 홍성휘<br />
+            Copyrights&nbsp;&copy;&nbsp;Hospi Inc. All rights reserved.
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

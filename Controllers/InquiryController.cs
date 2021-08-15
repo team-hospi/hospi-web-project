@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace hospi_web_project.Controllers
 {
-    public class QnAController : Controller
+    public class InquiryController : Controller
     {
         public IActionResult GeneralInquiry()
         {
