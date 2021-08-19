@@ -1,7 +1,45 @@
 ﻿@{
-    ViewData["Title"] = "Login";
+    ViewData["Title"] = "로그인";
 }
 
-<div class="text-center">
-    <h1 class="display-4">로그인</h1>
+<style>
+    .custom-login-form{
+        width: 30%;
+        margin: 0 auto;
+    }
+    .custom-login-input {
+        margin: 0px 0px 10px 0px;
+    }
+    .custom-login-btn {
+        margin: 0px 0px 15px 0px;
+    }
+    .custom-check-box {
+        margin: 0px 0px 20px 0px;
+    }
+</style>
+
+<div style="background-color: #8E8E8E; height: 70px">
+    <div class="container">
+        <p style="line-height: 70px; margin-left: 80px">Hospi 홈 > 로그인</p>
+    </div>
+</div>
+<div class="container">
+    <div>
+        <form class="form-signin custom-login-form">
+            <h1 class="form-signin-heading text-center display-4" style="margin: 60px 0px 20px 0px">Hospi</h1><br />
+            <label for="inputEmail" class="sr-only">이메일</label>
+            <input type="email" id="inputEmail" class="form-control custom-login-input" placeholder="이메일" required autofocus>
+            <label for="inputPassword" class="sr-only">비밀번호</label>
+            <input type="password" id="inputPassword" class="form-control custom-login-input" placeholder="비밀번호" required>
+            <div class="checkbox custom-check-box">
+                <label>
+                    <input type="checkbox" value="auto-login"> 로그인 상태 유지
+                </label>
+            </div>
+            <button class="btn btn-lg btn-dark btn-block custom-login-btn" type="submit">로그인</button>
+            <div style="text-align: left">
+                <a href="#">아이디 혹은 비밀번호를 잊으셨나요?</a>
+            </div>
+        </form>
+    </div>
 </div>
