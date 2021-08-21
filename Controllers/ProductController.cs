@@ -18,8 +18,11 @@ namespace hospi_web_project.Controllers
             return View();
         }
 
-        // 제품 다운로드
-        /*
+        public IActionResult Download()
+        {
+            return View();
+        }
+
         public ActionResult DownloadFile(string filePath)
         {
             string fullName = @"C:\hospi\files\" + filePath;
@@ -37,6 +40,5 @@ namespace hospi_web_project.Controllers
                 throw new System.IO.IOException(s);
             return data;
         }
-        */
     }
 }
