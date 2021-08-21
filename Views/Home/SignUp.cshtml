@@ -75,6 +75,18 @@
                 <input type="tel" class="form-control onlyNumber" id="birth" data-rule-required="true" placeholder="예) 19900130" maxlength="8">
             </div>
         </div>
+        <div class="form-group" id="divPhone">
+            <label for="inputPhone" class="col-lg-2 control-label">휴대전화</label>
+            <div class="col-lg-4">
+                <input type="tel" class="form-control onlyNumber" id="phone" data-rule-required="true" placeholder="'-' 없이 입력해주세요." maxlength="11">
+            </div>
+        </div>
+        <div class="form-group" id="divSecondaryEmail">
+            <label for="inputSecondaryEmail" class="col-lg-2 control-label">보조 이메일</label>
+            <div class="col-lg-4">
+                <input type="tel" class="form-control onlyAlphabetAndNumber" id="secondaryEmail" data-rule-required="true" placeholder="example@example.com" maxlength="11">
+            </div>
+        </div>
         <div class="form-group" id="divPostalCode">
             <label for="inputPostalCode" class="col-lg-2 control-label" style="display: block">우편번호</label>
             <div class="col-lg-4" style="display: inline-block">
@@ -97,31 +109,7 @@
             </div>
         </div>
         <br />
-        <label for="provision" class="col-lg-2 control-label" style="margin-left: 30px">취득 자격(면허) 등록</label>
         <hr />
-        <br />
-        <div class="form-group">
-            <div class="col-lg-10" style="text-align: right">
-                <button class="btn btn-dark" style="margin-bottom: 5px">등록</button>
-            </div>
-            <div class="col-lg-10">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">발급 기관</th>
-                            <th scope="col">자격(면허) 번호</th>
-                            <th scope="col">이름</th>
-                            <th scope="col">취득일</th>
-                            <th scope="col">수정 및 삭제</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        <hr />
-        <br />
         <div class="form-group" style="text-align: center">
             <div class="col-lg-offset-2 col-lg-10">
                 <button type="submit" class="btn btn-dark">회원가입 완료</button>
