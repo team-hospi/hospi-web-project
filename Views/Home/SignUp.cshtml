@@ -2,6 +2,13 @@
     ViewData["Title"] = "회원가입";
 }
 
+<style>
+    .center_div {
+        margin: 0 auto;
+        width: 80%
+    }
+</style>
+
 <div style="background-color: #8E8E8E; height: 70px">
     <div class="container">
         <p style="line-height: 70px; margin-left: 80px">Hospi 홈 > 회원가입</p>
@@ -12,37 +19,38 @@
         <div class="form-group">
             <label for="provision" class="col-lg-2 control-label" style="margin-left: 30px">회원가입약관</label>
             <hr />
-            <div class="col-lg-10" id="provision">
-                <textarea class="form-control" rows="8" style="resize:none">
-
+            <div class="col-lg-10 center_div" id="provision">
+                <textarea class="form-control" readonly rows="8" style="resize:none; margin-bottom: 10px">
+Hospi 회원가입약관
                 </textarea>
-                <div class="radio">
-                    <label>
-                        <input type="radio" id="provisionYn" name="provisionYn" value="Y" autofocus="autofocus" checked>
-                        동의합니다.
-                    </label>
-                </div>
-                <div class="radio">
-                    <label>
-                        <input type="radio" id="provisionYn" name="provisionYn" value="N">
-                        동의하지 않습니다.
-                    </label>
+                <div style="text-align: right">
+                    <div class="radio">
+                        <label style="margin-right: 10px">
+                            <input type="radio" id="provisionYn" name="provisionYn" value="Y">
+                            동의합니다.
+                        </label>
+                        <label>
+                            <input type="radio" id="provisionYn" name="provisionYn" value="N">
+                            동의하지 않습니다.
+                        </label>
+                    </div>
                 </div>
             </div>
         </div>
         <br />
         <label for="provision" class="col-lg-2 control-label" style="margin-left: 30px">정보 입력</label>
         <hr />
-        <div class="form-group" id="divId">
+        <div class="form-group center_div" id="divId">
             <label for="inputId" class="col-lg-2 control-label" style="display: block">이메일</label>
-            <div class="col-lg-4" style="display: inline-block">
+            <div class="col-lg-4 center_div" style="display: inline-block">
                 <input type="text" class="form-control onlyAlphabetAndNumber" id="id" data-rule-required="true" placeholder="example@example.com" maxlength="30">
             </div>
             <div class="col-lg-2" style="display: inline-block; vertical-align: top">
                 <button class="btn btn-dark">이메일 인증</button>
             </div>
         </div>
-        <div class="form-group" id="divAuthNum">
+        <br />
+        <div class="form-group center_div" id="divAuthNum">
             <label for="inputAuthNum" class="col-lg-2 control-label" style="display: block">인증번호</label>
             <div class="col-lg-4" style="display: inline-block">
                 <input type="text" class="form-control onlyNumber" id="id" data-rule-required="true" placeholder="인증번호 6자리" maxlength="6">
@@ -51,43 +59,50 @@
                 <button class="btn btn-dark">인증확인</button>
             </div>
         </div>
-        <div class="form-group" id="divPassword">
+        <br />
+        <div class="form-group center_div" id="divPassword">
             <label for="inputPassword" class="col-lg-2 control-label">비밀번호</label>
             <div class="col-lg-4">
                 <input type="password" class="form-control" id="password" name="excludeHangul" data-rule-required="true" placeholder="비밀번호" maxlength="30">
             </div>
         </div>
-        <div class="form-group" id="divPasswordCheck">
+        <br />
+        <div class="form-group center_div" id="divPasswordCheck">
             <label for="inputPasswordCheck" class="col-lg-2 control-label">비밀번호 확인</label>
             <div class="col-lg-4">
                 <input type="password" class="form-control" id="passwordCheck" data-rule-required="true" placeholder="비밀번호 확인" maxlength="30">
             </div>
         </div>
-        <div class="form-group" id="divName">
+        <br />
+        <div class="form-group center_div" id="divName">
             <label for="inputName" class="col-lg-2 control-label">이름</label>
             <div class="col-lg-4">
                 <input type="text" class="form-control onlyHangul" id="name" data-rule-required="true" placeholder="한글만 입력 가능합니다." maxlength="15">
             </div>
         </div>
-        <div class="form-group" id="divBirth">
+        <br />
+        <div class="form-group center_div" id="divBirth">
             <label for="inputBirth" class="col-lg-2 control-label">생년월일</label>
             <div class="col-lg-4">
                 <input type="tel" class="form-control onlyNumber" id="birth" data-rule-required="true" placeholder="예) 19900130" maxlength="8">
             </div>
         </div>
-        <div class="form-group" id="divPhone">
+        <br />
+        <div class="form-group center_div" id="divPhone">
             <label for="inputPhone" class="col-lg-2 control-label">휴대전화</label>
             <div class="col-lg-4">
                 <input type="tel" class="form-control onlyNumber" id="phone" data-rule-required="true" placeholder="'-' 없이 입력해주세요." maxlength="11">
             </div>
         </div>
-        <div class="form-group" id="divSecondaryEmail">
+        <br />
+        <div class="form-group center_div" id="divSecondaryEmail">
             <label for="inputSecondaryEmail" class="col-lg-2 control-label">보조 이메일</label>
             <div class="col-lg-4">
                 <input type="tel" class="form-control onlyAlphabetAndNumber" id="secondaryEmail" data-rule-required="true" placeholder="example@example.com" maxlength="11">
             </div>
         </div>
-        <div class="form-group" id="divPostalCode">
+        <br />
+        <div class="form-group center_div" id="divPostalCode">
             <label for="inputPostalCode" class="col-lg-2 control-label" style="display: block">우편번호</label>
             <div class="col-lg-4" style="display: inline-block">
                 <input type="text" class="form-control onlyNumber" id="postalCode" data-rule-required="true" placeholder="우편번호" maxlength="5">
@@ -96,13 +111,15 @@
                 <button class="btn btn-dark">주소 찾기</button>
             </div>
         </div>
-        <div class="form-group" id="divAddressline1">
+        <br />
+        <div class="form-group center_div" id="divAddressline1">
             <label for="inputAddressline1" class="col-lg-2 control-label">주소</label>
             <div class="col-lg-4">
                 <input type="tel" class="form-control" id="addressline1" data-rule-required="true" placeholder="주소" maxlength="50">
             </div>
         </div>
-        <div class="form-group" id="divAddressline2">
+        <br />
+        <div class="form-group center_div" id="divAddressline2">
             <label for="inputAddressline2" class="col-lg-2 control-label">주소 상세입력</label>
             <div class="col-lg-4">
                 <input type="tel" class="form-control" id="addressline2" data-rule-required="true" placeholder="상세주소" maxlength="50">
@@ -116,7 +133,8 @@
             </div>
         </div>
     </form>
-
+    
+    <!-- 회원가입 관련 자바스크립트 수정 필요 -->
     <script>
             $(function(){
                 //모달을 전역변수로 선언
