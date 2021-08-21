@@ -1,35 +1,49 @@
 ﻿@{
     ViewData["Title"] = "홈";
 }
+<style>
+    .custom-jumbotron{
+        width:300px;
+        height:300px;
+        border-radius:10%;
+        margin-top:40px;
+        margin-left:50px;
+        text-align:center;
+        border:solid;
+        border-color:lightgray;
+    }
+    .custom-jumbotron .text{
 
-<div class="container-fluid" style="margin-top:10px; margin-bottom:auto; height: 75%; background-color: rgba( 0, 0, 0, 0.5 )">
+    }
+</style>
+<div class="container-fluid" style="margin-top:10px; margin-bottom:auto; height: 550px; background-color: rgba( 0, 0, 0, 0.5 )">
     <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
-                <li style="background-color:black; border-radius:50%; width:12px; height:12px; position:absolute; left:48%; top:-10px;" data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li style="background-color:black; border-radius: 50%; width: 12px; height: 12px; position:absolute; left:51%; top:-10px;" data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li style="background-color:black; border-radius:50%; width:12px; height:12px; position:absolute; left:620px; top:0px;" data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li style="background-color:black; border-radius: 50%; width: 12px; height: 12px; position:absolute; left:650px; top:0px;" data-target="#carouselExampleIndicators" data-slide-to="1"></li>
             </ol>
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <a aria-expanded="false" class="btn btn-dark" style="position: absolute; left: 22%; top: 80%" asp-area="" asp-controller="Product" asp-action="Windows">
+                    <a aria-expanded="false" class="btn btn-dark" style="position: absolute; left: 400px; top: 400px" asp-area="" asp-controller="Product" asp-action="Windows">
                         Hospi 플랜 및 가격
                     </a>
 
-                    <img class="w-100 h-100" src="~/image/main1.png" alt="First slide">
+                    <img class="" src="~/image/main1.png" alt="First slide" style="margin-left:-20px; width:1920px;height:500px;">
                 </div>
                 <div class="carousel-item">
                     <a href='https://play.google.com/store/apps/details?id=com.gradproject.hospi&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
-                        <img alt='다운로드하기 Google Play' src='https://play.google.com/intl/ko/badges/static/images/badges/ko_badge_web_generic.png' style="height: 20%; position: absolute; left: 22%; top: 75%" />
+                        <img alt='다운로드하기 Google Play' src='https://play.google.com/intl/ko/badges/static/images/badges/ko_badge_web_generic.png' style="height: 100px; position: absolute; left: 400px; top: 350px" />
                     </a>
 
-                    <img class="w-100 h-100" src="~/image/main2.png" alt="Second slide">
+                    <img class="" src="~/image/main2.png" alt="Second slide" style="margin-left:-20px; width:1920px;height:500px;">
                 </div>
             </div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev" style="left:15%; width:100px">
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev" style="left:200px; width:100px">
                 <span class="carousel-control-prev-icon" aria-hidden="true" ></span>
                 <span class="sr-only">Previous</span>
             </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next" style="left:80%; width:100px">
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next" style="right:200px; width:100px">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>
@@ -37,10 +51,23 @@
     </div>
 </div>
 
-    
-</div>
-<div class="container" style="margin-bottom:150px;">
-    <p>공지사항</p>
 
-    
+<div class="container" style="height:300px;margin-bottom:150px;">
+    <div class="row">
+        <a class="jumbotron custom-jumbotron" style="margin-left:50px;" asp-area="" asp-controller="Product" asp-action="Purchase">
+                <img class="" src="~/image/shopping.png" style="width:100px; height:100px; margin-bottom:50px;">
+                <h5 class="jumbo-text text-md-center">제품구매</h5>
+        </a>
+
+        <a class="jumbotron custom-jumbotron" asp-area="" asp-controller="Product" asp-action="Download">
+                <img class="" src="~/image/download.png" style="width:100px; height:100px; margin-bottom:50px;">
+                <h5 class="jumbo-text text-md-center">다운로드</h5>
+        </a>
+        
+        <a class="jumbotron custom-jumbotron" asp-area="" asp-controller="Support" asp-action="Notice">
+                <img class="" src="~/image/Notice.png" style="width:100px; height:100px; margin-bottom:50px;">
+                <h5 class="jumbo-text text-md-center">공지사항</h5>
+        </a>
+        
+    </div>
 </div>
