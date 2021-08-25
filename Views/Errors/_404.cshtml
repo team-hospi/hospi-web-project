@@ -3,9 +3,14 @@
 }
 
 <div class="container">
-    <div style="width: 90%; margin: 0 auto; margin-top: 80px; margin-bottom: 150px">
-        <img src="image/error_outline_black.svg" style="width: 70px; float: left; margin-right: 20px">
-        <h3>해당 페이지를 찾을 수 없습니다.</h3>
-        <p>404 Not Found</p>
+    <div style="margin-top: 100px">
+        <div style="text-align: center; margin-bottom: 10px;">
+            <img src="~/image/error_outline_black.svg" style="width: 70px;">
+        </div>
+        <h3 class="text-center">해당 페이지를 찾을 수 없습니다.</h3>
+        <p class="text-center">404 Not Found</p>
+        <a class="btn btn-dark" asp-area="" asp-controller="Home" asp-action="Index" style="width: 200px; margin: auto; display:block; margin-top: 30px">
+            홈으로 돌아가기
+        </a>
     </div>
 </div>

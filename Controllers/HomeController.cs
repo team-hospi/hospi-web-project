@@ -29,6 +29,11 @@ namespace hospi_web_project.Controllers
             return View();
         }
 
+        public IActionResult SignUpSuccess()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
