@@ -16,37 +16,39 @@
 
     }
 </style>
-<div class="container-fluid" style="margin-top:0; margin-bottom:auto; height: 550px; background-color: rgba( 0, 0, 0, 0.5 )">
-    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li style="background-color:black; border-radius:50%; width:12px; height:12px; position:absolute; left:620px; top:0px;" data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li style="background-color:black; border-radius: 50%; width: 12px; height: 12px; position:absolute; left:650px; top:0px;" data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-            </ol>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <a aria-expanded="false" class="btn btn-dark" style="position: absolute; left: 400px; top: 400px" asp-area="" asp-controller="Product" asp-action="Windows">
-                        Hospi 플랜 및 가격
-                    </a>
+<div class="container-fluid w-100" style="height: 550px; background-color: rgba( 0, 0, 0, 0.5 )">
+    <div class="container">
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li style="background-color:black; border-radius:50%; width:12px; height:12px; margin-left:-50px;position:absolute; top:0px;" data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li style="background-color:black; border-radius: 50%; width: 12px; height: 12px; margin-left:50px;position:absolute; top:0px;" data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                </ol>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <a aria-expanded="false" class="btn btn-dark" style="position: absolute; left:150px;top: 400px" asp-area="" asp-controller="Product" asp-action="Windows">
+                            Hospi 플랜 및 가격
+                        </a>
 
-                    <img class="" src="~/image/main1.png" alt="First slide" style="margin-left:-20px; width:1920px;height:500px;">
-                </div>
-                <div class="carousel-item">
-                    <a href='https://play.google.com/store/apps/details?id=com.gradproject.hospi&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
-                        <img alt='다운로드하기 Google Play' src='https://play.google.com/intl/ko/badges/static/images/badges/ko_badge_web_generic.png' style="height: 100px; position: absolute; left: 400px; top: 350px" />
-                    </a>
+                        <img class="" src="~/image/banner1.png" alt="First slide" style="margin-left:100px;"/>
+                    </div>
+                    <div class="carousel-item">
+                        <a href='https://play.google.com/store/apps/details?id=com.gradproject.hospi&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'>
+                            <img alt='다운로드하기 Google Play' src='https://play.google.com/intl/ko/badges/static/images/badges/ko_badge_web_generic.png' style="height: 100px; position: absolute; left:120px;top: 350px" />
+                        </a>
 
-                    <img class="" src="~/image/main2.png" alt="Second slide" style="margin-left:-20px; width:1920px;height:500px;">
+                        <img class="" src="~/image/banner2.png" alt="Second slide" style="margin-left:100px;">
+                    </div>
                 </div>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev" style="width:100px">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next" style="width:100px">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev" style="left:200px; width:100px">
-                <span class="carousel-control-prev-icon" aria-hidden="true" ></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next" style="right:200px; width:100px">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
         </div>
     </div>
 </div>
@@ -54,7 +56,7 @@
 
 <div class="container" style="height:300px;margin-bottom:150px;">
     <div class="row">
-        <a class="jumbotron custom-jumbotron" style="margin-left:80px;" asp-area="" asp-controller="Product" asp-action="Purchase">
+        <a class="jumbotron custom-jumbotron" style="margin-left:90px;" asp-area="" asp-controller="Product" asp-action="Purchase">
                 <img class="" src="~/image/shopping.png" style="width:100px; height:100px; margin-bottom:50px;">
                 <h5 class="jumbo-text text-md-center">제품구매</h5>
         </a>
