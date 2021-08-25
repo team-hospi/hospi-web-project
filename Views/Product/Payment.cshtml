@@ -1,0 +1,147 @@
+﻿@{
+    ViewData["Title"] = "구매하기";
+}
+
+<div style="background-color: #8E8E8E; height: 70px">
+    <div class="container">
+        <p style="line-height: 70px; margin-left: 80px">Hospi 홈 > Windows > 구매하기</p>
+    </div>
+</div>
+
+<div class="container" style="margin-top: 70px; margin-bottom: 500px">
+    <form>
+        <div class="form-group" style="width: 900px; margin: 0 auto;">
+            <h4>병원정보 입력</h4>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th scope="row">이름</th>
+                        <td><input type="text" class="form-control" style="width: 400px" /></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">사업자등록번호</th>
+                        <td><input type="text" class="form-control" style="width: 400px" /></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">병원명</th>
+                        <td><input type="text" class="form-control" style="width: 400px" /></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">병원 전화번호</th>
+                        <td><input type="text" class="form-control" style="width: 400px"  maxlength="12" placeholder="번호만 입력해주세요."/></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">우편번호</th>
+                        <td>
+                            <input type="text" class="form-control" style="width: 200px; float: left; margin-right: 10px"  maxlength="5"/>
+                            <button class="btn btn-dark">주소 찾기</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">주소</th>
+                        <td><input type="text" class="form-control" style="width: 400px" /></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">주소 상세입력</th>
+                        <td><input type="text" class="form-control" style="width: 400px" /></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="form-group" style="width: 900px; margin: 0 auto; margin-top: 50px">
+            <h4>운영정보 입력</h4>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th scope="row">평일 운영시간</th>
+                        <td>
+                            <label for="weekdayOpen" style="margin-right: 10px">Open</label>
+                            <input id="weekdayOpen" type="time" name="weekdayOpen" style="margin-right: 20px"/>
+                            <label for="weekdayClose" style="margin-right: 10px">Close</label>
+                            <input id="weekdayClose" type="time" name="weekdayClose"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">토요일 운영시간</th>
+                        <td>
+                            <label for="saturdayOpen" style="margin-right: 10px">Open</label>
+                            <input id="saturdayOpen" type="time" name="saturdayOpen" style="margin-right: 20px"/>
+                            <label for="saturdayClose" style="margin-right: 10px">Close</label>
+                            <input id="saturdayClose" type="time" name="saturdayClose" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">공휴일 운영시간</th>
+                        <td>
+                            <label for="holidayOpen" style="margin-right: 10px">Open</label>
+                            <input id="holidayOpen" type="time" name="holidayOpen" style="margin-right: 20px"/>
+                            <label for="holidayClose" style="margin-right: 10px">Close</label>
+                            <input id="holidayClose" type="time" name="holidayClose" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">점심시간</th>
+                        <td>
+                            <input id="lunchTime" type="time" name="lunchTime" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">진료과</th>
+                        <td>
+                            <input type="text" class="form-control" style="width: 200px; float: left; margin-right: 10px" />
+                            <button class="btn btn-dark">등록</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="form-group" style="width: 900px; margin: 0 auto; margin-top: 50px;">
+            <div style="width: 400px; float: left">
+                <h4>결제정보 입력</h4>
+                <table class="table">
+                    <tr>
+                        <th scope="row">카드번호</th>
+                        <td>
+                            <input type="text" class="form-control" style="width: 60px; float: left; margin-right: 10px " maxlength="4" />
+                            <input type="text" class="form-control" style="width: 60px; float: left; margin-right: 10px " maxlength="4" />
+                            <input type="text" class="form-control" style="width: 60px; float: left; margin-right: 10px " maxlength="4" />
+                            <input type="text" class="form-control" style="width: 60px; float: left" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">유효기간</th>
+                        <td>
+                            <input type="text" class="form-control" style="width: 50px; float: left; margin-right: 10px " placeholder="월" maxlength="2" />
+                            <input type="text" class="form-control" style="width: 100px; float: left; margin-right: 10px" placeholder="년(4자리)" maxlength="4" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">이름</th>
+                        <td><input type="text" class="form-control" style="width: 200px" /></td>
+                    </tr>
+                    <tr>
+                        <th scope="row">생년월일</th>
+                        <td>
+                            <input type="text" class="form-control" style="width: 100px; float: left; margin-right: 10px" placeholder="년(4자리)" />
+                            <input type="text" class="form-control" style="width: 50px; float: left; margin-right: 10px " placeholder="월" />
+                            <input type="text" class="form-control" style="width: 50px; float: left" placeholder="일" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div style="width: 400px; margin-top:20px; float: right">
+                <div>
+                    <p>선택하신 플랜은 대학병원용입니다.<br />대학병원을 위한 모든 기능과 DB가 제공됩니다.<br />Hospi는 구독 제품으로서 매월 결제일마다<br />자동결제 됩니다.</p>
+                    <div>
+                        <h4 style="float:left">결제금액(VAT 포함)</h4>
+                        <h4 class="text-right">₩45,000</h4>
+                    </div>
+                    <input type="checkbox" value="동의" style="margin-right:10px; margin-top: 10px"/>본인정보를 결제 서비스업체에 제공하는데 동의합니다.
+                </div>
+                <div style="text-align: right; margin-top: 5px">
+                    <button class="btn btn-dark" type="submit" style="width: 100%; height: 50px; font-size: 20px" asp-area="" asp-controller="Product" asp-action="PaymentSuccess">결제하기</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -28,6 +28,16 @@ namespace hospi_web_project.Controllers
             return View();
         }
 
+        public IActionResult Payment()
+        {
+            return View();
+        }
+
+        public IActionResult PaymentSuccess()
+        {
+            return View();
+        }
+
         public ActionResult DownloadFile(string filePath)
         {
             string fullName = @"C:\hospi\files\" + filePath;
