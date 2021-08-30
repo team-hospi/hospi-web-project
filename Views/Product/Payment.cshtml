@@ -6,6 +6,7 @@
 }
 
 @functions{
+    // 00~23까지 option 태그 출력
     async Task hourPrint()
     {
         for (var i = 0; i < 24; i++)
@@ -21,6 +22,11 @@
         }
     }
 }
+
+<head>
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script src="~/js/payment.js"></script>
+</head>
 
 <div style="background-color: #8E8E8E; height: 70px">
     <div class="container">
@@ -53,17 +59,17 @@
                     <tr>
                         <th scope="row">우편번호</th>
                         <td>
-                            <input type="text" class="form-control" style="width: 200px; float: left; margin-right: 10px" maxlength="5" />
-                            <button class="btn btn-dark">주소 찾기</button>
+                            <input type="text" class="form-control" id="postcode" style="width: 100px; float: left; margin-right: 10px" readonly/>
+                            <input type="button" class="btn btn-dark" onclick="daumPostcode()" value="주소 찾기"/>
                         </td>
                     </tr>
                     <tr>
                         <th scope="row">주소</th>
-                        <td><input type="text" class="form-control" style="width: 400px" /></td>
+                        <td><input type="text" class="form-control" id="address" style="width: 400px" readonly/></td>
                     </tr>
                     <tr>
-                        <th scope="row">주소 상세입력</th>
-                        <td><input type="text" class="form-control" style="width: 400px" /></td>
+                        <th scope="row">상세주소</th>
+                        <td><input type="text" class="form-control" id="detailAddress" style="width: 400px" /></td>
                     </tr>
                 </tbody>
             </table>
@@ -197,14 +203,22 @@
                             <p style="float: left; margin-left: 8px;">분</p>
                         </td>
                     </tr>
-                    <tr>
-                        <th scope="row">진료과</th>
-                        <td>
-                            <input type="text" class="form-control" style="width: 200px; float: left; margin-right: 10px" />
-                            <button class="btn btn-dark">등록</button>
-                        </td>
-                    </tr>
                 </tbody>
+            </table>
+        </div>
+        <div class="form-group" style="width: 900px; margin: 0 auto; margin-top: 50px">
+            <div>
+                <h4 style="float:left">진료과 등록</h4>
+                <input type="text" class="form-control" id="departmentName" style="width: 200px; float: left; margin-right: 10px" />
+                <input type="button" class="btn btn-dark" onclick="appendDepartment()" value="등록">
+            </div>
+            <table class="table" id="departmentList">
+                <thead>
+                    <tr>
+                        <th scope="col">진료과</th>
+                        <th scope="col">삭제</th>
+                    </tr>
+                </thead>
             </table>
         </div>
         <div class="form-group" style="width: 900px; margin: 0 auto; margin-top: 50px;">
@@ -263,36 +277,3 @@
         </div>
     </form>
 </div>
-
-<script>
-    /**
-     * 개원, 휴원 선택에 따라 시간 선택을 활성화, 비활성화하는 메소드
-     * */
-    function saturdayTimeSelectActive() {
-        document.getElementById('saturdayOpenHour').disabled = false;
-        document.getElementById('saturdayOpenMin').disabled = false;
-        document.getElementById('saturdayCloseHour').disabled = false;
-        document.getElementById('saturdayCloseMin').disabled = false;
-    }
-
-    function saturdayTimeSelectDisabled() {
-        document.getElementById('saturdayOpenHour').disabled = true;
-        document.getElementById('saturdayOpenMin').disabled = true;
-        document.getElementById('saturdayCloseHour').disabled = true;
-        document.getElementById('saturdayCloseMin').disabled = true;
-    }
-
-    function holidayTimeSelectActive() {
-        document.getElementById('holidayOpenHour').disabled = false;
-        document.getElementById('holidayOpenMin').disabled = false;
-        document.getElementById('holidayCloseHour').disabled = false;
-        document.getElementById('holidayCloseMin').disabled = false;
-    }
-
-    function holidayTimeSelectDisabled() {
-        document.getElementById('holidayOpenHour').disabled = true;
-        document.getElementById('holidayOpenMin').disabled = true;
-        document.getElementById('holidayCloseHour').disabled = true;
-        document.getElementById('holidayCloseMin').disabled = true;
-    }
-</script>
