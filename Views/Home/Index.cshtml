@@ -8,7 +8,7 @@
         background-color:#E8E8E8;
         border-radius:10%;
         margin-top:40px;
-        margin-left:60px;
+        margin-left:-10px;
         text-align:center;
         border:solid;
         border-color:lightgray;
@@ -17,13 +17,14 @@
 
     }
 </style>
+
 <div class="container-fluid w-100" style="height: 550px; background-color: rgba( 0, 0, 0, 0.5 )">
     <div class="container">
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
-                    <li style="background-color:black; border-radius:50%; width:12px; height:12px; margin-left:-50px;position:absolute; top:0px;" data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                    <li style="background-color:black; border-radius: 50%; width: 12px; height: 12px; margin-left:50px;position:absolute; top:0px;" data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li style="background-color:black; border-radius:50%; width:10px; height:10px; margin-left:0px;position:absolute; top:0px;" data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li style="background-color:black; border-radius: 50%; width: 10px; height: 10px; margin-left:40px;position:absolute; top:0px;" data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
@@ -42,11 +43,11 @@
                     </div>
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev" style="width:100px">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="carousel-control-prev-icon" aria-hidden="true" style=""></span>
                     <span class="sr-only">Previous</span>
                 </a>
                 <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next" style="width:100px">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="carousel-control-next-icon" aria-hidden="true" style=""></span>
                     <span class="sr-only">Next</span>
                 </a>
             </div>
@@ -58,18 +59,18 @@
 <div class="container" style="height:300px;margin-bottom:150px;">
     <div class="row">
         <a class="container custom-container" style="margin-left:90px; font-size:10px;" asp-area="" asp-controller="Product" asp-action="Purchase">
-                <img class="" src="~/image/shopping.png" style="width:100px; height:100px; margin-top:60px;">
-                <h5 class="jumbo-text text-md-center" style="font-size:20px; margin-top:50px;">제품구매</h5>
+                <img class="" src="~/image/shopping_cart_black.svg" style="width:100px; height:100px; margin-top:60px;">
+                <h5 class="jumbo-text text-md-center" style="color:black; font-size:20px; margin-top:50px;">제품구매</h5>
         </a>
 
         <a class="container custom-container" asp-area="" asp-controller="Product" asp-action="Download">
-                <img class="" src="~/image/download.png" style="text-align: center; width: 100px; height: 100px; margin-top: 60px;">
-                <h5 class="jumbo-text text-md-center" style="text-align:center;font-size:20px; margin-top:50px;">다운로드</h5>
+                <img class="" src="~/image/download_black.svg" style="text-align: center; width: 100px; height: 100px; margin-top: 60px;">
+                <h5 class="jumbo-text text-md-center" style="color: black; text-align: center; font-size: 20px; margin-top: 50px;">다운로드</h5>
         </a>
         
         <a class="container custom-container" asp-area="" asp-controller="Support" asp-action="Notice">
-                <img class="" src="~/image/Notice.png" style="width: 100px; height: 100px; margin-top: 60px;">
-                <h5 class="jumbo-text text-md-center" style="font-size: 20px; margin-top: 50px;">공지사항</h5>
+                <img class="" src="~/image/campaign_black.svg" style="width: 100px; height: 100px; margin-top: 60px;">
+                <h5 class="jumbo-text text-md-center" style="color: black; font-size: 20px; margin-top: 50px;">공지사항</h5>
         </a>
         
     </div>
