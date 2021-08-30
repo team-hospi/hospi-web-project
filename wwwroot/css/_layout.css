@@ -1,0 +1,31 @@
+﻿.dropdown:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+    background-color: #6c757d;
+}
+
+.dropdown-menu > li > a {
+    color: white;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    min-width: 1200px;
+    font-size: 16px;
+}
+
+nav {
+    height: 56px;
+    font-size: 16px;
+}
+
+.container {
+    max-width: 1200px !important;
+}
+
+body {
+    min-width: 1200px;
+}
