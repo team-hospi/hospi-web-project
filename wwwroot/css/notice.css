@@ -1,0 +1,30 @@
+﻿#noticeContainer {
+    margin-bottom: 150px;
+}
+
+#pageTitle {
+    margin-left: 40px;
+    margin-top: 70px;
+}
+
+#searchDiv {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    float: right;
+}
+
+#searchInput {
+    width: 200px;
+    margin-right: 10px;
+    display: inline;
+}
+
+#searchBtn {
+    display: inline;
+}
+
+#noticeDiv {
+    width: 80%;
+    margin: 0 auto;
+}

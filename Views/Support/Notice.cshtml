@@ -2,8 +2,33 @@
     ViewData["Title"] = "공지사항";
 }
 
+<head>
+    <link rel="stylesheet" href="~/css/notice.css" />
+</head>
+
 <div style="background-color: #8E8E8E; height: 70px">
     <div class="container">
         <p style="line-height: 70px; margin-left: 80px">Hospi 홈 > 공지사항</p>
+    </div>
+</div>
+
+<div class="container" id="noticeContainer">
+    <h4 id="pageTitle">제품 문의</h4>
+    <hr />
+    <div id="noticeDiv">
+        <div id="searchDiv">
+            <input type="text" class="form-control" id="searchInput" placeholder="게시판 내 검색하기" />
+            <input type="button" class="btn btn-dark" id="searchBtn" value="검색" />
+        </div>
+        <table class="table" id="noticeTable">
+            <thead>
+                <tr>
+                    <th class="text-center" scope="row" style="width: 15%">번호</th>
+                    <th class="text-center" scope="row" style="width: 40%">제목</th>
+                    <th class="text-center" scope="row" style="width: 20%">등록일</th>
+                    <th class="text-center" scope="row" style="width: 15%">조회수</th>
+                </tr>
+            </thead>
+        </table>
     </div>
 </div>
