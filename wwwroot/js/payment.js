@@ -86,13 +86,18 @@ function appendDepartment() {
 
     var table = document.getElementById('departmentList');
     var newRow = table.insertRow();
-    var newCell1 = newRow.insertCell(0);
-    var newCell2 = newRow.insertCell(1);
+    var departmentCell = newRow.insertCell(0);
+    var btnCell = newRow.insertCell(1);
 
-    var departmentName = document.getElementById("departmentName").value;
+    departmentCell.className = "text-center";
+    btnCell.className = "text-center";
 
-    newCell1.innerText = departmentName;
-    newCell2.innerHTML = "<input type=\"button\" class=\"btn btn-dark\" value=\"삭제\" onclick=\"deleteDepartment(this)\" />";
+    var departmentInput = document.getElementById("departmentName");
+
+    departmentCell.innerHTML = "<input type=\"text\" class=\"form-control\" id=\"departmentName\" value=\"" + departmentInput.value + "\" readonly />";
+    btnCell.innerHTML = "<input type=\"button\" class=\"btn btn-dark\" value=\"삭제\" onclick=\"deleteDepartment(this)\" />";
+
+    departmentInput.value = "";
 }
 
 function deleteDepartment(btn) {

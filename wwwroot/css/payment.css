@@ -1,0 +1,29 @@
+﻿#paymentContainer {
+    margin-top: 70px;
+    margin-bottom: 500px;
+}
+
+#paymentFormTopDiv {
+    width: 900px;
+    margin: 0 auto;
+}
+
+.paymentFormDiv {
+    width: 900px;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+.hospitalInfoTD {
+    width: 400px;
+}
+
+#postcode {
+    width: 100px;
+    float: left;
+    margin-right: 10px;
+}
+
+#departmentList{
+    width: 350px;
+}

@@ -6,8 +6,4 @@
     <AssemblyName>hospi</AssemblyName>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\css\" />
-  </ItemGroup>
-
 </Project>
