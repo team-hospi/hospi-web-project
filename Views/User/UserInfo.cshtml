@@ -3,11 +3,87 @@
 }
 
 <head>
-    <!-- <link rel="stylesheet" href="~/css/noname.css" /> -->
+    <link rel="stylesheet" href="~/css/userInfo.css" />
 </head>
 
 <div style="background-color: #8E8E8E; height: 70px">
     <div class="container">
         <p style="line-height: 70px; margin-left: 80px">Hospi 홈 > 마이페이지 > 내 정보</p>
+    </div>
+</div>
+
+<div class="container" id="userInfoContainer">
+    <div class="box-div">
+        <h4>내 정보</h4>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th scope="row">이메일</th>
+                    <td>example@example.com</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row">이름</th>
+                    <td>홍길동</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row">생년월일</th>
+                    <td>0000년 00월 00일</td>
+                    <td><a href="#">생년월일 변경</a></td>
+                </tr>
+                <tr>
+                    <th scope="row">휴대전화</th>
+                    <td>000-0000-0000</td>
+                    <td><a href="#">휴대전화 변경</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="box-div">
+        <div id="planDiv">
+            <img src="~/image/icon.png" id="iconImg" />
+            <h4>구독중인 제품군 - 대학병원용</h4>
+        </div>
+        <h4>결제정보</h4>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th scope="row">카드번호</th>
+                    <td>1111 - XXXX - XXXX - 2222</td>
+                    <td><a href="#">결제 정보 관리</a></td>
+                </tr>
+                <tr>
+                    <th scope="row">다음 결제일</th>
+                    <td>0000년 00월 00일</td>
+                    <td><a href="#">결제일 변경</a></td>
+                </tr>
+                <tr>
+                    <th scope="row">결제금액</th>
+                    <td>45,000원</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="text-align:right">
+            <input type="button" class="btn btn-dark" value="구독 변경" />
+            <input type="button" class="btn btn-outline-dark" value="구독 해지" />
+        </div>
+    </div>
+    <div class="box-div">
+        <h4>Hospi 인증키</h4>
+        <div id="tokenBox">
+            <input type="text" class="form-control" id="tokenText" value="323DS-SDFF3-WERW4-SDF12-345D2-649DS-SDF43" readonly />
+            <input type="button" class="btn btn-dark" value="인증키 복사" />
+        </div>
+        <div>
+            <p>
+                ※ 주의사항 ※<br />
+                1. 인증키 발급 후 반드시 유출되지 않도록 보관하여 주십시오.<br />
+                2. 인증키는 Hospi 전자차트 처음 실행 시 인증을 위해 사용됩니다.<br />
+                3. 인증키 유출로 인한 피해는 당사에서 책임지지 않습니다.<br />
+                4. 자세한 문의는 <a asp-area="" asp-controller="Inquiry" asp-action="ProductInquiry">제품문의</a>를 통하여 문의를 남겨주시면 빠른 시일내에 답변해드리겠습니다.<br />
+            </p>
+        </div>
     </div>
 </div>
