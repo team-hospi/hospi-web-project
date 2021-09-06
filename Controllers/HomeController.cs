@@ -24,6 +24,29 @@ namespace hospi_web_project.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult LoginProcess(LoginViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                DBService db = new DBService();
+
+                Member member = db.login(model);
+
+                // TODO: 로그인 세션 관련해서 코드 추가 필요
+
+                if (member != null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+
+            // 로그인에 실패
+            ModelState.AddModelError(string.Empty, "사용자 ID 혹은 비밀번호가 올바르지 않습니다.");
+
+            return View(model);
+        }
+
         public IActionResult SignUp()
         {
             return View();

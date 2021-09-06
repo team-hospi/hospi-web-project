@@ -2,6 +2,8 @@
     ViewData["Title"] = "로그인";
 }
 
+@model hospi_web_project.Models.LoginViewModel
+
 <div style="background-color: #8E8E8E; height: 70px">
     <div class="container">
         <p style="line-height: 70px; margin-left: 80px"><a style="color: black;" asp-controller="Home" asp-action="Index">Hospi 홈</a> > 로그인</p>
@@ -9,13 +11,17 @@
 </div>
 <div class="container" style="margin-top: 60px; margin-bottom: 150px">
     <div style="width: 30%; margin: 0 auto">
-        <form method="post">
+        <form method="post" asp-controller="Home" asp-action="LoginProcess">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <h1 class="text-center display-4" style="margin-bottom: 20px">Hospi</h1><br />
             <div>
                 <label for="inputEmail" class="sr-only">이메일</label>
-                <input type="email" id="inputEmail" class="form-control" style="margin-bottom: 10px" placeholder="이메일" required autofocus>
+                <input type="email" id="inputEmail" class="form-control" style="margin-bottom: 10px"
+                       asp-for="UserEmail" placeholder="이메일" required autofocus>
+                <span class="text-danger" asp-validation-for="UserEmail"></span>
                 <label for="inputPassword" class="sr-only">비밀번호</label>
-                <input type="password" id="inputPassword" class="form-control" placeholder="비밀번호" required>
+                <input type="password" id="inputPassword" class="form-control" asp-for="UserPassword" placeholder="비밀번호" required>
+                <span class="text-danger" asp-validation-for="UserPassword"></span>
             </div>
             <div style="margin-left: 20px; margin-top: 5px">
                 <input class="form-check-input" type="checkbox" id="auto-login" value="auto-login">
