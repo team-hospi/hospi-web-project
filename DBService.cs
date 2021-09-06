@@ -19,7 +19,7 @@ namespace hospi_web_project
             try
             {
                 conn.Open();
-                string sql = "select * from member where=\""+ model.UserEmail + "\";";
+                string sql = "select * from member where email=\""+ model.UserEmail + "\";";
 
                 //ExecuteReader를 이용하여
                 //연결 모드로 데이타 가져오기
