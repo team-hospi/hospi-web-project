@@ -1,4 +1,5 @@
-﻿using System;
+﻿using hospi_web_project.Service;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -8,16 +9,8 @@ namespace hospi_web_project.Models
 {
     public class LoginViewModel
     {
-        /// <summary>
-        /// 사용자 ID
-        /// </summary>
-        [Required(ErrorMessage = "사용자 ID를 입력하세요.")] // NOT Null 설정 
-        public string UserEmail { get; set; }
+        public string Email { get; set; }
 
-        /// <summary>
-        /// 사용자 비밀번호 
-        /// </summary>
-        [Required(ErrorMessage = "사용자 비밀번호를 입력하세요.")] // NOT Null 설정 
-        public string UserPassword { get; set; }
+        public string Password { get; set; }
     }
 }

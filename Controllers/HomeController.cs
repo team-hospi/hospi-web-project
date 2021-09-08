@@ -1,4 +1,5 @@
 ﻿using hospi_web_project.Models;
+using hospi_web_project.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
@@ -29,9 +30,10 @@ namespace hospi_web_project.Controllers
         {
             if (ModelState.IsValid)
             {
-                DBService db = new DBService();
+                DBService dbService = HttpContext.RequestServices.GetService(typeof(DBService)) as DBService;
+                LoginService context = new(dbService);
 
-                MemberViewModel member = db.login(model);
+                MemberViewModel member = context.login(model);
 
                 // TODO: 로그인 세션 관련해서 코드 추가 필요
 

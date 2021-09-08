@@ -2,16 +2,19 @@
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace hospi_web_project
+namespace hospi_web_project.Service
 {
-    public class DBService
+    public class LoginService
     {
-        private static string connectionString = "Server=katep.iptime.org;Database=hospi;Uid=hospi;Pwd=@hospi0524!23;";
-        private MySqlConnection conn = new MySqlConnection(connectionString);
+        private MySqlConnection conn { get; set; }
+
+        public LoginService(DBService dbService)
+        {
+            conn = dbService.GetConnection();
+        }
 
         public MemberViewModel login(LoginViewModel model)
         {
@@ -19,7 +22,7 @@ namespace hospi_web_project
             try
             {
                 conn.Open();
-                string sql = "select * from member where email=\""+ model.UserEmail + "\";";
+                string sql = "select * from member where email=\"" + model.Email + "\";";
 
                 //ExecuteReader를 이용하여
                 //연결 모드로 데이타 가져오기
@@ -27,9 +30,9 @@ namespace hospi_web_project
                 MySqlDataReader rdr = cmd.ExecuteReader();
                 while (rdr.Read())
                 {
-                    if (rdr["email"].Equals(model.UserEmail))
+                    if (rdr["email"].Equals(model.Email))
                     {
-                        if (rdr["password"].Equals(model.UserPassword))
+                        if (rdr["password"].Equals(model.Password))
                         {
                             member.name = (string)rdr["name"];
                             member.birth = (string)rdr["birth"];

@@ -7,8 +7,6 @@ namespace hospi_web_project.Models
 {
     public class MemberViewModel
     {
-        private DBService context;
-
         public string email { get; set; }
 
         public string password { get; set; }
