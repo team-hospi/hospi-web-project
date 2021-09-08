@@ -13,9 +13,9 @@ namespace hospi_web_project
         private static string connectionString = "Server=katep.iptime.org;Database=hospi;Uid=hospi;Pwd=@hospi0524!23;";
         private MySqlConnection conn = new MySqlConnection(connectionString);
 
-        public Member login(LoginViewModel model)
+        public MemberViewModel login(LoginViewModel model)
         {
-            Member member = new Member();
+            MemberViewModel member = new MemberViewModel();
             try
             {
                 conn.Open();

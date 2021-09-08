@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace hospi_web_project.Models
 {
-    public class Member
+    public class MemberViewModel
     {
         private DBService context;
 

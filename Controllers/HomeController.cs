@@ -31,7 +31,7 @@ namespace hospi_web_project.Controllers
             {
                 DBService db = new DBService();
 
-                Member member = db.login(model);
+                MemberViewModel member = db.login(model);
 
                 // TODO: 로그인 세션 관련해서 코드 추가 필요
 
