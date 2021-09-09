@@ -13,12 +13,14 @@
     var day = document.getElementById("day").value;
     var birth = year + "-" + month + "-" + day;
     var phone = document.getElementById("phone").value;
+    var name = document.getElementById("name").value;
 
     document.getElementById("_email").value = email;
     document.getElementById("_password").value = password;
     document.getElementById("_sex").value = sex;
     document.getElementById("_birth").value = birth;
     document.getElementById("_phone").value = phone;
+    document.getElementById("_name").value = name;
 
     return true;
 }
