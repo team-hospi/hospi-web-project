@@ -2,22 +2,9 @@
     ViewData["Title"] = "회원가입";
 }
 
+@model MemberViewModel;
 
-@model hospi_web_project.Models.MemberViewModel
-
-    <script>
-        function birthplus() {
-            var result = '';
-
-            $('input[name=a]').map(function () {
-                result += $(this).val();
-                if (result.length == 4 || result.length == 7)
-                    result += "-";
-            });
-
-            $('input[name=birth]').attr('value', result);
-        }
-    </script>
+<script src="~/js/signUp.js"></script>
 
 <div style="background-color: #8E8E8E; height: 70px">
     <div class="container">
@@ -25,97 +12,83 @@
     </div>
 </div>
 <div class="container" style="margin-top: 70px; margin-bottom: 150px">
-    <form method="post" asp-controller="Home" asp-action="SignUpProcess">
-        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="form-group" style="width: 600px; margin: 0 auto; margin-bottom: 70px">
-            <h4>회원약관 동의</h4>
-            <hr />
-            <textarea class="form-control" style="height: 150px; resize: none" readonly>
+    <div class="form-group" style="width: 600px; margin: 0 auto; margin-bottom: 70px">
+        <h4>회원약관 동의</h4>
+        <hr />
+        <textarea class="form-control" style="height: 150px; resize: none" readonly>
 Hospi 약관 동의
             </textarea>
-            <div style="text-align: right; margin-top: 5px;">
-                <input class="form-check-input" type="checkbox" id="privacyPolicyAgree" name="agree" value="동의합니다." />
-                <label class="form-check-label" for="privacyPolicyAgree">동의합니다.</label>
-            </div>
+        <div style="text-align: right; margin-top: 5px;">
+            <input class="form-check-input" type="checkbox" id="privacyPolicyAgree" name="agree" value="동의합니다." />
+            <label class="form-check-label" for="privacyPolicyAgree">동의합니다.</label>
         </div>
-        <div class="form-group" style="width: 600px; margin: 0 auto;">
-            <h4>기본정보 입력</h4>
-            <table class="table">
-                <tbody>
-                    <tr>
-                        <th scope="row">아이디(이메일)</th>
-
-                        <td>
-                            <input type="email" class="form-control" style="width: 265px; float: left; margin-right: 10px" asp-for="email" />
-                            <span class="text-danger" asp-validation-for="email"></span>
-                            <button class="btn btn-dark">인증번호 발송</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">인증번호</th>
-                        <td>
-                            <input type="text" class="form-control" style="width: 200px; float: left; margin-right: 10px" placeholder="인증번호 6자리 입력" />
-                            <button class="btn btn-dark">인증확인</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">비밀번호</th>
-                        <td>
-                            <input type="password" class="form-control" style="width: 400px" placeholder="비밀번호는 영어, 특수문자 포함 8자리 이상입니다." asp-for="password" />
-                            <span class="text-danger" asp-validation-for="password"></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">비밀번호 확인</th>
-                        <td><input type="password" class="form-control" style="width: 400px" /></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">이름</th>
-                        <td>
-                            <input type="text" class="form-control" style="width: 400px" asp-for="name" />
-                            <span class="text-danger" asp-validation-for="name"></span>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">성별</th>
-                        <td>
-                            <div style="margin-left: 20px">
-                                <input class="form-check-input" type="radio" id="male" name="sex" value="남" asp-for="sex" />
-                                <span class="text-danger" asp-validation-for="sex"></span>
-                                <label class="form-check-label" for="male" style="margin-right: 30px">남</label>
-                                <input class="form-check-input" type="radio" id="female" name="sex" value="여" asp-for="sex" />
-                                <span class="text-danger" asp-validation-for="sex"></span>
-                                <label class="form-check-label" for="female">여</label>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">생년월일</th>
-                        <td>
-                            <input type="text" class="form-control" style="width: 100px; float: left; margin-right: 10px" maxlength="4" placeholder="년(4자리)" name="a" id="a" onkeyup="birthplus()"/>
-                            <input type="text" class="form-control" style="width: 50px; float: left; margin-right: 10px " maxlength="2" placeholder="월" name="a" id="b" onkeyup="birthplus()"/>
-                            <input type="text" class="form-control" style="width: 50px; float: left" placeholder="일" maxlength="2" name="a" id="c" onkeyup="birthplus()"/>
-                            <input type="text" class="form-control" name="birth" asp-for="birth"/>
-                            <span class="text-danger" asp-validation-for="birth"></span>
-
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">휴대폰 번호</th>
-                        <td>
-                            <input type="text" class="form-control" style="width: 400px" placeholder="번호만 입력해주세요." maxlength="11" asp-for="phone" />
-                            <span class="text-danger" asp-validation-for="phone"></span>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="form-group" style="text-align: center; margin-top: 40px">
-            <button class="btn btn-dark" style="width: 150px; height: 40px">가입하기</button>
-        </div>
-    </form>
-
-
+    </div>
+    <div class="form-group" style="width: 600px; margin: 0 auto;">
+        <h4>기본정보 입력</h4>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th scope="row">아이디(이메일)</th>
+                    <td>
+                        <form method="post" asp-controller="Home" asp-action="AuthNumSend">
+                            <input type="email" class="form-control" id="email" asp-for="email" style="width: 265px; float: left; margin-right: 10px" />
+                            <button class="btn btn-dark" type="submit">인증번호 발송</button>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">인증번호</th>
+                    <td>
+                        <input type="text" class="form-control" id="authNum" style="width: 200px; float: left; margin-right: 10px" placeholder="인증번호 6자리 입력" />
+                        <button class="btn btn-dark">인증확인</button>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">비밀번호</th>
+                    <td><input type="password" class="form-control" id="password" style="width: 400px" placeholder="비밀번호는 영어, 특수문자 포함 8자리 이상입니다." /></td>
+                </tr>
+                <tr>
+                    <th scope="row">비밀번호 확인</th>
+                    <td><input type="password" class="form-control" id="password2" style="width: 400px" /></td>
+                </tr>
+                <tr>
+                    <th scope="row">이름</th>
+                    <td><input type="text" class="form-control" id="name" style="width: 400px" /></td>
+                </tr>
+                <tr>
+                    <th scope="row">성별</th>
+                    <td>
+                        <div style="margin-left: 20px">
+                            <input class="form-check-input" type="radio" id="male" name="sex" value="남" />
+                            <label class="form-check-label" for="male" style="margin-right: 30px">남</label>
+                            <input class="form-check-input" type="radio" id="female" name="sex" value="여" />
+                            <label class="form-check-label" for="female">여</label>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">생년월일</th>
+                    <td>
+                        <input type="text" class="form-control" id="year" style="width: 100px; float: left; margin-right: 10px" placeholder="년(4자리)" />
+                        <input type="text" class="form-control" id="month" style="width: 50px; float: left; margin-right: 10px " placeholder="월" />
+                        <input type="text" class="form-control" id="day" style="width: 50px; float: left" placeholder="일" />
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">휴대폰 번호</th>
+                    <td><input type="text" class="form-control" id="phone" style="width: 400px" placeholder="번호만 입력해주세요." /></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="form-group" style="text-align: center; margin-top: 40px">
+        <form method="post" id="memberForm" onsubmit="return signUpBtn()" asp-controller="Home" asp-action="SignUpSuccess">
+            <input type="hidden" id="_email" asp-for="email" />
+            <input type="hidden" id="_password" asp-for="password" />
+            <input type="hidden" id="_sex" asp-for="sex" />
+            <input type="hidden" id="_birth" asp-for="birth" />
+            <input type="hidden" id="_phone" asp-for="phone" />
+            <button class="btn btn-dark" type="submit" style="width: 150px; height: 40px">가입하기</button>
+        </form>
+    </div>
 </div>
-
