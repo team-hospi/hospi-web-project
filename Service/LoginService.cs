@@ -36,7 +36,7 @@ namespace hospi_web_project.Service
                         {
                             member.name = (string)rdr["name"];
                             member.birth = (string)rdr["birth"];
-                            member.sex = (int)rdr["sex"];
+                            member.sex = (string)rdr["sex"];
                             member.phone = (string)rdr["phone"];
                         }
                         else

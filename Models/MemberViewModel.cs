@@ -15,7 +15,7 @@ namespace hospi_web_project.Models
 
         public string birth { get; set; }
 
-        public int sex { get; set; }
+        public string sex { get; set; }
 
         public string phone { get; set; }
     }

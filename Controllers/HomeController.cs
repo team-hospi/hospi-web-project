@@ -59,6 +59,24 @@ namespace hospi_web_project.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult SignupProcess(MemberViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                DBService dbService = HttpContext.RequestServices.GetService(typeof(DBService)) as DBService;
+                SignUpService context = new(dbService);
+
+                context.Signup(model);
+
+
+                return RedirectToAction("SignUpSuccess", "Home");
+            }
+
+            return View();
+        }
+
+
         public IActionResult Privacy()
         {
             return View();
