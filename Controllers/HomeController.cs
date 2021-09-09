@@ -1,5 +1,6 @@
 ﻿using hospi_web_project.Models;
 using hospi_web_project.Service;
+using hospi_web_project.Utils;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
@@ -57,6 +58,15 @@ namespace hospi_web_project.Controllers
         public IActionResult SignUpSuccess()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult AuthNumSend(MemberViewModel model)
+        {
+            EmailSender sender = new EmailSender();
+            sender.sendAuthNumMail(model.email);
+
+            return RedirectToAction("SignUp", "Home");
         }
 
         public IActionResult Privacy()
