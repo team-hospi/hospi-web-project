@@ -60,6 +60,12 @@
     }
     else if (year.length == 0 || month.length == 0 || day.length == 0 || Number(month) > 12 || Number(month) < 1)
     {
+        document.getElementById("checktext").value = "생년월일 형식이 잘못되었습니다.";
+        document.getElementById("checktext").style.display = "block";
+        return false;
+    }
+    else if (Number(month < 12) || Number(month > 0))
+    {
         if (Number(month) == 2) {
             if (Number(year) % 4 === 0 && Number(year) % 100 !== 0 || Number(year) % 400 === 0) {
                 if (Number(day) > 29 || Number(day) < 1) {
