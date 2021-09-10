@@ -30,12 +30,12 @@ Hospi 약관 동의
                 <tr>
                     <th scope="row">아이디(이메일)</th>
                     <td>
-                        <input type="email" class="form-control" id="email" style="width: 400px; float: left; margin-right: 10px" placeholder="example@example.com" />
+                        <input type="email" class="form-control" id="email" style="width: 400px; float: left; margin-right: 10px" placeholder="example@example.com" onkeyup="reinput()"/>
                     </td>
                 </tr>
                 <tr>
                     <th scope="row">비밀번호</th>
-                    <td><input type="password" class="form-control" id="password" style="width: 400px" placeholder="비밀번호는 영어, 특수문자 포함 8자리 이상입니다." /></td>
+                    <td><input type="password" class="form-control" id="password" style="width: 400px" placeholder="비밀번호는 영어, 특수문자 포함 8자리 이상입니다." onkeyup="reinput()"/></td>
                 </tr>
                 <tr>
                     <th scope="row">비밀번호 확인</th>
@@ -43,15 +43,15 @@ Hospi 약관 동의
                 </tr>
                 <tr>
                     <th scope="row">이름</th>
-                    <td><input type="text" class="form-control" id="name" style="width: 400px" /></td>
+                    <td><input type="text" class="form-control" id="name" style="width: 400px" onkeyup="reinput()" /></td>
                 </tr>
                 <tr>
                     <th scope="row">성별</th>
                     <td>
                         <div style="margin-left: 20px">
-                            <input class="form-check-input" type="radio" id="male" name="sex" value="남" />
+                            <input class="form-check-input" type="radio" id="male" name="sex" value="남" onchange="reinput()"/>
                             <label class="form-check-label" for="male" style="margin-right: 30px">남</label>
-                            <input class="form-check-input" type="radio" id="female" name="sex" value="여" />
+                            <input class="form-check-input" type="radio" id="female" name="sex" value="여" onchange="reinput()" />
                             <label class="form-check-label" for="female">여</label>
                         </div>
                     </td>
@@ -59,14 +59,14 @@ Hospi 약관 동의
                 <tr>
                     <th scope="row">생년월일</th>
                     <td>
-                        <input type="text" class="form-control" id="year" style="width: 100px; float: left; margin-right: 10px" placeholder="년(4자리)" />
-                        <input type="text" class="form-control" id="month" style="width: 50px; float: left; margin-right: 10px " placeholder="월" />
-                        <input type="text" class="form-control" id="day" style="width: 50px; float: left" placeholder="일" />
+                        <input type="text" class="form-control" id="year" style="width: 100px; float: left; margin-right: 10px" placeholder="년(4자리)" onkeyup="reinput()" />
+                        <input type="text" class="form-control" id="month" style="width: 50px; float: left; margin-right: 10px " placeholder="월" onkeyup="reinput()" />
+                        <input type="text" class="form-control" id="day" style="width: 50px; float: left" placeholder="일" onkeyup="reinput()" />
                     </td>
                 </tr>
                 <tr>
                     <th scope="row">휴대폰 번호</th>
-                    <td><input type="text" class="form-control" id="phone" style="width: 400px" placeholder="번호만 입력해주세요." /></td>
+                    <td><input type="text" class="form-control" id="phone" style="width: 400px" placeholder="번호만 입력해주세요." onkeyup="reinput()" /></td>
                 </tr>
             </tbody>
         </table>
@@ -80,6 +80,7 @@ Hospi 약관 동의
             <input type="hidden" id="_birth" asp-for="birth" />
             <input type="hidden" id="_phone" asp-for="phone" />
             <button class="btn btn-dark" type="submit" style="width: 150px; height: 40px">가입하기</button>
+            <input type="text" class="form-control" id="checktext" style="pointer-events:none; border:none; display:none; margin-top:20px; text-align:center; font-size:20px; color:red;" />
         </form>
     </div>
 </div>
