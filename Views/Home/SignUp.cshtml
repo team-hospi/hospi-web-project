@@ -30,17 +30,7 @@ Hospi 약관 동의
                 <tr>
                     <th scope="row">아이디(이메일)</th>
                     <td>
-                        <form method="post" asp-controller="Home" asp-action="AuthNumSend">
-                            <input type="email" class="form-control" id="email" asp-for="email" style="width: 265px; float: left; margin-right: 10px" />
-                            <button class="btn btn-dark" type="submit">인증번호 발송</button>
-                        </form>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">인증번호</th>
-                    <td>
-                        <input type="text" class="form-control" id="authNum" style="width: 200px; float: left; margin-right: 10px" placeholder="인증번호 6자리 입력" />
-                        <button class="btn btn-dark">인증확인</button>
+                        <input type="email" class="form-control" id="email" style="width: 400px; float: left; margin-right: 10px" placeholder="example@example.com" />
                     </td>
                 </tr>
                 <tr>

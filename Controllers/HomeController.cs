@@ -77,16 +77,6 @@ namespace hospi_web_project.Controllers
             return View();
         }
 
-
-        [HttpPost]
-        public IActionResult AuthNumSend(MemberViewModel model)
-        {
-            EmailSender sender = new EmailSender();
-            sender.sendAuthNumMail(model.email);
-
-            return RedirectToAction("SignUp", "Home");
-        }
-
         public IActionResult Privacy()
         {
             return View();
