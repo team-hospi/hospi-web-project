@@ -2,7 +2,7 @@
     var email = document.getElementById("email").value;
     var password = document.getElementById("password").value;
     var sex_length = document.getElementsByName("sex").length;
-    var sex;
+    var sex = "";
     for (var i = 0; i < sex_length; i++) {
         if (document.getElementsByName("sex")[i].checked == true) {
             sex = document.getElementsByName("sex")[i].value;

@@ -1,10 +1,13 @@
 ﻿@{
     ViewData["Title"] = "일반문의";
 }
+@model InquiryViewModel;
 
 <head>
     <link rel="stylesheet" href="~/css/generalInquiry.css" />
 </head>
+
+<script src="~/js/generalInquiry.js"></script>
 
 <div style="background-color: #8E8E8E; height: 70px">
     <div class="container">
@@ -17,35 +20,39 @@
     <hr />
     <p style="margin-left: 40px;">일반문의에 제품 관련 문의를 남기실 경우 답변이 어려울 수 있습니다.<br>제품 설치, 다운로드, 기능 등 사용문의는 제품문의로 남겨주세요.<br />※이메일로 답변해 드립니다.</p>
     <hr style="margin-bottom: 30px" />
-    <form>
+    <form method="post" onsubmit="return inquiryBtn()" asp-controller="Inquiry" asp-action="GenralInquiryProcess" enctype="multipart/form-data">
         <div class="form-group" style="width: 80%; margin: 0 auto;">
             <table class="table">
                 <tbody>
                     <tr>
                         <th scope="row">이름</th>
-                        <td>홍길동</td><!--해당 아이디에 맞는 이름 출력-->
+                        <td><input type="text" class="form-control" id="name" asp-for="Name" /></td><!--해당 아이디에 맞는 이름 출력해야함-->
                     </tr>
                     <tr>
                         <th scope="row">이메일</th>
-                        <td>example@example.com</td><!--해당 아이디 출력-->
+                        <td><input type="text" class="form-control" id="email" asp-for="Email" /></td><!--해당 아이디 출력해야함-->
                     </tr>
                     <tr>
                         <th scope="row">제목</th>
-                        <td><input type="text" class="form-control" style="width: 100%" /></td>
+                        <td>
+                            <input type="text" class="form-control" id="title" asp-for="Title" style="width: 100%" />
+                        </td>
                     </tr>
                     <tr>
                         <th scope="row">내용</th>
-                        <td><textarea type="text" rows="10" class="form-control" style="width: 100%; resize: none;"></textarea></td>
+                        <td>
+                            <textarea type="text" rows="10" class="form-control" id="content" asp-for="Content" style="width: 100%; resize: none;"></textarea>
+                        </td>
                     </tr>
                     <tr>
                         <th scope="row">첨부파일</th>
-                        <td><input type="file" multiple class="form-control-file" /></td>
+                        <td><input type="file" id="file" asp-for="File" class="form-control-file" />파일 첨부는 1개만 가능합니다. (문서, 이미지, 동영상 형식 등)</td>
                     </tr>
                 </tbody>
             </table>
         </div>
         <div class="form-group" style="width: 80%; margin: 0 auto; text-align: end">
-            <button class="btn btn-dark" type="submit" asp-area="" asp-controller="Inquiry" asp-action="InquirySuccess">
+            <button class="btn btn-dark" type="submit">
                 등록
             </button>
             <button class="btn btn-dark" asp-area="" asp-controller="Home" asp-action="Index">취소</button>

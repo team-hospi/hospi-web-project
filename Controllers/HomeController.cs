@@ -70,7 +70,6 @@ namespace hospi_web_project.Controllers
 
                 context.Signup(model);
 
-
                 return RedirectToAction("SignUpSuccess", "Home");
             }
 
