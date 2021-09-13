@@ -1,9 +1,15 @@
 ﻿using hospi_web_project.Models;
 using hospi_web_project.Service;
 using hospi_web_project.Utils;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Diagnostics;
+using System.Security.Claims;
+using System.Threading.Tasks;
 
 namespace hospi_web_project.Controllers
 {
@@ -21,16 +27,17 @@ namespace hospi_web_project.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult LoginProcess(LoginViewModel model)
+        public async Task<IActionResult> LoginProcess(LoginViewModel model)
         {
-            if (ModelState.IsValid)
-            {
+            try
+            { 
                 DBService dbService = HttpContext.RequestServices.GetService(typeof(DBService)) as DBService;
                 LoginService context = new(dbService);
 
@@ -40,14 +47,38 @@ namespace hospi_web_project.Controllers
 
                 if (member != null)
                 {
+                    var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme, ClaimTypes.Name, ClaimTypes.Role);
+                    identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, model.Email));
+                    identity.AddClaim(new Claim(ClaimTypes.Name, model.Email));
+
+                    var principal = new ClaimsPrincipal(identity);
+
+                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, new AuthenticationProperties
+                    {
+                        IsPersistent = false,
+                        ExpiresUtc = DateTime.UtcNow.AddHours(1),
+                        AllowRefresh = true
+                    });
+
                     return RedirectToAction("Index", "Home");
                 }
+
+                // 로그인에 실패
+                return View(model);
             }
+            catch(Exception ex)
+            {
+                // 로그인에 실패
+                return View(model);
+            }
+        }
+        
+        [Authorize]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync();
 
-            // 로그인에 실패
-            ModelState.AddModelError(string.Empty, "사용자 ID 혹은 비밀번호가 올바르지 않습니다.");
-
-            return View(model);
+            return Redirect("/");
         }
 
         public IActionResult SignUp()
