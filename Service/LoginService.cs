@@ -32,7 +32,7 @@ namespace hospi_web_project.Service
                 //연결 모드로 데이타 가져오기
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 MySqlDataReader rdr = cmd.ExecuteReader();
-                while (rdr.Read())
+                while(rdr.Read())
                 {
                     if (rdr["email"].Equals(model.Email))
                     {
@@ -42,19 +42,22 @@ namespace hospi_web_project.Service
                             member.birth = (string)rdr["birth"];
                             member.sex = (string)rdr["sex"];
                             member.phone = (string)rdr["phone"];
+                            return member;
                         }
                         else
                         {
                             member = null;
+                            return member;
                         }
                     }
                     else
                     {
                         member = null;
+                        return member;
                     }
                 }
                 rdr.Close();
-                return member;
+                return member = null;
             }
             catch (Exception e)
             {
