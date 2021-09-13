@@ -22,5 +22,10 @@ namespace hospi_web_project.Controllers
         {
             return View();
         }
+
+        public IActionResult Inquiry()
+        {
+            return View();
+        }
     }
 }

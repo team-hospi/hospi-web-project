@@ -1,4 +1,4 @@
-﻿#noticeContainer {
+﻿#boardContainer {
     margin-bottom: 150px;
 }
 
@@ -24,7 +24,7 @@
     display: inline;
 }
 
-#noticeDiv {
+#boardDiv {
     width: 80%;
     margin: 0 auto;
 }

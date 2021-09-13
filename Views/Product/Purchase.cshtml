@@ -4,9 +4,9 @@
     var kindArr = new[] { "의원", "종합병원", "대학병원" };
 
     var productKind = new Dictionary<string, string>();
-    productKind.Add(kindArr[0], "₩13,000");
-    productKind.Add(kindArr[1], "₩27,000");
-    productKind.Add(kindArr[2], "₩45,000");
+    productKind.Add(kindArr[0], "₩235,000");
+    productKind.Add(kindArr[1], "₩489,000");
+    productKind.Add(kindArr[2], "₩795,000");
 }
 
 <head>
@@ -28,9 +28,9 @@
         <div class="select_box" style="margin-right: 50px">
             <div style="margin: 10px 18px 10px 18px">
                 <p style="font-size: 25px">@kindArr[0]용</p>
-                <p style="font-size: 23px">@productKind[kindArr[0]]<span style="font-size: 15px">/월</span></p>
+                <p style="font-size: 23px">@productKind[kindArr[0]]</p>
                 <p>@kindArr[0]용 기능과<br />@kindArr[0] 규모급 DB 제공</p>
-                <p style="font-size: 20px">결제<br /><span style="font-size: 16px; padding: 3px 10px 3px 10px; border: 1px solid #D2D2D2">매월 지불</span></p>
+                <p style="font-size: 20px">결제<br /><span style="font-size: 16px; padding: 3px 10px 3px 10px; border: 1px solid #D2D2D2">일회성 구매</span></p>
                 <hr />
                 <div style="text-align: right">
                     <form method="post">
@@ -44,9 +44,9 @@
         <div class="select_box" style="margin-right: 50px">
             <div style="margin: 10px 18px 10px 18px">
                 <p style="font-size: 25px">@kindArr[1]용</p>
-                <p style="font-size: 23px">@productKind[kindArr[1]]<span style="font-size: 15px">/월</span></p>
+                <p style="font-size: 23px">@productKind[kindArr[1]]</p>
                 <p>@kindArr[1]용 기능과<br />@kindArr[1] 규모급 DB 제공</p>
-                <p style="font-size: 20px">결제<br /><span style="font-size: 16px; padding: 3px 10px 3px 10px; border: 1px solid #D2D2D2">매월 지불</span></p>
+                <p style="font-size: 20px">결제<br /><span style="font-size: 16px; padding: 3px 10px 3px 10px; border: 1px solid #D2D2D2">일회성 구매</span></p>
                 <hr />
                 <div style="text-align: right">
                     <form method="post">
@@ -60,9 +60,9 @@
         <div class="select_box">
             <div style="margin: 10px 18px 10px 18px">
                 <p style="font-size: 25px">@kindArr[2]용</p>
-                <p style="font-size: 23px">@productKind[kindArr[2]]<span style="font-size: 15px">/월</span></p>
+                <p style="font-size: 23px">@productKind[kindArr[2]]</p>
                 <p>@kindArr[2]용 기능과<br />@kindArr[2] 규모급 DB 제공</p>
-                <p style="font-size: 20px">결제<br /><span style="font-size: 16px; padding: 3px 10px 3px 10px; border: 1px solid #D2D2D2">매월 지불</span></p>
+                <p style="font-size: 20px">결제<br /><span style="font-size: 16px; padding: 3px 10px 3px 10px; border: 1px solid #D2D2D2">일회성 구매</span></p>
                 <hr />
                 <div style="text-align: right">
                     <form method="post">

@@ -1,30 +1,37 @@
-﻿#myPageContainer{
-    margin-top: 150px;
-    margin-bottom: 150px;
+﻿.box-div {
+    padding: 20px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+    width: 800px;
+    border: 1px solid;
+    border-color: #AFAFAF;
+    border-radius: 5px;
+    box-shadow: 2px 1px 3px gray;
 }
 
-.custom-button {
-    width: 300px;
-    height: 300px;
-    background-color: #E8E8E8;
-    border-radius: 10%;
-    text-align: center;
-    border: solid;
-    border-color: lightgray;
+#tokenBox {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-.img-style {
-    width: 100px;
-    height: 100px;
-    margin-top: 60px;
+#tokenText {
+    width: 450px;
+    margin-right: 20px;
+    float: left;
 }
 
-.text-style {
-    color: black;
-    font-size: 20px;
-    margin-top: 50px;
+.change-btn {
+    margin-right: 5px;
+    float: left;
 }
 
-#userInfoBtn {
-    margin-right: -90px;
+#planDiv {
+    margin-bottom: 30px;
+}
+
+#iconImg {
+    float: left;
+    width: 33px;
+    border-radius: 3px;
+    margin-right: 10px;
 }

@@ -8,20 +8,67 @@
 
 <div style="background-color: #8E8E8E; height: 70px">
     <div class="container">
-        <p style="line-height: 70px; margin-left: 80px"><a style="color: black;" asp-controller="Home" asp-action="Index">Hospi 홈</a> > 마이페이지</p>
+        <p style="line-height: 70px; margin-left: 80px"><a style="color: black;" asp-controller="Home" asp-action="Index">Hospi 홈</a> > <a style="color: black;" asp-controller="User" asp-action="MyPage">마이페이지</a></p>
     </div>
 </div>
 
-<div class="container" id="myPageContainer">
-    <div class="row">
-        <a class="container custom-button" id="userInfoBtn" asp-area="" asp-controller="User" asp-action="UserInfo">
-            <img class="img-style" src="~/image/account_circle_black_48dp.svg">
-            <h5 class="jumbo-text text-md-center text-style">내 정보</h5>
-        </a>
-
-        <a class="container custom-button" asp-area="" asp-controller="User" asp-action="HospitalManagement">
-            <img class="img-style" src="~/image/local_hospital_black_48dp.svg">
-            <h5 class="jumbo-text text-md-center text-style">병원 관리</h5>
-        </a>
+<div class="container">
+    <div class="box-div" style="margin-top: 70px;">
+        <h4>내 정보</h4>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th scope="row">이메일</th>
+                    <td>example@example.com</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row">이름</th>
+                    <td>홍길동</td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th scope="row">생년월일</th>
+                    <td>0000년 00월 00일</td>
+                    <td><a href="#">생년월일 변경</a></td>
+                </tr>
+                <tr>
+                    <th scope="row">휴대전화</th>
+                    <td>000-0000-0000</td>
+                    <td><a href="#">휴대전화 변경</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="box-div" style="margin-bottom: 150px;">
+        <h4>결제내역</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="text-center" scope="row" style="width: 25%">주문번호</th>
+                    <th class="text-center" scope="row" style="width: 20%">제품명</th>
+                    <th class="text-center" scope="row" style="width: 40%">인증키</th>
+                    <th class="text-center" scope="row" style="width: 15%">등록일</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-center">SFSD213123SDFS</td>
+                    <td class="text-center">Hospi 대학병원용</td>
+                    <td class="text-center">DRE32-SDFRD-234ED-FFDSA</td>
+                    <td class="text-center">2021-09-13</td>
+                </tr>
+            </tbody>
+        </table>
+        <hr style="margin-top: -15px" />
+        <h5>Hospi 인증키에 대한 주의사항</h5>
+        <div>
+            <p>
+                1. 인증키 발급 후 반드시 유출되지 않도록 보관하여 주십시오.<br />
+                2. 인증키는 Hospi 전자차트 처음 실행 시 인증을 위해 사용됩니다.<br />
+                3. 인증키 유출로 인한 피해는 당사에서 책임지지 않습니다.<br />
+                4. 자세한 문의는 <a asp-area="" asp-controller="Support" asp-action="Inquiry">문의게시판</a>을 통하여 문의를 남겨주시면 빠른 시일내에 답변해드리겠습니다.<br />
+            </p>
+        </div>
     </div>
 </div>

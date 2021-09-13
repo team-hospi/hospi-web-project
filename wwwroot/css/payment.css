@@ -1,11 +1,31 @@
-﻿#paymentContainer {
+﻿#pageTitle {
+    margin-left: 40px;
+}
+
+#paymentContainer {
     margin-top: 70px;
-    margin-bottom: 500px;
+    margin-bottom: 150px;
 }
 
 #paymentFormTopDiv {
     width: 900px;
     margin: 0 auto;
+}
+
+.cardNumInput {
+    width: 60px;
+    float: left;
+    margin-right: 10px;
+}
+
+.validityInput {
+    float: left;
+    margin-right: 10px;
+}
+
+.birthInput {
+    float: left;
+    margin-right: 10px;
 }
 
 .paymentFormDiv {
@@ -26,4 +46,10 @@
 
 #departmentList{
     width: 350px;
+}
+
+#explanationDiv {
+    width: 400px;
+    margin-top: 20px;
+    float: right;
 }
