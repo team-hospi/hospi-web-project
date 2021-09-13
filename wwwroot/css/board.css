@@ -24,7 +24,7 @@
     display: inline;
 }
 
-#boardDiv {
+.boardDiv {
     width: 80%;
     margin: 0 auto;
 }

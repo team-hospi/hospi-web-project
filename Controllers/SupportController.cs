@@ -27,5 +27,25 @@ namespace hospi_web_project.Controllers
         {
             return View();
         }
+
+        public IActionResult InquiryCreate()
+        {
+            return View();
+        }
+
+        public IActionResult InquiryDelete()
+        {
+            return View();
+        }
+
+        public IActionResult InquiryDetails()
+        {
+            return View();
+        }
+
+        public IActionResult InquiryEdit()
+        {
+            return View();
+        }
     }
 }
