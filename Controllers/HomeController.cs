@@ -42,7 +42,7 @@ namespace hospi_web_project.Controllers
                 LoginService context = new(dbService);
 
                 MemberViewModel member = context.login(model);
-
+                
                 // TODO: 로그인 세션 관련해서 코드 추가 필요
 
                 if (member != null)
