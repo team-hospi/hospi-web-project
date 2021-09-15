@@ -1,11 +1,29 @@
-﻿@{
+﻿@using hospi_web_project.Service;
+@{
     ViewData["Title"] = "마이페이지";
 
-    string email = ViewContext.HttpContext.Request.Form["email"];
-}
+    string email = User.Identity.Name;
 
-@functions{
+    DBService dbService = ViewContext.HttpContext.RequestServices.GetService(typeof(DBService)) as DBService;
 
+    MemberService memberContext = new(dbService);
+    MemberViewModel model = memberContext.GetMemberInfo(email);
+
+    PaymentService paymentContext = new(dbService);
+    List<PaymentViewModel> list = paymentContext.GetPaymentList(email);
+
+    async Task GetPaymentList()
+    {
+        foreach (var payment in list)
+        {
+            <tr>
+                <td class="text-center">@payment.OrderCode</td>
+                <td class="text-center">@payment.ProductName</td>
+                <td class="text-center">@payment.ProductKey</td>
+                <td class="text-center">@payment.RegDate</td>
+            </tr>
+        }
+    }
 }
 
 <head>
@@ -25,22 +43,22 @@
             <tbody>
                 <tr>
                     <th scope="row">이메일</th>
-                    <td>@email</td>
+                    <td>@(model.email)</td>
                     <td></td>
                 </tr>
                 <tr>
                     <th scope="row">이름</th>
-                    <td>홍길동</td>
+                    <td>@(model.name)</td>
                     <td></td>
                 </tr>
                 <tr>
                     <th scope="row">생년월일</th>
-                    <td>0000년 00월 00일</td>
+                    <td>@(model.birth)</td>
                     <td><a href="#">생년월일 변경</a></td>
                 </tr>
                 <tr>
                     <th scope="row">휴대전화</th>
-                    <td>000-0000-0000</td>
+                    <td>@(model.phone)</td>
                     <td><a href="#">휴대전화 변경</a></td>
                 </tr>
             </tbody>
@@ -58,12 +76,9 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td class="text-center">SFSD213123SDFS</td>
-                    <td class="text-center">Hospi 대학병원용</td>
-                    <td class="text-center">DRE32-SDFRD-234ED-FFDSA</td>
-                    <td class="text-center">2021-09-13</td>
-                </tr>
+                @{
+                    await GetPaymentList();
+                }
             </tbody>
         </table>
         <hr style="margin-top: -15px" />

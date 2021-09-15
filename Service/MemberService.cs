@@ -12,11 +12,11 @@ using System.Threading.Tasks;
 
 namespace hospi_web_project.Service
 {
-    public class LoginService
+    public class MemberService
     {
         private MySqlConnection conn { get; set; }
 
-        public LoginService(DBService dbService)
+        public MemberService(DBService dbService)
         {
             conn = dbService.GetConnection();
         }
@@ -28,8 +28,6 @@ namespace hospi_web_project.Service
                 conn.Open();
                 string sql = "select * from member where email=\"" + member.email + "\";";
 
-                //ExecuteReader를 이용하여
-                //연결 모드로 데이타 가져오기
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 MySqlDataReader rdr = cmd.ExecuteReader();
                 while(rdr.Read())
@@ -63,6 +61,41 @@ namespace hospi_web_project.Service
             {
                 Console.WriteLine(e.StackTrace);
                 return member;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public MemberViewModel GetMemberInfo(string email)
+        {
+            try
+            {
+                conn.Open();
+                string sql = "select * from member where email=\"" + email + "\";";
+
+                MemberViewModel member = new();
+
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                MySqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    member.email = (string)rdr["email"];
+                    member.password = (string)rdr["password"];
+                    member.name = (string)rdr["name"];
+                    member.birth = (string)rdr["birth"];
+                    member.sex = (string)rdr["sex"];
+                    member.phone = (string)rdr["phone"];
+                }
+                rdr.Close();
+
+                return member;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                return null;
             }
             finally
             {

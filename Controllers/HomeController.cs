@@ -39,7 +39,7 @@ namespace hospi_web_project.Controllers
             try
             { 
                 DBService dbService = HttpContext.RequestServices.GetService(typeof(DBService)) as DBService;
-                LoginService context = new(dbService);
+                MemberService context = new(dbService);
 
                 member = context.login(member);
                 

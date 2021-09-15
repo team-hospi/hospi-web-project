@@ -39,17 +39,10 @@
                     <div style="display: flex; align-items: center;">
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <div style="margin-right: 10px; float: left;">
-                                <span class="text-white" style="margin-right: 5px; float: left ">@User.Identity.Name</span>
-                                <span class="text-white">님 환영합니다.</span>
-                            </div>
-                            <div style="float: right;">
-                                <form method="post" asp-controller="User" asp-action="MyPage">
-                                    <input type="hidden" id="email" value="@User.Identity.Name" />
-                                    <button type="submit" class="btn btn-secondary" style="margin-right: 5px; float: left">마이페이지</button>
-                                    <a class="btn btn-secondary" asp-area="" asp-controller="Home" asp-action="Logout">로그아웃</a>
-                                </form>
-                            </div>
+                            <span class="text-white" style="margin-right: 5px">@User.Identity.Name</span>
+                            <span class="text-white" style="margin-right: 5px">님 환영합니다.</span>
+                            <a class="btn btn-secondary" style="margin-right: 5px" asp-area="" asp-controller="User" asp-action="MyPage">마이페이지</a>
+                            <a class="btn btn-secondary" asp-area="" asp-controller="Home" asp-action="Logout">로그아웃</a>
                         }
                         else
                         {
