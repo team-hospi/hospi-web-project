@@ -1,6 +1,7 @@
 ﻿using hospi_web_project.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
@@ -68,6 +69,7 @@ namespace hospi_web_project.Service
             }
         }
 
+        [Authorize]
         public MemberViewModel GetMemberInfo(string email)
         {
             try

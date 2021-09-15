@@ -1,8 +1,16 @@
 ﻿@{
     ViewData["Title"] = "구매하기";
 
-    string kind = ViewContext.HttpContext.Request.Form["kind"];
+    string code = ViewContext.HttpContext.Request.Form["kind"];
     string price = ViewContext.HttpContext.Request.Form["price"];
+
+    string kind = "";
+    if (code == "1001")
+        kind = "의원";
+    if (code == "1002")
+        kind = "종합병원";
+    if (code == "1003")
+        kind = "대학병원";
 }
 
 <head>

@@ -35,7 +35,7 @@ namespace hospi_web_project
                 options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
             }).AddCookie(options =>
             {
-                options.LoginPath = "/login";
+                options.LoginPath = "/Home/Login";
                 options.LogoutPath = "/Index";
                 //options.EventsType =
             });

@@ -3,11 +3,6 @@
 
     var kindArr = new[] { "의원", "종합병원", "대학병원" };
 
-    var productKind = new Dictionary<string, string>();
-    productKind.Add(kindArr[0], "₩235,000");
-    productKind.Add(kindArr[1], "₩489,000");
-    productKind.Add(kindArr[2], "₩795,000");
-    
     List<ProductViewModel> productList = (List<ProductViewModel>)ViewContext.ViewData.Model;
 }
 
@@ -27,53 +22,24 @@
         <h2 style="margin-bottom: 60px">병원용 Hospi 플랜 및 가격</h2>
     </div>
     <div style="display: flex; justify-content: center; align-items: center;">
+        @for (int i = 0; i < 3; i++)
+        {
         <div class="select_box" style="margin-right: 50px">
             <div style="margin: 10px 18px 10px 18px">
-                <p style="font-size: 25px">@kindArr[0]용</p>
-                <p style="font-size: 23px">@productKind[kindArr[0]]</p>
-                <p>@kindArr[0]용 기능과<br />@kindArr[0] 규모급 DB 제공</p>
+                <p style="font-size: 25px">@productList[i].ProductName</p>
+                <p style="font-size: 23px">&#8361;@productList[i].Price</p>
+                <p>@kindArr[i]용 기능과<br />@kindArr[i] 규모급 DB 제공</p>
                 <p style="font-size: 20px">결제<br /><span style="font-size: 16px; padding: 3px 10px 3px 10px; border: 1px solid #D2D2D2">일회성 구매</span></p>
                 <hr />
                 <div style="text-align: right">
                     <form method="post">
-                        <input type="hidden" name="kind" value="@kindArr[0]" />
-                        <input type="hidden" name="price" value="@productKind[kindArr[0]]" />
+                        <input type="hidden" name="kind" value="@productList[i].ProductCode" />
+                        <input type="hidden" name="price" value="@productList[i].Price" />
                         <button class="btn btn-dark" type="submit" asp-area="" asp-controller="Product" asp-action="Payment">구매하기</button>
                     </form>
                 </div>
             </div>
         </div>
-        <div class="select_box" style="margin-right: 50px">
-            <div style="margin: 10px 18px 10px 18px">
-                <p style="font-size: 25px">@kindArr[1]용</p>
-                <p style="font-size: 23px">@productKind[kindArr[1]]</p>
-                <p>@kindArr[1]용 기능과<br />@kindArr[1] 규모급 DB 제공</p>
-                <p style="font-size: 20px">결제<br /><span style="font-size: 16px; padding: 3px 10px 3px 10px; border: 1px solid #D2D2D2">일회성 구매</span></p>
-                <hr />
-                <div style="text-align: right">
-                    <form method="post">
-                        <input type="hidden" name="kind" value="@kindArr[1]" />
-                        <input type="hidden" name="price" value="@productKind[kindArr[1]]" />
-                        <button class="btn btn-dark" type="submit" asp-area="" asp-controller="Product" asp-action="Payment">구매하기</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <div class="select_box">
-            <div style="margin: 10px 18px 10px 18px">
-                <p style="font-size: 25px">@kindArr[2]용</p>
-                <p style="font-size: 23px">@productKind[kindArr[2]]</p>
-                <p>@kindArr[2]용 기능과<br />@kindArr[2] 규모급 DB 제공</p>
-                <p style="font-size: 20px">결제<br /><span style="font-size: 16px; padding: 3px 10px 3px 10px; border: 1px solid #D2D2D2">일회성 구매</span></p>
-                <hr />
-                <div style="text-align: right">
-                    <form method="post">
-                        <input type="hidden" name="kind" value="@kindArr[2]" />
-                        <input type="hidden" name="price" value="@productKind[kindArr[2]]" />
-                        <button class="btn btn-dark" type="submit" asp-area="" asp-controller="Product" asp-action="Payment">구매하기</button>
-                    </form>
-                </div>
-            </div>
-        </div>
+        }
     </div>
 </div>
