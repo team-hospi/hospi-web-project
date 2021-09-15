@@ -12,15 +12,5 @@ namespace hospi_web_project.Controllers
         {
             return View();
         }
-
-        public IActionResult UserInfo()
-        {
-            return View();
-        }
-
-        public IActionResult HospitalManagement()
-        {
-            return View();
-        }
     }
 }

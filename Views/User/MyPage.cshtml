@@ -1,5 +1,11 @@
 ﻿@{
     ViewData["Title"] = "마이페이지";
+
+    string email = ViewContext.HttpContext.Request.Form["email"];
+}
+
+@functions{
+
 }
 
 <head>
@@ -19,7 +25,7 @@
             <tbody>
                 <tr>
                     <th scope="row">이메일</th>
-                    <td>@User.Identity.Name</td>
+                    <td>@email</td>
                     <td></td>
                 </tr>
                 <tr>
