@@ -12,6 +12,8 @@
     if (code == "1003")
         kind = "대학병원";
 }
+@using hospi_web_project.Utils;
+@model PaymentViewModel;
 
 <head>
     <link rel="stylesheet" href="~/css/payment.css" />
@@ -29,7 +31,6 @@
 <div class="container" id="paymentContainer">
     <h4 style="margin-left: 40px;">Hospi 결제</h4>
     <hr />
-    <form method="post">
         <div class="form-group paymentFormDiv">
             <div style="width: 450px; float: left">
                 <h4>결제정보 입력</h4>
@@ -80,9 +81,15 @@
                     </div>
                 </div>
                 <div style="text-align: right; margin-top: 5px">
-                    <button class="btn btn-dark" type="submit" style="width: 100%; height: 50px; font-size: 20px" asp-area="" asp-controller="Product" asp-action="PaymentSuccess">결제하기</button>
+                    <form method="post" id="PaymentForm" onsubmit="return PayBtn()" asp-controller="Product" asp-action="PaymentProcess">
+                        <input type="hidden" value="@GenerateTool.GenerateOrderCode(code)" asp-for="OrderCode" />
+                        <input type="hidden" value="@User.Identity.Name" asp-for="Email" />
+                        <input type="hidden" value="@code" asp-for="ProductName" />
+                        <input type="hidden" value="@GenerateTool.GenerateProductKey()" asp-for="ProductKey" />
+                        <input type="hidden" value="@DateTime.UtcNow.ToString("yyyy-MM-dd")" asp-for="RegDate" />
+                        <button class="btn btn-dark" type="submit" style="width: 100%; height: 50px; font-size: 20px">결제하기</button>
+                    </form>
                 </div>
             </div>
         </div>
-    </form>
 </div>

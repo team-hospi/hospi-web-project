@@ -55,5 +55,37 @@ namespace hospi_web_project.Service
                 conn.Close();
             }
         }
+
+        public void PaymentProcess(PaymentViewModel payment)
+        {
+            try
+            {
+                conn.Open();
+
+                string sql = "INSERT INTO Payment(OrderCode, Email, ProductCode, ProductKey, RegDate) VALUES('" + payment.OrderCode + "', '" + payment.Email + "', '" + Convert.ToInt32(payment.ProductName) + "', '" + payment.ProductKey + "', '" + payment.RegDate + "')";
+
+                //ExecuteReader를 이용하여
+                //연결 모드로 데이타 가져오기
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                if (cmd.ExecuteNonQuery() == 1)
+                {
+                    Console.WriteLine("Insert Success!!");
+                }
+                else
+                {
+                    Console.WriteLine("Insert Fail!!");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
     }
 }

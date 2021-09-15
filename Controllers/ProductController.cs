@@ -1,4 +1,5 @@
-﻿using hospi_web_project.Service;
+﻿using hospi_web_project.Models;
+using hospi_web_project.Service;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -40,6 +41,16 @@ namespace hospi_web_project.Controllers
         public IActionResult PaymentSuccess()
         {
             return View();
+        }
+
+        public IActionResult PaymentProcess(PaymentViewModel model)
+        {
+            DBService dbService = HttpContext.RequestServices.GetService(typeof(DBService)) as DBService;
+            PaymentService context = new(dbService);
+
+            context.PaymentProcess(model);
+
+            return RedirectToAction("PaymentSuccess", "Product");
         }
 
         public ActionResult DownloadFile(string filePath)
