@@ -53,6 +53,7 @@ namespace hospi_web_project.Controllers
                     identity.AddClaim(new Claim(ClaimTypes.Name, member.name));
                     identity.AddClaim(new Claim(ClaimTypes.MobilePhone, member.phone));
                     identity.AddClaim(new Claim(ClaimTypes.DateOfBirth, member.birth));
+                    identity.AddClaim(new Claim(ClaimTypes.Gender, member.sex));
 
                     var principal = new ClaimsPrincipal(identity);
 
