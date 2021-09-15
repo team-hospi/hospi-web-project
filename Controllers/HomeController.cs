@@ -49,11 +49,7 @@ namespace hospi_web_project.Controllers
                 {
                     var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme, ClaimTypes.Name, ClaimTypes.Role);
                     identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, member.email));
-                    identity.AddClaim(new Claim(ClaimTypes.Email, member.email));
-                    identity.AddClaim(new Claim(ClaimTypes.Name, member.name));
-                    identity.AddClaim(new Claim(ClaimTypes.MobilePhone, member.phone));
-                    identity.AddClaim(new Claim(ClaimTypes.DateOfBirth, member.birth));
-                    identity.AddClaim(new Claim(ClaimTypes.Gender, member.sex));
+                    identity.AddClaim(new Claim(ClaimTypes.Name, member.email));
 
                     var principal = new ClaimsPrincipal(identity);
 
