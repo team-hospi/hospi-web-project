@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -20,13 +21,12 @@ namespace hospi_web_project.Service
             conn = dbService.GetConnection();
         }
 
-        public MemberViewModel login(LoginViewModel model)
+        public MemberViewModel login(MemberViewModel member)
         {
-            MemberViewModel member = new MemberViewModel();
             try
             {
                 conn.Open();
-                string sql = "select * from member where email=\"" + model.Email + "\";";
+                string sql = "select * from member where email=\"" + member.email + "\";";
 
                 //ExecuteReader를 이용하여
                 //연결 모드로 데이타 가져오기
@@ -34,9 +34,9 @@ namespace hospi_web_project.Service
                 MySqlDataReader rdr = cmd.ExecuteReader();
                 while(rdr.Read())
                 {
-                    if (rdr["email"].Equals(model.Email))
+                    if (rdr["email"].Equals(member.email))
                     {
-                        if (rdr["password"].Equals(model.Password))
+                        if (rdr["password"].Equals(member.password))
                         {
                             member.name = (string)rdr["name"];
                             member.birth = (string)rdr["birth"];

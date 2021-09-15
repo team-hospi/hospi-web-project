@@ -34,22 +34,25 @@ namespace hospi_web_project.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> LoginProcess(LoginViewModel model)
+        public async Task<IActionResult> LoginProcess(MemberViewModel member)
         {
             try
             { 
                 DBService dbService = HttpContext.RequestServices.GetService(typeof(DBService)) as DBService;
                 LoginService context = new(dbService);
 
-                MemberViewModel member = context.login(model);
+                member = context.login(member);
                 
                 // TODO: 로그인 세션 관련해서 코드 추가 필요
 
                 if (member != null)
                 {
                     var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme, ClaimTypes.Name, ClaimTypes.Role);
-                    identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, model.Email));
-                    identity.AddClaim(new Claim(ClaimTypes.Name, model.Email));
+                    identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, member.email));
+                    identity.AddClaim(new Claim(ClaimTypes.Email, member.email));
+                    identity.AddClaim(new Claim(ClaimTypes.Name, member.name));
+                    identity.AddClaim(new Claim(ClaimTypes.MobilePhone, member.phone));
+                    identity.AddClaim(new Claim(ClaimTypes.DateOfBirth, member.birth));
 
                     var principal = new ClaimsPrincipal(identity);
 
@@ -64,12 +67,12 @@ namespace hospi_web_project.Controllers
                 }
 
                 // 로그인에 실패
-                return View(model);
+                return View(member);
             }
             catch(Exception ex)
             {
                 // 로그인에 실패
-                return View(model);
+                return View(member);
             }
         }
         
