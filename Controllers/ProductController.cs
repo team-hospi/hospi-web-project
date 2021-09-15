@@ -1,5 +1,6 @@
 ﻿using hospi_web_project.Models;
 using hospi_web_project.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -33,6 +34,7 @@ namespace hospi_web_project.Controllers
             return View(context.GetProductList());
         }
 
+        [Authorize]
         public IActionResult Payment()
         {
             return View();

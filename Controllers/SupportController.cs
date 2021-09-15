@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,11 +29,13 @@ namespace hospi_web_project.Controllers
             return View();
         }
 
+        [Authorize]
         public IActionResult InquiryCreate()
         {
             return View();
         }
 
+        [Authorize]
         public IActionResult InquiryDelete()
         {
             return View();
@@ -43,6 +46,7 @@ namespace hospi_web_project.Controllers
             return View();
         }
 
+        [Authorize]
         public IActionResult InquiryEdit()
         {
             return View();
