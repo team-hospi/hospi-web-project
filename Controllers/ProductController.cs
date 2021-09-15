@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using hospi_web_project.Service;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,10 @@ namespace hospi_web_project.Controllers
 
         public IActionResult Purchase()
         {
-            return View();
+            DBService dbService = HttpContext.RequestServices.GetService(typeof(DBService)) as DBService;
+            ProductService context = new(dbService);
+
+            return View(context.GetProductList());
         }
 
         public IActionResult Payment()
