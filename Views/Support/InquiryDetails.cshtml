@@ -1,4 +1,53 @@
 ﻿@{
-    ViewData["Title"] = "문의 상세";
+    ViewData["Title"] = "문의게시판";
 }
+@model InquiryBoardViewModel;
 
+<head>
+    <link rel="stylesheet" href="~/css/board.css" />
+</head>
+
+<div style="background-color: #8E8E8E; height: 70px">
+    <div class="container">
+        <p style="line-height: 70px; margin-left: 80px"><a style="color: black;" asp-controller="Home" asp-action="Index">Hospi 홈</a> > 문의게시판</p>
+    </div>
+</div>
+
+<div class="container" id="boardContainer">
+    <div class="boardDiv" style="margin-top: 70px;">
+        <table class="table" id="boardTable">
+            <thead>
+                <tr>
+                    <th colspan="4" style="background-color: #eeeeee; text-align: center;">문의</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><b>제목</b></td>
+                    <td colspan="1">@Model.Title</td>
+                    <td><b>조회수</b></td>
+                    <td colspan="1">@Model.Views</td>
+                </tr>
+                <tr>
+                    <td><b>작성자</b></td>
+                    <td colspan="3">@Model.Email</td>
+                </tr>
+                <tr>
+                    <td><b>등록일</b></td>
+                    <td colspan="3">@Model.WriteDate</td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="background-color: #eeeeee; text-align: center;"><b>내용</b></td>
+                </tr>
+                <tr>
+                    <td colspan="4" style="background-color: #ffffff; text-align: left;">@Model.Content</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="boardDiv" style="text-align: right; margin-top: 50px;">
+        <a class="btn btn-dark" asp-controller="Support" asp-action="Inquiry">목록</a>
+        <a class="btn btn-dark" asp-controller="Support" asp-action="InquiryEdit" asp-route-no="@Model.No" asp-route-email="@Model.Email">수정</a>
+        <a class="btn btn-dark" asp-controller="Support" asp-action="InquiryDelete" asp-route-no="@Model.No" asp-route-email="@Model.Email">삭제</a>
+    </div>
+</div>

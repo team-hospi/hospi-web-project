@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using hospi_web_project.Models;
+using hospi_web_project.Service;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -26,7 +28,12 @@ namespace hospi_web_project.Controllers
 
         public IActionResult Inquiry()
         {
-            return View();
+            DBService dbService = HttpContext.RequestServices.GetService(typeof(DBService)) as DBService;
+            InquiryBoardService context = new(dbService);
+
+            var list = context.GetBoardList().Cast<InquiryBoardViewModel>().ToList();
+
+            return View(list);
         }
 
         [Authorize]
@@ -36,14 +43,35 @@ namespace hospi_web_project.Controllers
         }
 
         [Authorize]
+        [HttpPost]
+        public IActionResult InquiryCreateProcess(InquiryBoardViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                DBService dbService = HttpContext.RequestServices.GetService(typeof(DBService)) as DBService;
+                InquiryBoardService context = new(dbService);
+
+                context.WriteBoard(model);
+            }
+
+            return RedirectToAction("Inquiry", "Support");
+        }
+
+        [Authorize]
         public IActionResult InquiryDelete()
         {
             return View();
         }
 
-        public IActionResult InquiryDetails()
+        [HttpGet]
+        public IActionResult InquiryDetails(int no)
         {
-            return View();
+            DBService dbService = HttpContext.RequestServices.GetService(typeof(DBService)) as DBService;
+            InquiryBoardService context = new(dbService);
+
+            var model = (InquiryBoardViewModel)context.GetBoardDetail(no);
+
+            return View(model);
         }
 
         [Authorize]

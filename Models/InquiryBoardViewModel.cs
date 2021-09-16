@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace hospi_web_project.Models
 {
-    public class InquiryBoard : BoardViewModel
+    public class InquiryBoardViewModel : BoardViewModel
     {
         public IFormFile File { get; set; }
+        public int Private { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "문의게시판";
 }
+@model List<InquiryBoardViewModel>;
 
 <head>
     <link rel="stylesheet" href="~/css/board.css" />
@@ -29,9 +30,24 @@
                     <th class="text-center" scope="row" style="width: 15%">조회수</th>
                 </tr>
             </thead>
+            <tbody>
+                @{
+                    foreach (var vm in Model)
+                    {
+                        <tr>
+                            <td class="text-center">@vm.No</td>
+                            <td class="text-center">
+                                <a style="color: black" asp-controller="Support" asp-action="InquiryDetails" asp-route-no="@vm.No">@vm.Title</a>
+                            </td>
+                            <td class="text-center">@vm.WriteDate</td>
+                            <td class="text-center">@vm.Views</td>
+                        </tr>
+                    }
+                }
+            </tbody>
         </table>
     </div>
     <div class="boardDiv" style="text-align: right; margin-top: 50px;">
-        <a class="btn btn-dark" asp-controller="Support" asp-action="InquiryCreate">글작성</a>
+        <a class="btn btn-dark" asp-controller="Support" asp-action="InquiryCreate">등록</a>
     </div>
 </div>

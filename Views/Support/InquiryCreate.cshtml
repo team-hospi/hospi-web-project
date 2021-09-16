@@ -2,7 +2,7 @@
     ViewData["Title"] = "문의 작성";
 }
 
-@model InquiryBoard;
+@model InquiryBoardViewModel;
 
 <head>
     <link rel="stylesheet" href="~/css/boardCreate.css" />
@@ -15,7 +15,7 @@
 </div>
 
 <div class="container" style="margin-top:50px; margin-bottom: 150px;">
-    <form method="post" enctype="multipart/form-data">
+    <form method="post" asp-controller="Support" asp-action="InquiryCreateProcess" enctype="multipart/form-data">
         <div class="form-group" style="width: 80%; margin: 0 auto;">
             <h4 style="margin-top: 70px; margin-bottom: 50px">문의 작성</h4>
             <table class="table">
