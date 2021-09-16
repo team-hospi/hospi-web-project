@@ -2,7 +2,19 @@
     ViewData["Title"] = "로그인";
 }
 
-@model hospi_web_project.Models.MemberViewModel
+<script>
+    function LoginBtn() {
+        var logincheck = $(autocheck).prop("checked");
+        if (logincheck) {
+            document.getElementById("check").value = "1";
+        }
+        else {
+            document.getElementById("check").value = "0";
+        }
+    }
+</script>
+
+@model hospi_web_project.Models.LoginViewModel
 
 <div style="background-color: #8E8E8E; height: 70px">
     <div class="container">
@@ -17,17 +29,18 @@
             <div>
                 <label for="inputEmail" class="sr-only">이메일</label>
                 <input type="email" id="inputEmail" class="form-control" style="margin-bottom: 10px"
-                       asp-for="email" placeholder="이메일" required autofocus>
-                <span class="text-danger" asp-validation-for="email"></span>
+                       asp-for="Email" placeholder="이메일" required autofocus>
+                <span class="text-danger" asp-validation-for="Email"></span>
                 <label for="inputPassword" class="sr-only">비밀번호</label>
-                <input type="password" id="inputPassword" class="form-control" asp-for="password" placeholder="비밀번호" required>
-                <span class="text-danger" asp-validation-for="password"></span>
+                <input type="password" id="inputPassword" class="form-control" asp-for="Password" placeholder="비밀번호" required>
+                <span class="text-danger" asp-validation-for="Password"></span>
             </div>
             <div style="margin-left: 20px; margin-top: 5px">
-                <input class="form-check-input" type="checkbox" id="auto-login" value="auto-login">
+                <input class="form-check-input" type="checkbox" name="autocheck" id="autocheck" value="auto-check">
+                <input type="hidden" id="check" asp-for="Check" />
                 <label class="form-check-label" for="auto-login">로그인 상태 유지</label>
             </div>
-            <button class="btn btn-lg btn-dark btn-block" type="submit" style="margin-top: 20px">로그인</button>
+            <button class="btn btn-lg btn-dark btn-block" type="submit" onclick="LoginBtn()" style="margin-top: 20px">로그인</button>
             <div style="text-align: left; margin-top: 5px">
                 <a href="#">아이디 혹은 비밀번호를 잊으셨나요?</a>
             </div>
