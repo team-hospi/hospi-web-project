@@ -22,20 +22,24 @@ namespace hospi_web_project.Service
             conn = dbService.GetConnection();
         }
 
-        public MemberViewModel login(MemberViewModel member)
+        
+        
+        public MemberViewModel login(LoginViewModel model)
         {
+            MemberViewModel member = new MemberViewModel();
             try
             {
+                
                 conn.Open();
-                string sql = "select * from member where email=\"" + member.email + "\";";
+                string sql = "select * from member where email=\"" + model.Email + "\";";
 
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
                 MySqlDataReader rdr = cmd.ExecuteReader();
                 while(rdr.Read())
                 {
-                    if (rdr["email"].Equals(member.email))
+                    if (rdr["email"].Equals(model.Email))
                     {
-                        if (rdr["password"].Equals(member.password))
+                        if (rdr["password"].Equals(model.Password))
                         {
                             member.name = (string)rdr["name"];
                             member.birth = (string)rdr["birth"];

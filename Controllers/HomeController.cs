@@ -34,45 +34,57 @@ namespace hospi_web_project.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> LoginProcess(MemberViewModel member)
+        public async Task<IActionResult> LoginProcess(LoginViewModel model)
         {
             try
             { 
                 DBService dbService = HttpContext.RequestServices.GetService(typeof(DBService)) as DBService;
                 MemberService context = new(dbService);
+                MemberViewModel member = new MemberViewModel();
 
-                member = context.login(member);
+                member = context.login(model);
                 
                 // TODO: 로그인 세션 관련해서 코드 추가 필요
 
                 if (member != null)
                 {
                     var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme, ClaimTypes.Name, ClaimTypes.Role);
-                    identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, member.email));
-                    identity.AddClaim(new Claim(ClaimTypes.Name, member.email));
+                    identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, model.Email));
+                    identity.AddClaim(new Claim(ClaimTypes.Name, model.Email));
 
                     var principal = new ClaimsPrincipal(identity);
 
-                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, new AuthenticationProperties
+                    if (model.Check == "1")
                     {
-                        IsPersistent = false,
-                        ExpiresUtc = DateTime.UtcNow.AddHours(1),
-                        AllowRefresh = true
-                    });
-
+                        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, new AuthenticationProperties
+                        {
+                            IsPersistent = true,
+                            AllowRefresh = true
+                        });
+                    }
+                    else
+                    {
+                        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, new AuthenticationProperties
+                        {
+                            IsPersistent = false,
+                            ExpiresUtc = DateTime.UtcNow.AddMinutes(1),
+                            AllowRefresh = true
+                        });
+                        
+                    }
                     return RedirectToAction("Index", "Home");
                 }
 
                 // 로그인에 실패
-                return View(member);
+                return View(model);
             }
             catch(Exception ex)
             {
                 // 로그인에 실패
-                return View(member);
+                return View(model);
             }
         }
-        
+
         [Authorize]
         public async Task<IActionResult> Logout()
         {
