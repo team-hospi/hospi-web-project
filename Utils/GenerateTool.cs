@@ -30,8 +30,6 @@ namespace hospi_web_project.Utils
                 }
 
                 key += temp;
-
-                if (i != 3) key += "-";
             }
 
             return key;

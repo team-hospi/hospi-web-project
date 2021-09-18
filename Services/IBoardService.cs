@@ -10,6 +10,6 @@ namespace hospi_web_project.Services
         public void WriteBoard(BoardViewModel model);
         public void UpdateBoard(BoardViewModel model);
         public void DeleteBoard(int no);
-        public List<BoardViewModel> SearchBoard(string searchText);
+        public List<BoardViewModel> SearchBoardList(string searchText);
     }
 }

@@ -36,6 +36,17 @@ namespace hospi_web_project.Controllers
             return View(list);
         }
 
+        [HttpGet]
+        public IActionResult InquirySearch(string query)
+        {
+            DBService dbService = HttpContext.RequestServices.GetService(typeof(DBService)) as DBService;
+            InquiryBoardService context = new(dbService);
+
+            var list = context.SearchBoardList(query).Cast<InquiryBoardViewModel>().ToList();
+
+            return View(list);
+        }
+
         [Authorize]
         public IActionResult InquiryCreate()
         {

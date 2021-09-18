@@ -16,10 +16,11 @@
     {
         foreach (var payment in list)
         {
+            
             <tr>
                 <td class="text-center">@payment.OrderCode</td>
                 <td class="text-center">@payment.ProductName</td>
-                <td class="text-center">@payment.ProductKey</td>
+                <td class="text-center">@InputKeyHyphen(payment.ProductKey)</td>
                 <td class="text-center">@payment.RegDate</td>
                 <td class="text-center">
                     <a href="~/User/DownloadFile?filePath=Hospi.zip" class="file-down" style="color: black;">
@@ -28,6 +29,22 @@
                 </td>
             </tr>
         }
+    }
+
+    string InputKeyHyphen(string key)
+    {
+        string temp = "";
+
+        for(int i=0; i<key.Length; i++)
+        {
+            if (i % 5 == 0 && i != 0)
+            {
+                temp += "-";
+            }
+            temp += key[i];
+        }
+
+        return temp;
     }
 }
 

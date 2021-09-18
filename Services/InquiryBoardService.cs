@@ -120,14 +120,8 @@ namespace hospi_web_project.Services
                     model.No = (int)rdr["No"];
                     model.Email = (string)rdr["Email"];
                     model.Title = (string)rdr["Title"];
-                    model.Content = (string)rdr["Content"];
                     model.WriteDate = (string)rdr["WriteDate"];
                     model.Views = (int)rdr["Views"];
-
-                    object temp = rdr["File"];
-                    if (temp.GetType() != typeof(DBNull)) model.File = (IFormFile)temp;
-                    else model.File = null;
-
                     model.Private = (int)rdr["Private"];
 
                     list.Add(model);
@@ -148,9 +142,44 @@ namespace hospi_web_project.Services
             }
         }
 
-        public List<BoardViewModel> SearchBoard(string searchText)
+        public List<BoardViewModel> SearchBoardList(string searchTxt)
         {
-            throw new NotImplementedException();
+            try
+            {
+                conn.Open();
+                string sql = "select * from inquiry where title like '%" + searchTxt + "%' order by No desc";
+
+                var list = new List<BoardViewModel>();
+
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                MySqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    var model = new InquiryBoardViewModel();
+
+                    model.No = (int)rdr["No"];
+                    model.Email = (string)rdr["Email"];
+                    model.Title = (string)rdr["Title"];
+                    model.WriteDate = (string)rdr["WriteDate"];
+                    model.Views = (int)rdr["Views"];
+                    model.Private = (int)rdr["Private"];
+
+                    list.Add(model);
+                }
+
+                rdr.Close();
+
+                return list;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
         public void UpdateBoard(BoardViewModel model)

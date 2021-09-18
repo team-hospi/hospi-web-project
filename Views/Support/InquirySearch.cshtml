@@ -9,12 +9,12 @@
 
 <div style="background-color: #8E8E8E; height: 70px">
     <div class="container">
-        <p style="line-height: 70px; margin-left: 80px"><a style="color: black;" asp-controller="Home" asp-action="Index">Hospi 홈</a> > 문의게시판</p>
+        <p style="line-height: 70px; margin-left: 80px"><a style="color: black;" asp-controller="Home" asp-action="Index">Hospi 홈</a> > 문의게시판 > 문의 검색</p>
     </div>
 </div>
 
 <div class="container" id="boardContainer">
-    <h4 id="pageTitle">문의게시판</h4>
+    <h4 id="pageTitle">문의게시판 검색</h4>
     <hr />
     <div class="boardDiv">
         <form method="get">
@@ -50,6 +50,7 @@
         </table>
     </div>
     <div class="boardDiv" style="text-align: right; margin-top: 50px;">
+        <a class="btn btn-dark" asp-controller="Support" asp-action="Inquiry">목록</a>
         <a class="btn btn-dark" asp-controller="Support" asp-action="InquiryCreate">등록</a>
     </div>
 </div>
