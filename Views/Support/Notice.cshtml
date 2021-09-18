@@ -15,11 +15,13 @@
 <div class="container" id="boardContainer">
     <h4 id="pageTitle">공지사항</h4>
     <hr />
-    <div id="boardDiv">
-        <div id="searchDiv">
-            <input type="text" class="form-control" id="searchInput" placeholder="게시판 내 검색하기" />
-            <input type="button" class="btn btn-dark" id="searchBtn" value="검색" />
-        </div>
+    <div class="boardDiv">
+        <form method="get">
+            <div id="searchDiv">
+                <input type="text" class="form-control" id="searchTxt" name="query" placeholder="게시판 내 검색하기" />
+                <input class="btn btn-dark" id="searchBtn" type="submit" asp-controller="" asp-action="" value="검색" />
+            </div>
+        </form>
         <table class="table" id="boardTable">
             <thead>
                 <tr>
@@ -29,6 +31,26 @@
                     <th class="text-center" scope="row" style="width: 15%">조회수</th>
                 </tr>
             </thead>
+            <tbody>
+                @{
+/*
+                    foreach (var vm in Model)
+                    {
+                        <tr>
+                            <td class="text-center">@vm.No</td>
+                            <td class="text-center">
+                                <a style="color: black" asp-controller="Support" asp-action="InquiryDetails" asp-route-no="@vm.No">@vm.Title</a>
+                            </td>
+                            <td class="text-center">@vm.WriteDate</td>
+                            <td class="text-center">@vm.Views</td>
+                        </tr>
+                    }
+*/
+                }
+            </tbody>
         </table>
+    </div>
+    <div class="boardDiv" style="text-align: right; margin-top: 50px;">
+        <a class="btn btn-dark" asp-controller="" asp-action="">등록</a>
     </div>
 </div>
