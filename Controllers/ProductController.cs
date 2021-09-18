@@ -1,5 +1,5 @@
 ﻿using hospi_web_project.Models;
-using hospi_web_project.Service;
+using hospi_web_project.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;

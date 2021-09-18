@@ -1,5 +1,5 @@
 ﻿using hospi_web_project.Models;
-using hospi_web_project.Service;
+using hospi_web_project.Services;
 using hospi_web_project.Utils;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -43,8 +43,6 @@ namespace hospi_web_project.Controllers
                 MemberViewModel member = new MemberViewModel();
 
                 member = context.login(model);
-                
-                // TODO: 로그인 세션 관련해서 코드 추가 필요
 
                 if (member != null)
                 {

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace hospi_web_project.Service
+namespace hospi_web_project.Services
 {
     public class InquiryBoardService : IBoardService
     {
@@ -19,7 +19,31 @@ namespace hospi_web_project.Service
 
         public void DeleteBoard(int no)
         {
-            throw new NotImplementedException();
+            try
+            {
+                conn.Open();
+
+                string sql = "delete from inquiry where no=" + no;
+
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                if (cmd.ExecuteNonQuery() == 1)
+                {
+                    Console.WriteLine("Delete Success!!");
+                }
+                else
+                {
+                    Console.WriteLine("Delete Fail!!");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
         public BoardViewModel GetBoardDetail(int no)
@@ -129,14 +153,95 @@ namespace hospi_web_project.Service
             throw new NotImplementedException();
         }
 
-        public int UpdateBoard(BoardViewModel model)
+        public void UpdateBoard(BoardViewModel model)
         {
-            throw new NotImplementedException();
+            try
+            {
+                conn.Open();
+
+                var inquiryVm = (InquiryBoardViewModel)model;
+
+                IFormFile temp = inquiryVm.File;
+
+                string sql;
+
+                /*
+                if (temp != null)
+                {
+                    sql = "update inquiry set Title='"
+                    + inquiryVm.Title + "', Content='"
+                    + inquiryVm.Content + "', File="
+                    + inquiryVm.File
+                    + " where No=" + inquiryVm.No;
+                }
+                else
+                {
+                    sql = "update inquiry set Title='"
+                    + inquiryVm.Title + "', Content='"
+                    + inquiryVm.Content + "', File=null"
+                    + " where No=" + inquiryVm.No;
+                }
+                */
+
+                sql = "update inquiry set Title='"
+                    + inquiryVm.Title + "', Content='"
+                    + inquiryVm.Content + "', File=null"
+                    + " where No=" + inquiryVm.No;
+
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                if (cmd.ExecuteNonQuery() == 1)
+                {
+                    Console.WriteLine("Insert Success!!");
+                }
+                else
+                {
+                    Console.WriteLine("Insert Fail!!");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
 
         public void WriteBoard(BoardViewModel model)
         {
-            throw new NotImplementedException();
+            try
+            {
+                conn.Open();
+
+                var inquiryVm = (InquiryBoardViewModel)model;
+
+                string sql = "insert into inquiry values(null, '" 
+                    + inquiryVm.Title + "', '"
+                    + inquiryVm.Content + "', '"
+                    + DateTime.Now.ToString("yyyy-MM-dd") +"', '"
+                    + inquiryVm.Email +"', 0, null, 0)";
+
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                if (cmd.ExecuteNonQuery() == 1)
+                {
+                    Console.WriteLine("Insert Success!!");
+                }
+                else
+                {
+                    Console.WriteLine("Insert Fail!!");
+                }
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
     }
 }

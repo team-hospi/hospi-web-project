@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace hospi_web_project.Service
+namespace hospi_web_project.Services
 {
     public class PaymentService
     {

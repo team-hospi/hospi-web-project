@@ -47,7 +47,12 @@
     </div>
     <div class="boardDiv" style="text-align: right; margin-top: 50px;">
         <a class="btn btn-dark" asp-controller="Support" asp-action="Inquiry">목록</a>
-        <a class="btn btn-dark" asp-controller="Support" asp-action="InquiryEdit" asp-route-no="@Model.No" asp-route-email="@Model.Email">수정</a>
-        <a class="btn btn-dark" asp-controller="Support" asp-action="InquiryDelete" asp-route-no="@Model.No" asp-route-email="@Model.Email">삭제</a>
+        @{
+            if (Model.Email == User.Identity.Name)
+            {
+                <a class="btn btn-dark" asp-controller="Support" asp-action="InquiryUpdate" asp-route-no="@Model.No">수정</a>
+                <a class="btn btn-dark" asp-controller="Support" asp-action="InquiryDelete" asp-route-no="@Model.No">삭제</a>
+            }
+        }
     </div>
 </div>
