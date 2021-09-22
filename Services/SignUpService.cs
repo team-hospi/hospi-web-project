@@ -1,4 +1,5 @@
 ﻿using hospi_web_project.Models;
+using hospi_web_project.Utils;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,10 @@ namespace hospi_web_project.Services
             try
             {
                 conn.Open();
-                string sql = "INSERT INTO Member(Email, Password, Name, Birth, Sex, Phone) VALUES('" + member.email + "', '" + member.password + "', '" + member.name + "', '" + member.birth + "', '" + member.sex + "', '" + member.phone.Substring(0, 3) + "-" + member.phone.Substring(3, 4) + "-" + member.phone.Substring(7, 4) + "')";
+
+                string encryptPW = EncryptionTool.SHA256Hash(member.password, member.email);
+
+                string sql = "INSERT INTO Member(Email, Password, Name, Birth, Sex, Phone) VALUES('" + member.email + "', '" + encryptPW + "', '" + member.name + "', '" + member.birth + "', '" + member.sex + "', '" + member.phone.Substring(0, 3) + "-" + member.phone.Substring(3, 4) + "-" + member.phone.Substring(7, 4) + "')";
 
                 //ExecuteReader를 이용하여
                 //연결 모드로 데이타 가져오기

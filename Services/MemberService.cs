@@ -1,4 +1,5 @@
 ﻿using hospi_web_project.Models;
+using hospi_web_project.Utils;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
@@ -29,8 +30,10 @@ namespace hospi_web_project.Services
             MemberViewModel member = new MemberViewModel();
             try
             {
-                
                 conn.Open();
+
+                string encryptPW = EncryptionTool.SHA256Hash(model.Password, model.Email);
+
                 string sql = "select * from member where email=\"" + model.Email + "\";";
 
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
@@ -39,7 +42,7 @@ namespace hospi_web_project.Services
                 {
                     if (rdr["email"].Equals(model.Email))
                     {
-                        if (rdr["password"].Equals(model.Password))
+                        if (rdr["password"].Equals(encryptPW))
                         {
                             member.name = (string)rdr["name"];
                             member.birth = (string)rdr["birth"];
