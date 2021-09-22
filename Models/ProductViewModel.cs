@@ -10,5 +10,6 @@ namespace hospi_web_project.Models
         public int ProductCode { get; set; }
         public string ProductName { get; set; }
         public string Price { get; set; }
+        public string ProductInfo { get; set; }
     }
 }

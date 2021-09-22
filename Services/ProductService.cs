@@ -35,6 +35,7 @@ namespace hospi_web_project.Services
                     vm.ProductCode = (int)rdr["ProductCode"];
                     vm.ProductName = (string)rdr["ProductName"];
                     vm.Price = (string)rdr["Price"];
+                    vm.ProductInfo = (string)rdr["ProductInfo"];
 
                     list.Add(vm);
                 }
@@ -71,6 +72,7 @@ namespace hospi_web_project.Services
                     model.ProductCode = (int)rdr["ProductCode"];
                     model.ProductName = (string)rdr["ProductName"];
                     model.Price = (string)rdr["Price"];
+                    model.ProductInfo = (string)rdr["ProductInfo"];
                 }
                 rdr.Close();
 

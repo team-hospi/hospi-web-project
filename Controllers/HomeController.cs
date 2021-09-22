@@ -65,7 +65,7 @@ namespace hospi_web_project.Controllers
                         await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, new AuthenticationProperties
                         {
                             IsPersistent = false,
-                            ExpiresUtc = DateTime.UtcNow.AddMinutes(1),
+                            ExpiresUtc = DateTime.UtcNow.AddHours(1),
                             AllowRefresh = true
                         });
                         
