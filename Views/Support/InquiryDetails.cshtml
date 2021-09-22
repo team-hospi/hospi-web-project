@@ -74,9 +74,10 @@
         <a class="btn btn-dark" asp-controller="Support" asp-action="Inquiry">목록</a>
         @{
             // 관리자 기능 조건 수정해야함
-            if (true)
+            int IsAdmin = 1;
+            if (IsAdmin == 1 && Model.IsReply == 0)
             {
-                <a class="btn btn-dark" asp-controller="Support" asp-action="InquiryReply" asp-route-no="@Model.No">답글</a>
+                <a class="btn btn-dark" asp-controller="Support" asp-action="InquiryReply" asp-route-no="@Model.No">답변</a>
             }
 
             if (Model.Email == User.Identity.Name)

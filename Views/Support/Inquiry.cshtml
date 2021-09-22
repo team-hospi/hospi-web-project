@@ -48,9 +48,21 @@
                                     <td class="text-center">미답변</td>
                                 }
                             }
-                            <td>
-                                <a style="color: black" asp-controller="Support" asp-action="InquiryDetails" asp-route-no="@vm.No">@vm.Title</a>
-                            </td>
+                        <td>
+                            @{
+                                if (vm.IsPrivate == 1)
+                                {
+                                    <a style="color: black" asp-controller="Support" asp-action="InquiryDetails" asp-route-no="@vm.No" asp-route-IsPrivate="@vm.IsPrivate">
+                                        <img src="~/image/lock_black_48dp.svg" style="width: 18px; margin-top: -3px;" />
+                                        @vm.Title
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a style="color: black" asp-controller="Support" asp-action="InquiryDetails" asp-route-no="@vm.No" asp-route-IsPrivate="@vm.IsPrivate">@vm.Title</a>
+                                }
+                            }
+                        </td>
                             <td class="text-center">@vm.Email.Substring(0, vm.Email.LastIndexOf('@'))</td>
                             <td class="text-center">@vm.WriteDate</td>
                             <td class="text-center">@vm.Views</td>

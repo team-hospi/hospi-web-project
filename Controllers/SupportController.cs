@@ -81,14 +81,25 @@ namespace hospi_web_project.Controllers
         }
 
         [HttpGet]
-        public IActionResult InquiryDetails(int no)
+        public IActionResult InquiryDetails(int no, int IsPrivate)
         {
             DBService dbService = HttpContext.RequestServices.GetService(typeof(DBService)) as DBService;
             InquiryBoardService context = new(dbService);
 
             var model = (InquiryBoardViewModel)context.GetBoardDetail(no);
 
+            if (IsPrivate == 1)
+                if(User.Identity.Name != model.Email)
+                {
+                    return RedirectToAction("InquiryNoAccess", "Support");
+                }
+
             return View(model);
+        }
+
+        public IActionResult InquiryNoAccess()
+        {
+            return View();
         }
 
         [Authorize]
@@ -117,15 +128,31 @@ namespace hospi_web_project.Controllers
             return RedirectToAction("InquiryDetails", "Support", new { no = model.No });
         }
 
+        [HttpGet]
         [Authorize]
-        public IActionResult InquiryReply()
+        public IActionResult InquiryReply(string no)
         {
-            return View();
+            ViewData["no"] = no;
+
+            DBService dbService = HttpContext.RequestServices.GetService(typeof(DBService)) as DBService;
+            InquiryBoardService context = new(dbService);
+
+            var model = (InquiryBoardViewModel)context.GetBoardDetail(Convert.ToInt32(no));
+
+            return View(model);
         }
 
         [Authorize]
         public IActionResult InquiryReplyProcess(InquiryBoardViewModel model)
         {
+            if (ModelState.IsValid)
+            {
+                DBService dbService = HttpContext.RequestServices.GetService(typeof(DBService)) as DBService;
+                InquiryBoardService context = new(dbService);
+
+                context.WriteReply(model);
+            }
+
             return RedirectToAction("InquiryDetails", "Support", new { no = model.No });
         }
     }

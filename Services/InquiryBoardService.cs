@@ -80,12 +80,15 @@ namespace hospi_web_project.Services
                     model.WriteDate = (string)rdr["WriteDate"];
                     model.Views = (int)rdr["Views"];
                     model.IsReply = (int)rdr["IsReply"];
-                    model.Reply = (string)rdr["Reply"];
                     model.IsPrivate = (int)rdr["IsPrivate"];
 
-                    object temp = rdr["File"];
-                    if (temp.GetType() != typeof(DBNull)) model.File = (IFormFile)temp;
+                    object tempFile = rdr["File"];
+                    if (tempFile.GetType() != typeof(DBNull)) model.File = (IFormFile)tempFile;
                     else model.File = null;
+
+                    object tempReply = rdr["Reply"];
+                    if (tempReply.GetType() != typeof(DBNull)) model.Reply = (string)tempReply;
+                    else model.Reply = null;
                 }
 
                 rdr.Close();
@@ -253,7 +256,8 @@ namespace hospi_web_project.Services
                     + inquiryVm.Title + "', '"
                     + inquiryVm.Content + "', '"
                     + DateTime.Now.ToString("yyyy-MM-dd") +"', '"
-                    + inquiryVm.Email +"', 0, null, 0, 0, null)";
+                    + inquiryVm.Email +"', 0, null, "
+                    + inquiryVm.IsPrivate + ", 0, null)";
 
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
 
@@ -267,6 +271,35 @@ namespace hospi_web_project.Services
                 }
             }
             catch(Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public void WriteReply(InquiryBoardViewModel model)
+        {
+            try
+            {
+                conn.Open();
+
+                string sql = "update inquiry set IsReply=1, Reply='" + model.Reply + "' where No=" + model.No;
+
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                if (cmd.ExecuteNonQuery() == 1)
+                {
+                    Console.WriteLine("Update Success!!");
+                }
+                else
+                {
+                    Console.WriteLine("Update Fail!!");
+                }
+            }
+            catch (Exception e)
             {
                 Console.WriteLine(e.StackTrace);
             }

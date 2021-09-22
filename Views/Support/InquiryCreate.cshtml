@@ -8,6 +8,20 @@
     <link rel="stylesheet" href="~/css/boardCreate.css" />
 </head>
 
+<script>
+    function checkDisclosure() {
+        var disclosure = document.getElementByName("IsPrivateChk");
+
+        for (var i = 0; i < disclosure.length; i++) {
+            if (disclosure[i].checked == true) {
+                document.getElementById("IsPrivate").value = disclosure[i].value;
+            }
+        }
+
+        return true;
+    }
+</script>
+
 <div style="background-color: #8E8E8E; height: 70px">
     <div class="container">
         <p style="line-height: 70px; margin-left: 80px"><a style="color: black;" asp-controller="Home" asp-action="Index">Hospi 홈</a> > <a style="color: black;" asp-controller="Support" asp-action="Inquiry">문의게시판</a> > 문의 작성</p>
@@ -27,6 +41,17 @@
                         </td>
                     </tr>
                     <tr>
+                        <th scope="row">공개 여부</th>
+                        <td>
+                            <div style="margin-left: 20px">
+                                <input class="form-check-input" type="radio" id="public" name="IsPrivateChk" value="0" checked />
+                                <label class="form-check-label" for="public" style="margin-right: 30px">공개</label>
+                                <input class="form-check-input" type="radio" id="private" name="IsPrivateChk" value="1" />
+                                <label class="form-check-label" for="private">비공개</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
                         <th scope="row">내용</th>
                         <td>
                             <textarea type="text" rows="10" class="form-control" id="content" asp-for="Content" style="width: 100%; resize: none;"></textarea>
@@ -39,12 +64,14 @@
                 </tbody>
             </table>
             <input type="hidden" asp-for="Email" value="@User.Identity.Name" />
+            <!-- 비밀글 설정 구현해야함 -->
+            <input type="hidden" asp-for="IsPrivate" id="IsPrivate" value="0"/>
         </div>
         <div class="form-group" style="width: 80%; margin: 0 auto; text-align: end">
+            <button class="btn btn-dark" asp-controller="Support" asp-action="Inquiry">목록</button>
             <button class="btn btn-dark" type="submit">
                 등록
             </button>
-            <button class="btn btn-dark" asp-controller="Support" asp-action="Inquiry">목록</button>
         </div>
     </form>
 </div>
