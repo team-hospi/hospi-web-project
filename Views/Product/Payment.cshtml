@@ -1,25 +1,19 @@
 ﻿@{
     ViewData["Title"] = "구매하기";
 
-    string code = ViewContext.HttpContext.Request.Form["kind"];
-    string price = ViewContext.HttpContext.Request.Form["price"];
+    DBService dbService = ViewContext.HttpContext.RequestServices.GetService(typeof(DBService)) as DBService;
+    ProductService context = new(dbService);
 
-    string kind = "";
-    if (code == "1001")
-        kind = "의원";
-    if (code == "1002")
-        kind = "종합병원";
-    if (code == "1003")
-        kind = "대학병원";
+    ProductViewModel product = context.GetProductInfo((string)ViewData["code"]);
 }
 @using hospi_web_project.Utils;
+@using hospi_web_project.Services;
 @model PaymentViewModel;
 
 <head>
     <link rel="stylesheet" href="~/css/payment.css" />
 </head>
 
-<!-- <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script> -->
 <script src="~/js/payment.js"></script>
 
 <div style="background-color: #8E8E8E; height: 70px">
@@ -70,10 +64,10 @@
             </div>
             <div style="width: 400px; margin-top:20px; float: right">
                 <div>
-                    <p>선택하신 플랜은 <b><u>@(kind)용</u></b>입니다.<br />@(kind)용 기능과 @(kind)규모급 DB가 제공됩니다.<br />Hospi는 일회성 구매 제품으로서 구매 후 영구사용이 가능합니다.</p>
+                    <p>선택하신 플랜은 <b><u>@product.ProductName</u></b>입니다.<br />@product.ProductName 기능과 @product.ProductName 규모급 DB가 제공됩니다.<br />Hospi는 일회성 구매 제품으로서 구매 후 영구사용이 가능합니다.</p>
                     <div>
                         <h4 style="float:left">결제금액(VAT 포함)</h4>
-                        <h4 class="text-right">@price</h4>
+                        <h4 class="text-right">@product.Price</h4>
                     </div>
                     <div style="margin-left: 20px; margin-top: 10px">
                         <input class="form-check-input" type="checkbox" id="paymentAgree" value="동의" />
@@ -82,9 +76,9 @@
                 </div>
                 <div style="text-align: right; margin-top: 5px">
                     <form method="post" id="PaymentForm" onsubmit="return PayBtn()" asp-controller="Product" asp-action="PaymentProcess">
-                        <input type="hidden" value="@GenerateTool.GenerateOrderCode(code)" asp-for="OrderCode" />
+                        <input type="hidden" value="@GenerateTool.GenerateOrderCode(Convert.ToString(product.ProductCode))" asp-for="OrderCode" />
                         <input type="hidden" value="@User.Identity.Name" asp-for="Email" />
-                        <input type="hidden" value="@code" asp-for="ProductName" />
+                        <input type="hidden" value="@product.ProductCode" asp-for="ProductName" />
                         <input type="hidden" value="@GenerateTool.GenerateProductKey()" asp-for="ProductKey" />
                         <input type="hidden" value="@DateTime.UtcNow.ToString("yyyy-MM-dd")" asp-for="RegDate" />
                         <button class="btn btn-dark" type="submit" style="width: 100%; height: 50px; font-size: 20px">결제하기</button>

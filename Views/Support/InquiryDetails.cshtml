@@ -15,7 +15,7 @@
 
 <div class="container" id="boardContainer">
     <div class="boardDiv" style="margin-top: 70px;">
-        <table class="table" id="boardTable">
+        <table class="table">
             <thead>
                 <tr>
                     <th colspan="4" style="background-color: #eeeeee; text-align: center;">문의</th>
@@ -30,7 +30,7 @@
                 </tr>
                 <tr>
                     <td><b>작성자</b></td>
-                    <td colspan="3">@Model.Email</td>
+                    <td colspan="3">@Model.Email.Substring(0, Model.Email.LastIndexOf('@'))</td>
                 </tr>
                 <tr>
                     <td><b>등록일</b></td>
@@ -44,13 +44,47 @@
                 </tr>
             </tbody>
         </table>
+        <table class="table" style="margin-top: 70px;">
+            <thead>
+                <tr>
+                    <th colspan="4" style="background-color: #eeeeee; text-align: center;">답변</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    @{
+                        if (Model.IsReply == 1)
+                        {
+                            <td colspan="4" style="background-color: #ffffff; text-align: left;">
+                                @Model.Reply
+                            </td>
+                        }
+                        else
+                        {
+                            <td colspan="4" style="background-color: #ffffff; text-align: left;">
+                                답변이 아직 등록되지 않았습니다.
+                            </td>
+                        }
+                    }
+                </tr>
+            </tbody>
+        </table>
     </div>
-    <div class="boardDiv" style="text-align: right; margin-top: 50px;">
+    <div class="boardDiv" style="text-align: right; margin-top: 80px;">
         <a class="btn btn-dark" asp-controller="Support" asp-action="Inquiry">목록</a>
         @{
+            // 관리자 기능 조건 수정해야함
+            if (true)
+            {
+                <a class="btn btn-dark" asp-controller="Support" asp-action="InquiryReply" asp-route-no="@Model.No">답글</a>
+            }
+
             if (Model.Email == User.Identity.Name)
             {
-                <a class="btn btn-dark" asp-controller="Support" asp-action="InquiryUpdate" asp-route-no="@Model.No">수정</a>
+                if (Model.IsReply != 1)
+                {
+                    <a class="btn btn-dark" asp-controller="Support" asp-action="InquiryUpdate" asp-route-no="@Model.No">수정</a>
+                }
                 <a class="btn btn-dark" asp-controller="Support" asp-action="InquiryDelete" asp-route-no="@Model.No">삭제</a>
             }
         }

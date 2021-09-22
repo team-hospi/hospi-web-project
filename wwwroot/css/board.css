@@ -28,3 +28,7 @@
     width: 80%;
     margin: 0 auto;
 }
+
+#boardTable > tbody :hover {
+    background-color: #f1f3f5;
+}

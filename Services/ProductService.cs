@@ -52,5 +52,39 @@ namespace hospi_web_project.Services
                 conn.Close();
             }
         }
+
+        public ProductViewModel GetProductInfo(string code)
+        {
+            try
+            {
+                conn.Open();
+                string sql = "select * from product where ProductCode =" + Int32.Parse(code);
+
+                ProductViewModel model = new();
+
+                //ExecuteReader를 이용하여
+                //연결 모드로 데이타 가져오기
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                MySqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    model.ProductCode = (int)rdr["ProductCode"];
+                    model.ProductName = (string)rdr["ProductName"];
+                    model.Price = (string)rdr["Price"];
+                }
+                rdr.Close();
+
+                return model;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
 }

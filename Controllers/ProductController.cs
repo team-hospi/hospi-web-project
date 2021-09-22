@@ -29,9 +29,12 @@ namespace hospi_web_project.Controllers
             return View(context.GetProductList());
         }
 
+        [HttpGet]
         [Authorize]
-        public IActionResult Payment()
+        public IActionResult Payment(string productCode)
         {
+            ViewData["code"] = productCode;
+
             return View();
         }
 

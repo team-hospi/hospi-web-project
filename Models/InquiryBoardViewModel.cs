@@ -9,6 +9,8 @@ namespace hospi_web_project.Models
     public class InquiryBoardViewModel : BoardViewModel
     {
         public IFormFile File { get; set; }
-        public int Private { get; set; }
+        public int IsPrivate { get; set; }
+        public int IsReply { get; set; }
+        public string Reply { get; set; }
     }
 }

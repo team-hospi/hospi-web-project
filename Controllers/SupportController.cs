@@ -116,5 +116,17 @@ namespace hospi_web_project.Controllers
 
             return RedirectToAction("InquiryDetails", "Support", new { no = model.No });
         }
+
+        [Authorize]
+        public IActionResult InquiryReply()
+        {
+            return View();
+        }
+
+        [Authorize]
+        public IActionResult InquiryReplyProcess(InquiryBoardViewModel model)
+        {
+            return RedirectToAction("InquiryDetails", "Support", new { no = model.No });
+        }
     }
 }

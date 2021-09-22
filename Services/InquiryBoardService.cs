@@ -79,12 +79,13 @@ namespace hospi_web_project.Services
                     model.Content = (string)rdr["Content"];
                     model.WriteDate = (string)rdr["WriteDate"];
                     model.Views = (int)rdr["Views"];
+                    model.IsReply = (int)rdr["IsReply"];
+                    model.Reply = (string)rdr["Reply"];
+                    model.IsPrivate = (int)rdr["IsPrivate"];
 
                     object temp = rdr["File"];
                     if (temp.GetType() != typeof(DBNull)) model.File = (IFormFile)temp;
                     else model.File = null;
-
-                    model.Private = (int)rdr["Private"];
                 }
 
                 rdr.Close();
@@ -122,7 +123,8 @@ namespace hospi_web_project.Services
                     model.Title = (string)rdr["Title"];
                     model.WriteDate = (string)rdr["WriteDate"];
                     model.Views = (int)rdr["Views"];
-                    model.Private = (int)rdr["Private"];
+                    model.IsPrivate = (int)rdr["IsPrivate"];
+                    model.IsReply = (int)rdr["IsReply"];
 
                     list.Add(model);
                 }
@@ -162,7 +164,8 @@ namespace hospi_web_project.Services
                     model.Title = (string)rdr["Title"];
                     model.WriteDate = (string)rdr["WriteDate"];
                     model.Views = (int)rdr["Views"];
-                    model.Private = (int)rdr["Private"];
+                    model.IsPrivate = (int)rdr["IsPrivate"];
+                    model.IsReply = (int)rdr["IsReply"];
 
                     list.Add(model);
                 }
@@ -250,7 +253,7 @@ namespace hospi_web_project.Services
                     + inquiryVm.Title + "', '"
                     + inquiryVm.Content + "', '"
                     + DateTime.Now.ToString("yyyy-MM-dd") +"', '"
-                    + inquiryVm.Email +"', 0, null, 0)";
+                    + inquiryVm.Email +"', 0, null, 0, 0, null)";
 
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
 

@@ -1,5 +1,6 @@
 ﻿@{
     ViewData["Title"] = "로그인";
+    var returnUrl = Context.Request.Query["ReturnUrl"];
 }
 
 <script>
@@ -23,7 +24,7 @@
 </div>
 <div class="container" style="margin-top: 60px; margin-bottom: 150px">
     <div style="width: 30%; margin: 0 auto">
-        <form method="post" asp-controller="Home" asp-action="LoginProcess">
+        <form method="post" asp-controller="Home" asp-action="LoginProcess" asp-route-ReturnUrl="@returnUrl">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <h1 class="text-center display-4" style="margin-bottom: 20px">Hospi</h1><br />
             <div>

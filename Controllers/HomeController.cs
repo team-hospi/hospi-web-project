@@ -34,7 +34,7 @@ namespace hospi_web_project.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> LoginProcess(LoginViewModel model)
+        public async Task<IActionResult> LoginProcess(LoginViewModel model, string ReturnUrl)
         {
             try
             { 
@@ -70,6 +70,12 @@ namespace hospi_web_project.Controllers
                         });
                         
                     }
+
+                    if(ReturnUrl != "" && ReturnUrl != null)
+                    {
+                        return Redirect(ReturnUrl);
+                    }
+
                     return RedirectToAction("Index", "Home");
                 }
 
