@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Http;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -83,7 +85,12 @@ namespace hospi_web_project.Services
                     model.IsPrivate = (int)rdr["IsPrivate"];
 
                     object tempFile = rdr["File"];
-                    if (tempFile.GetType() != typeof(DBNull)) model.File = (IFormFile)tempFile;
+                    if (tempFile.GetType() != typeof(DBNull))
+                    {
+                        // TODO: 파일 다운받아서 보여줘야함.
+
+                        model.File = null;
+                    }
                     else model.File = null;
 
                     object tempReply = rdr["Reply"];
@@ -98,6 +105,7 @@ namespace hospi_web_project.Services
             catch (Exception e)
             {
                 Console.WriteLine(e.StackTrace);
+                Debug.WriteLine("예외 디버깅: " + e.Message);
                 return null;
             }
             finally
@@ -203,25 +211,20 @@ namespace hospi_web_project.Services
                 /*
                 if (temp != null)
                 {
-                    sql = "update inquiry set Title='"
-                    + inquiryVm.Title + "', Content='"
-                    + inquiryVm.Content + "', File="
-                    + inquiryVm.File
-                    + " where No=" + inquiryVm.No;
+                    
                 }
                 else
                 {
-                    sql = "update inquiry set Title='"
-                    + inquiryVm.Title + "', Content='"
-                    + inquiryVm.Content + "', File=null"
-                    + " where No=" + inquiryVm.No;
+                    
                 }
                 */
 
-                sql = "update inquiry set Title='"
-                    + inquiryVm.Title + "', Content='"
-                    + inquiryVm.Content + "', File=null"
-                    + " where No=" + inquiryVm.No;
+                sql = "update inquiry set " +
+                    "Title='" + inquiryVm.Title + "', " +
+                    "Content='" + inquiryVm.Content + "', " +
+                    "IsPrivate=" + inquiryVm.IsPrivate + ", " +
+                    "File=null " +
+                    "where No=" + inquiryVm.No;
 
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
 
@@ -252,11 +255,18 @@ namespace hospi_web_project.Services
 
                 var inquiryVm = (InquiryBoardViewModel)model;
 
+                UInt32 FileSize = (UInt32)inquiryVm.File.OpenReadStream().Length;
+                byte[] rawData = new byte[FileSize];
+
+                inquiryVm.File.OpenReadStream().Read(rawData, 0, (int)FileSize);
+                inquiryVm.File.OpenReadStream().Close();
+
                 string sql = "insert into inquiry values(null, '" 
                     + inquiryVm.Title + "', '"
                     + inquiryVm.Content + "', '"
                     + DateTime.Now.ToString("yyyy-MM-dd") +"', '"
-                    + inquiryVm.Email +"', 0, null, "
+                    + inquiryVm.Email +"', 0, " 
+                    + rawData.Length + ", "
                     + inquiryVm.IsPrivate + ", 0, null)";
 
                 MySqlCommand cmd = new MySqlCommand(sql, conn);

@@ -27,6 +27,17 @@
                         </td>
                     </tr>
                     <tr>
+                        <th scope="row">공개 여부</th>
+                        <td>
+                            <div style="margin-left: 20px;">
+                                @Html.RadioButtonFor(model => model.IsPrivate, 0, new { @class = "form-check-input", @id = "public" })
+                                <label class="form-check-label" for="public" style="margin-right: 30px">공개</label>
+                                @Html.RadioButtonFor(model => model.IsPrivate, 1, new { @class = "form-check-input", @id = "private" })
+                                <label class="form-check-label" for="private">비공개</label>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
                         <th scope="row">내용</th>
                         <td>
                             <textarea type="text" rows="10" class="form-control" id="content" asp-for="Content" style="width: 100%; resize: none;">@Model.Content</textarea>
@@ -34,11 +45,11 @@
                     </tr>
                     <tr>
                         <th scope="row">첨부파일</th>
-                        <td><input type="file" id="file" asp-for="File" class="form-control-file" value="@Model.File"/>파일 첨부는 1개만 가능합니다. (문서, 이미지, 동영상 형식 등)</td>
+                        <td><input type="file" id="file" asp-for="File" class="form-control-file" value="@Model.File" />파일 첨부는 1개만 가능합니다. (문서, 이미지, 동영상 형식 등)</td>
                     </tr>
                 </tbody>
             </table>
-            <input type="hidden" asp-for="No" value="@Model.No"/>
+            <input type="hidden" asp-for="No" value="@Model.No" />
         </div>
         <div class="form-group" style="width: 80%; margin: 0 auto; text-align: end">
             <a href='javascript:history.go(-1)' class="btn btn-dark">취소</a>
@@ -48,3 +59,18 @@
         </div>
     </form>
 </div>
+
+@{
+    if (Model.IsPrivate == 0)
+    {
+        <script>
+            document.getElementById('public').checked = true;
+        </script>
+    }
+    else
+    {
+        <script>
+            document.getElementById('private').checked = true;
+        </script>
+    }
+}
