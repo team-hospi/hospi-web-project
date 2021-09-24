@@ -37,6 +37,14 @@
                     <td colspan="3">@Model.WriteDate</td>
                 </tr>
                 <tr>
+                    <td><b>파일</b></td>
+                    <td colspan="3">
+                        <a href="~/Support/DownloadFile?no=@(Model.No)&fileName=@(Model.FileName)" class="file-down" style="color: black;">
+                            @Model.FileName
+                        </a>
+                    </td>
+                </tr>
+                <tr>
                     <td colspan="4" style="background-color: #eeeeee; text-align: center;"><b>내용</b></td>
                 </tr>
                 <tr>

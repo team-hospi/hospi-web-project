@@ -87,11 +87,14 @@ namespace hospi_web_project.Services
                     object tempFile = rdr["File"];
                     if (tempFile.GetType() != typeof(DBNull))
                     {
-                        // TODO: 파일 다운받아서 보여줘야함.
-
-                        model.File = null;
+                        model.FileName = (string)rdr["FileName"];
+                        model.RawData = (byte[])tempFile;
                     }
-                    else model.File = null;
+                    else
+                    {
+                        model.File = null;
+                        model.FileName = null;
+                    }
 
                     object tempReply = rdr["Reply"];
                     if (tempReply.GetType() != typeof(DBNull)) model.Reply = (string)tempReply;
@@ -255,21 +258,27 @@ namespace hospi_web_project.Services
 
                 var inquiryVm = (InquiryBoardViewModel)model;
 
-                UInt32 FileSize = (UInt32)inquiryVm.File.OpenReadStream().Length;
+                long FileSize = inquiryVm.File.Length;
                 byte[] rawData = new byte[FileSize];
 
                 inquiryVm.File.OpenReadStream().Read(rawData, 0, (int)FileSize);
                 inquiryVm.File.OpenReadStream().Close();
-
+                
                 string sql = "insert into inquiry values(null, '" 
                     + inquiryVm.Title + "', '"
                     + inquiryVm.Content + "', '"
                     + DateTime.Now.ToString("yyyy-MM-dd") +"', '"
                     + inquiryVm.Email +"', 0, " 
-                    + rawData.Length + ", "
+                    + "@File, '"
+                    + inquiryVm.File.FileName + "', "
                     + inquiryVm.IsPrivate + ", 0, null)";
 
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                MySqlParameter blob = new MySqlParameter("@File", MySqlDbType.Blob, rawData.Length);
+                blob.Value = rawData;
+
+                cmd.Parameters.Add(blob);
 
                 if (cmd.ExecuteNonQuery() == 1)
                 {

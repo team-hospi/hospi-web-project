@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace hospi_web_project.Controllers
@@ -95,6 +96,13 @@ namespace hospi_web_project.Controllers
                 }
 
             return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult DownloadFile(string fileName)
+        {
+            byte[] rawData = Encoding.UTF8.GetBytes(file);
+            return File(rawData, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
         }
 
         public IActionResult InquiryNoAccess()
