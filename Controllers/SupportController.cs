@@ -12,6 +12,7 @@ namespace hospi_web_project.Controllers
 {
     public class SupportController : Controller
     {
+
         public IActionResult ProductAuthGuide()
         {
             return View();
@@ -192,6 +193,11 @@ namespace hospi_web_project.Controllers
             return File(rawData, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
         }
 
+        public IActionResult InquiryNoPermission()
+        {
+            return View();
+        }
+
         public IActionResult InquiryNoAccess()
         {
             return View();
@@ -234,7 +240,17 @@ namespace hospi_web_project.Controllers
 
             var model = (InquiryBoardViewModel)context.GetBoardDetail(Convert.ToInt32(no));
 
-            return View(model);
+            var list = context.GetManagerList();
+
+            for (int i = 0; i < list.Count; i++)
+            {
+                if (User.Identity.Name == list[i].Email)
+                {
+                    return View(model);
+                }
+            }
+            return RedirectToAction("InquiryNoPermission", "Support");
+            
         }
 
         [Authorize]

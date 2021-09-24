@@ -1,7 +1,15 @@
 ﻿@{
     ViewData["Title"] = "문의게시판";
+
+    DBService dbService = ViewContext.HttpContext.RequestServices.GetService(typeof(DBService)) as DBService;
+    InquiryBoardService context = new(dbService);
+
+    List<ManagerViewModel> managerList = context.GetManagerList();
+
 }
 @model InquiryBoardViewModel;
+
+@using hospi_web_project.Services;
 
 <head>
     <link rel="stylesheet" href="~/css/board.css" />
@@ -82,7 +90,12 @@
         <a class="btn btn-dark" asp-controller="Support" asp-action="Inquiry">목록</a>
         @{
             // 관리자 기능 조건 수정해야함
-            int IsAdmin = 1;
+            int IsAdmin = 0;
+            for (int i = 0; i < managerList.Count; i++)
+            {
+                if (User.Identity.Name == managerList[i].Email)
+                    IsAdmin = 1;
+            }
             if (IsAdmin == 1 && Model.IsReply == 0)
             {
                 <a class="btn btn-dark" asp-controller="Support" asp-action="InquiryReply" asp-route-no="@Model.No">답변</a>
