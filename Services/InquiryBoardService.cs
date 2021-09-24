@@ -327,5 +327,42 @@ namespace hospi_web_project.Services
                 conn.Close();
             }
         }
+
+        public byte[] GetFileByte(int no)
+        {
+            try
+            {
+                conn.Open();
+
+                string sql = "select File from inquiry where no=" + no;
+
+                byte[] rawData = new byte[100];
+
+                MySqlCommand selectCmd = new MySqlCommand(sql, conn);
+                MySqlDataReader rdr = selectCmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    object tempFile = rdr["File"];
+                    if (tempFile.GetType() != typeof(DBNull))
+                    {
+                        rawData = (byte[])tempFile;
+                    }
+                }
+
+                rdr.Close();
+
+                return rawData;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                Debug.WriteLine("예외 디버깅: " + e.Message);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
     }
 }
