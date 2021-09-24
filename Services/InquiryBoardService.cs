@@ -88,13 +88,8 @@ namespace hospi_web_project.Services
                     if (tempFile.GetType() != typeof(DBNull))
                     {
                         model.FileName = (string)rdr["FileName"];
-                        model.RawData = (byte[])tempFile;
                     }
-                    else
-                    {
-                        model.File = null;
-                        model.FileName = null;
-                    }
+                    else model.FileName = null;
 
                     object tempReply = rdr["Reply"];
                     if (tempReply.GetType() != typeof(DBNull)) model.Reply = (string)tempReply;
