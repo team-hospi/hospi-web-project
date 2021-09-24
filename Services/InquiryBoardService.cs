@@ -88,13 +88,8 @@ namespace hospi_web_project.Services
                     if (tempFile.GetType() != typeof(DBNull))
                     {
                         model.FileName = (string)rdr["FileName"];
-                        model.RawData = (byte[])tempFile;
                     }
-                    else
-                    {
-                        model.File = null;
-                        model.FileName = null;
-                    }
+                    else model.FileName = null;
 
                     object tempReply = rdr["Reply"];
                     if (tempReply.GetType() != typeof(DBNull)) model.Reply = (string)tempReply;
@@ -321,6 +316,43 @@ namespace hospi_web_project.Services
             catch (Exception e)
             {
                 Console.WriteLine(e.StackTrace);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public byte[] GetFileByte(int no)
+        {
+            try
+            {
+                conn.Open();
+
+                string sql = "select File from inquiry where no=" + no;
+
+                byte[] rawData = new byte[100];
+
+                MySqlCommand selectCmd = new MySqlCommand(sql, conn);
+                MySqlDataReader rdr = selectCmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    object tempFile = rdr["File"];
+                    if (tempFile.GetType() != typeof(DBNull))
+                    {
+                        rawData = (byte[])tempFile;
+                    }
+                }
+
+                rdr.Close();
+
+                return rawData;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                Debug.WriteLine("예외 디버깅: " + e.Message);
+                return null;
             }
             finally
             {

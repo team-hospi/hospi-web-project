@@ -187,9 +187,13 @@ namespace hospi_web_project.Controllers
         }
 
         [HttpGet]
-        public ActionResult DownloadFile(string fileName)
+        public ActionResult DownloadFile(int no, string fileName)
         {
-            byte[] rawData = Encoding.UTF8.GetBytes(file);
+            DBService dbService = HttpContext.RequestServices.GetService(typeof(DBService)) as DBService;
+            InquiryBoardService context = new(dbService);
+
+            byte[] rawData = context.GetFileByte(no);
+
             return File(rawData, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
         }
 

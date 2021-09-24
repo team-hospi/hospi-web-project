@@ -45,11 +45,20 @@
                     <td colspan="3">@Model.WriteDate</td>
                 </tr>
                 <tr>
-                    <td><b>파일</b></td>
+                    <td><b>첨부</b></td>
                     <td colspan="3">
-                        <a href="~/Support/DownloadFile?no=@(Model.No)&fileName=@(Model.FileName)" class="file-down" style="color: black;">
-                            @Model.FileName
-                        </a>
+                        @{
+                            if (Model.FileName != null)
+                            {
+                                <a href="~/Support/DownloadFile?no=@(Model.No)&fileName=@(Model.FileName)" class="file-down" style="color: black;">
+                                    <img src="~/image/attach_file_black_48dp.svg" style="width: 20px; margin-top: -3px;">@Model.FileName
+                                </a>
+                            }
+                            else
+                            {
+                                <span>첨부된 파일이 존재하지 않습니다.</span>
+                            }
+                        }
                     </td>
                 </tr>
                 <tr>
