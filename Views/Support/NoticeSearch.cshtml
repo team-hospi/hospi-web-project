@@ -1,7 +1,6 @@
 ﻿@{
     ViewData["Title"] = "공지사항";
 }
-
 @model List<NoticeViewModel>;
 
 <head>
@@ -10,12 +9,12 @@
 
 <div style="background-color: #8E8E8E; height: 70px">
     <div class="container">
-        <p style="line-height: 70px; margin-left: 80px"><a style="color: black;" asp-controller="Home" asp-action="Index">Hospi 홈</a> > 공지사항</p>
+        <p style="line-height: 70px; margin-left: 80px"><a style="color: black;" asp-controller="Home" asp-action="Index">Hospi 홈</a> > 공지사항 > 공지사항 검색</p>
     </div>
 </div>
 
 <div class="container" id="boardContainer">
-    <h4 id="pageTitle">공지사항</h4>
+    <h4 id="pageTitle">공지사항 검색</h4>
     <hr />
     <div class="boardDiv">
         <form method="get">
@@ -27,7 +26,6 @@
         <table class="table" id="boardTable">
             <thead>
                 <tr>
-                    <th class="text-center" scope="row" style="width: 10%"></th>
                     <th class="text-center" scope="row" style="width: 40%">제목</th>
                     <th class="text-center" scope="row" style="width: 15%">작성자</th>
                     <th class="text-center" scope="row" style="width: 15%">등록일</th>
@@ -39,11 +37,12 @@
                     foreach (var vm in Model)
                     {
                         <tr>
-                            <td class="text-center">@vm.No</td>
                             <td>
-                                <a style="color: black" asp-controller="Support" asp-action="NoticeDetails" asp-route-no="@vm.No">@vm.Title</a>
+                                @{
+                                        <a style="color: black" asp-controller="Support" asp-action="NoticeDetails" asp-route-no="@vm.No">@vm.Title</a>
+                                }
                             </td>
-                            <td class="text-center">관리자</td>
+                            <td class="text-center">@vm.Email.Substring(0, vm.Email.LastIndexOf('@'))</td>
                             <td class="text-center">@vm.WriteDate</td>
                             <td class="text-center">@vm.Views</td>
                         </tr>
@@ -53,6 +52,7 @@
         </table>
     </div>
     <div class="boardDiv" style="text-align: right; margin-top: 50px;">
+        <a class="btn btn-dark" asp-controller="Support" asp-action="Notice">목록</a>
         <a class="btn btn-dark" asp-controller="Support" asp-action="NoticeCreate">등록</a>
     </div>
 </div>
