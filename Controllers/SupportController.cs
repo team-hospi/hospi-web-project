@@ -23,7 +23,94 @@ namespace hospi_web_project.Controllers
 
         public IActionResult Notice()
         {
+            DBService dbService = HttpContext.RequestServices.GetService(typeof(DBService)) as DBService;
+            NoticeService context = new(dbService);
+
+            var list = context.GetBoardList().Cast<NoticeViewModel>().ToList();
+
+            return View(list);
+        }
+
+        [HttpGet]
+        public IActionResult NoticeSearch(string query)
+        {
+            DBService dbService = HttpContext.RequestServices.GetService(typeof(DBService)) as DBService;
+            NoticeService context = new(dbService);
+
+            var list = context.SearchBoardList(query).Cast<NoticeViewModel>().ToList();
+
+            return View(list);
+        }
+
+        [Authorize]
+        public IActionResult NoticeCreate()
+        {
             return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult NoticeCreateProcess(NoticeViewModel model)
+        {
+
+            if (ModelState.IsValid)
+            {
+                DBService dbService = HttpContext.RequestServices.GetService(typeof(DBService)) as DBService;
+                NoticeService context = new(dbService);
+
+                context.WriteBoard(model);
+            }
+
+            return RedirectToAction("Notice", "Support");
+        }
+
+        [Authorize]
+        [HttpGet]
+        public IActionResult NoticeDelete(int no)
+        {
+            DBService dbService = HttpContext.RequestServices.GetService(typeof(DBService)) as DBService;
+            NoticeService context = new(dbService);
+
+            context.DeleteBoard(no);
+
+            return RedirectToAction("Notice", "Support");
+        }
+
+        [HttpGet]
+        public IActionResult NoticeDetails(int no)
+        {
+            DBService dbService = HttpContext.RequestServices.GetService(typeof(DBService)) as DBService;
+            NoticeService context = new(dbService);
+
+            var model = (NoticeViewModel)context.GetBoardDetail(no);
+
+            return View(model);
+        }
+
+        [Authorize]
+        [HttpGet]
+        public IActionResult NoticeUpdate(int no)
+        {
+            DBService dbService = HttpContext.RequestServices.GetService(typeof(DBService)) as DBService;
+            NoticeService context = new(dbService);
+
+            var model = (NoticeViewModel)context.GetBoardDetail(no);
+
+            return View(model);
+        }
+
+        [Authorize]
+        public IActionResult NoticeUpdateProcess(NoticeViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                DBService dbService = HttpContext.RequestServices.GetService(typeof(DBService)) as DBService;
+                NoticeService context = new(dbService);
+
+                context.UpdateBoard(model);
+            }
+
+            return RedirectToAction("NoticeDetails", "Support", new { no = model.No });
         }
 
         public IActionResult Inquiry()
