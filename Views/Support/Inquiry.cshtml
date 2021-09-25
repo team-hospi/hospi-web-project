@@ -52,14 +52,14 @@
                             @{
                                 if (vm.IsPrivate == 1)
                                 {
-                                    <a style="color: black" asp-controller="Support" asp-action="InquiryDetails" asp-route-no="@vm.No" asp-route-IsPrivate="@vm.IsPrivate">
+                                    <a style="color: black" asp-controller="Support" asp-action="InquiryDetails" asp-route-no="@vm.No">
                                         <img src="~/image/lock_black_48dp.svg" style="width: 18px; margin-top: -3px;" />
                                         @vm.Title
                                     </a>
                                 }
                                 else
                                 {
-                                    <a style="color: black" asp-controller="Support" asp-action="InquiryDetails" asp-route-no="@vm.No" asp-route-IsPrivate="@vm.IsPrivate">@vm.Title</a>
+                                    <a style="color: black" asp-controller="Support" asp-action="InquiryDetails" asp-route-no="@vm.No">@vm.Title</a>
                                 }
                             }
                         </td>
