@@ -170,14 +170,14 @@ namespace hospi_web_project.Controllers
         }
 
         [HttpGet]
-        public IActionResult InquiryDetails(int no, int IsPrivate)
+        public IActionResult InquiryDetails(int no)
         {
             DBService dbService = HttpContext.RequestServices.GetService(typeof(DBService)) as DBService;
             InquiryBoardService context = new(dbService);
 
             var model = (InquiryBoardViewModel)context.GetBoardDetail(no);
 
-            if (IsPrivate == 1)
+            if (model.IsPrivate == 1)
                 if(User.Identity.Name != model.Email)
                 {
                     return RedirectToAction("InquiryNoAccess", "Support");
