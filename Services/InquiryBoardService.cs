@@ -88,6 +88,10 @@ namespace hospi_web_project.Services
                     if (tempFile.GetType() != typeof(DBNull))
                     {
                         model.FileName = (string)rdr["FileName"];
+
+                        byte[] RawData = (byte[])tempFile;
+                        var stream = new MemoryStream(RawData);
+                        model.File = new FormFile(stream, 0, RawData.Length, model.FileName, model.FileName);
                     }
                     else model.FileName = null;
 
@@ -194,56 +198,7 @@ namespace hospi_web_project.Services
             }
         }
 
-        public void UpdateBoard(BoardViewModel model)
-        {
-            try
-            {
-                conn.Open();
-
-                var inquiryVm = (InquiryBoardViewModel)model;
-
-                IFormFile temp = inquiryVm.File;
-
-                string sql;
-
-                /*
-                if (temp != null)
-                {
-                    
-                }
-                else
-                {
-                    
-                }
-                */
-
-                sql = "update inquiry set " +
-                    "Title='" + inquiryVm.Title + "', " +
-                    "Content='" + inquiryVm.Content + "', " +
-                    "IsPrivate=" + inquiryVm.IsPrivate + ", " +
-                    "File=null " +
-                    "where No=" + inquiryVm.No;
-
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
-
-                if (cmd.ExecuteNonQuery() == 1)
-                {
-                    Console.WriteLine("Insert Success!!");
-                }
-                else
-                {
-                    Console.WriteLine("Insert Fail!!");
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.StackTrace);
-            }
-            finally
-            {
-                conn.Close();
-            }
-        }
+        public void UpdateBoard(BoardViewModel model){}
 
         public void WriteBoard(BoardViewModel model)
         {

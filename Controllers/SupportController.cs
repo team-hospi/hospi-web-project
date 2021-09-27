@@ -187,6 +187,7 @@ namespace hospi_web_project.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult DownloadFile(int no, string fileName)
         {
             DBService dbService = HttpContext.RequestServices.GetService(typeof(DBService)) as DBService;
@@ -205,32 +206,6 @@ namespace hospi_web_project.Controllers
         public IActionResult InquiryNoAccess()
         {
             return View();
-        }
-
-        [Authorize]
-        [HttpGet]
-        public IActionResult InquiryUpdate(int no)
-        {
-            DBService dbService = HttpContext.RequestServices.GetService(typeof(DBService)) as DBService;
-            InquiryBoardService context = new(dbService);
-
-            var model = (InquiryBoardViewModel)context.GetBoardDetail(no);
-
-            return View(model);
-        }
-
-        [Authorize]
-        public IActionResult InquiryUpdateProcess(InquiryBoardViewModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                DBService dbService = HttpContext.RequestServices.GetService(typeof(DBService)) as DBService;
-                InquiryBoardService context = new(dbService);
-
-                context.UpdateBoard(model);
-            }
-
-            return RedirectToAction("InquiryDetails", "Support", new { no = model.No });
         }
 
         [HttpGet]

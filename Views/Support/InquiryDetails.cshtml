@@ -98,7 +98,6 @@
     <div class="boardDiv" style="text-align: right; margin-top: 80px;">
         <a class="btn btn-dark" asp-controller="Support" asp-action="Inquiry">목록</a>
         @{
-            // 관리자 기능 조건 수정해야함
             int IsAdmin = 0;
             for (int i = 0; i < managerList.Count; i++)
             {
@@ -114,9 +113,8 @@
             {
                 if (Model.IsReply != 1)
                 {
-                    <a class="btn btn-dark" asp-controller="Support" asp-action="InquiryUpdate" asp-route-no="@Model.No">수정</a>
+                    <a class="btn btn-dark" asp-controller="Support" asp-action="InquiryDelete" asp-route-no="@Model.No">삭제</a>
                 }
-                <a class="btn btn-dark" asp-controller="Support" asp-action="InquiryDelete" asp-route-no="@Model.No">삭제</a>
             }
         }
     </div>
