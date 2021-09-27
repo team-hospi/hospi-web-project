@@ -177,12 +177,27 @@ namespace hospi_web_project.Controllers
 
             var model = (InquiryBoardViewModel)context.GetBoardDetail(no);
 
+            var list = context.GetManagerList();
+
+            bool IsManager = false;
+
+
             if (model.IsPrivate == 1)
-                if(User.Identity.Name != model.Email)
+            {
+                for (int i = 0; i < list.Count; i++)
+                {
+                    if (User.Identity.Name == list[i].Email)
+                        IsManager = true;
+                }
+                if (User.Identity.Name == model.Email || IsManager)
+                {
+                    return View(model);
+                }
+                else
                 {
                     return RedirectToAction("InquiryNoAccess", "Support");
                 }
-
+            }
             return View(model);
         }
 
