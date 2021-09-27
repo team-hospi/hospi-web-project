@@ -1,4 +1,42 @@
-﻿.box-div {
+﻿section {
+    display: none;
+    padding: 20px 0 0;
+    border-top: 1px solid #ddd;
+}
+
+input {
+    display: none;
+}
+
+label {
+    display: inline-block;
+    padding: 15px 25px;
+    font-weight: 600;
+    color: #bbb;
+    border: 1px solid transparent;
+}
+
+    label:hover {
+        color: #46C200;
+        cursor: pointer;
+    }
+
+/*input 클릭시, label 스타일*/
+input:checked + label {
+    color: #555;
+    border: 1px solid #ddd;
+    border-top: 2px solid #46C200;
+    border-bottom: 1px solid #ffffff;
+}
+
+#tab1:checked ~ #content1,
+#tab2:checked ~ #content2,
+#tab3:checked ~ #content3,
+#tab4:checked ~ #content4 {
+    display: block;
+}
+
+.box-div {
     padding: 20px;
     margin: 0 auto;
     margin-bottom: 50px;

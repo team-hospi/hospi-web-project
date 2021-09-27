@@ -59,62 +59,77 @@
 </div>
 
 <div class="container">
-    <div class="box-div" style="margin-top: 70px;">
-        <h4 style="margin-bottom: 15px;">내 정보</h4>
-        <table class="table">
-            <tbody>
-                <tr>
-                    <th scope="row">이메일</th>
-                    <td colspan="2">@(model.email)</td>
-                </tr>
-                <tr>
-                    <th scope="row">이름</th>
-                    <td colspan="2">@(model.name)</td>
-                </tr>
-                <tr>
-                    <th scope="row">생년월일</th>
-                    <td colspan="1">@(model.birth)</td>
-                    <td><a href="#">생년월일 변경</a></td>
-                </tr>
-                <tr>
-                    <th scope="row">휴대전화</th>
-                    <td colspan="1">@(model.phone)</td>
-                    <td><a href="#">휴대전화 변경</a></td>
-                </tr>
-            </tbody>
-        </table>
-        <div style="text-align: right; margin-top: 20px">
-            <button class="btn btn-dark">비밀번호 변경</button>
-            <button class="btn btn-dark">회원 탈퇴</button>
-        </div>
-    </div>
-    <div class="box-div" style="margin-bottom: 150px;">
-        <h4 style="margin-bottom: 15px;">결제내역</h4>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th class="text-center" scope="row" style="width: 20%">주문번호</th>
-                    <th class="text-center" scope="row" style="width: 20%">제품명</th>
-                    <th class="text-center" scope="row" style="width: 30%">인증키</th>
-                    <th class="text-center" scope="row" style="width: 15%">등록일</th>
-                    <th class="text-center" scope="row" style="width: 15%">다운로드</th>
-                </tr>
-            </thead>
-            <tbody>
-                @{
-                    await GetPaymentList();
-                }
-            </tbody>
-        </table>
-        <hr style="margin-top: -15px" />
-        <h5 style="margin-top: 30px;">Hospi 인증키에 대한 주의사항</h5>
-        <div style="margin-top: 10px">
-            <p>
-                1. 인증키 발급 후 반드시 유출되지 않도록 보관하여 주십시오.<br />
-                2. 인증키는 Hospi 전자차트 처음 실행 시 인증을 위해 사용됩니다.<br />
-                3. 인증키 유출로 인한 피해는 당사에서 책임지지 않습니다.<br />
-                4. 자세한 문의는 <a asp-area="" asp-controller="Support" asp-action="Inquiry">문의게시판</a>을 통하여 문의를 남겨주시면 빠른 시일내에 답변해드리겠습니다.<br />
-            </p>
-        </div>
+    <div class="box-div" style="margin-top: 70px; margin-bottom: 150px;">
+        <input id="tab1" type="radio" name="tabs" checked>
+        <label for="tab1">결제정보</label>
+
+        <input id="tab2" type="radio" name="tabs">
+        <label for="tab2">내 정보</label>
+
+        <input id="tab3" type="radio" name="tabs">
+        <label for="tab3">비밀번호 변경</label>
+
+        <input id="tab4" type="radio" name="tabs">
+        <label for="tab4">회원탈퇴</label>
+
+        <section id="content1" style="margin-bottom:20px;">
+            <h4 style="margin-bottom: 15px;">결제내역</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="text-center" scope="row" style="width: 20%">주문번호</th>
+                        <th class="text-center" scope="row" style="width: 20%">제품명</th>
+                        <th class="text-center" scope="row" style="width: 30%">인증키</th>
+                        <th class="text-center" scope="row" style="width: 15%">등록일</th>
+                        <th class="text-center" scope="row" style="width: 15%">다운로드</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        await GetPaymentList();
+                    }
+                </tbody>
+            </table>
+            <hr style="margin-top: -15px" />
+            <h5 style="margin-top: 30px;">Hospi 인증키에 대한 주의사항</h5>
+            <div style="margin-top: 10px">
+                <p>
+                    1. 인증키 발급 후 반드시 유출되지 않도록 보관하여 주십시오.<br />
+                    2. 인증키는 Hospi 전자차트 처음 실행 시 인증을 위해 사용됩니다.<br />
+                    3. 인증키 유출로 인한 피해는 당사에서 책임지지 않습니다.<br />
+                    4. 자세한 문의는 <a asp-area="" asp-controller="Support" asp-action="Inquiry">문의게시판</a>을 통하여 문의를 남겨주시면 빠른 시일내에 답변해드리겠습니다.<br />
+                </p>
+            </div>
+        </section>
+
+        <section id="content2" style="margin-bottom:20px;">
+            <h4 style="margin-bottom: 15px;">내 정보</h4>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th scope="row">이메일</th>
+                        <td colspan="2">@(model.email)</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">이름</th>
+                        <td colspan="2">@(model.name)</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">생년월일</th>
+                        <td colspan="2">@(model.birth)</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">휴대전화</th>
+                        <td colspan="2">@(model.phone)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section id="content3" style="margin-bottom:20px;">
+        </section>
+
+        <section id="content4" style="margin-bottom:20px;">
+        </section>
     </div>
 </div>
