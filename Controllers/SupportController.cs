@@ -47,7 +47,17 @@ namespace hospi_web_project.Controllers
         [Authorize]
         public IActionResult NoticeCreate()
         {
-            return View();
+            DBService dbService = HttpContext.RequestServices.GetService(typeof(DBService)) as DBService;
+            NoticeService context = new(dbService);
+            var list = context.GetManagerList();
+
+            for(int i=0; i<list.Count; i++)
+            {
+                if(User.Identity.Name == list[i].Email)
+                    return View();
+            }
+
+            return RedirectToAction("NoticeNoPermission", "Support");
         }
 
         [Authorize]
@@ -113,6 +123,11 @@ namespace hospi_web_project.Controllers
             }
 
             return RedirectToAction("NoticeDetails", "Support", new { no = model.No });
+        }
+
+        public IActionResult NoticeNoPermission()
+        {
+            return View();
         }
 
         public IActionResult Inquiry()

@@ -250,5 +250,40 @@ namespace hospi_web_project.Services
             }
         }
 
+        public List<ManagerViewModel> GetManagerList()
+        {
+            try
+            {
+                conn.Open();
+                string sql = "select * from management order by Email desc";
+
+                var list = new List<ManagerViewModel>();
+
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                MySqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    var model = new ManagerViewModel();
+
+                    model.Email = (string)rdr["Email"];
+
+                    list.Add(model);
+                }
+
+                rdr.Close();
+
+                return list;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
     }
 }
