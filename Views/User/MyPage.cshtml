@@ -47,6 +47,7 @@
         return temp;
     }
 }
+@model MemberViewModel;
 
 <head>
     <link rel="stylesheet" href="~/css/myPage.css" />
@@ -128,29 +129,30 @@
 
         <section id="content3" style="margin-bottom:20px;">
             <h4 style="margin-bottom: 15px;">비밀번호 변경</h4>
-            <form method="post">
+            <form method="post" asp-controller="User" asp-action="PasswordChange" onsubmit="return passwordCheck()">
                 <table class="table">
                     <tbody>
                         <tr>
                             <th scope="row">기존 비밀번호</th>
                             <td colspan="2">
-                                <input type="password" class="form-control" />
+                                <input type="password" class="form-control" asp-for="password" />
                             </td>
                         </tr>
                         <tr>
                             <th scope="row">새 비밀번호</th>
                             <td colspan="2">
-                                <input type="password" class="form-control" />
+                                <input type="password" id="newPW1" class="form-control" />
                             </td>
                         </tr>
                         <tr>
                             <th scope="row">새 비밀번호 확인</th>
                             <td colspan="2">
-                                <input type="password" class="form-control" />
+                                <input type="password" id="newPW2" class="form-control" asp-for="newPassword" />
                             </td>
                         </tr>
                     </tbody>
                 </table>
+                <input type="hidden" asp-for="email" value="@User.Identity.Name" />
                 <div style="text-align: right">
                     <button type="submit" class="btn btn-dark">비밀번호 변경</button>
                 </div>
@@ -168,3 +170,15 @@
         </section>
     </div>
 </div>
+
+<script type="text/javascript">
+    function passwordCheck() {
+        var p1 = document.getElementById('newPW1').value;
+        var p2 = document.getElementById('newPW2').value;
+        if( p1 != p2 ) {
+            alert("비밀번호가 일치하지 않습니다.");
+            return false;
+        }
+        else return true;
+    }
+</script>

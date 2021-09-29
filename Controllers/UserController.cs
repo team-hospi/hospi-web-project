@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using hospi_web_project.Models;
+using hospi_web_project.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -16,6 +18,37 @@ namespace hospi_web_project.Controllers
             return View();
         }
 
+        [Authorize]
+        [HttpPost]
+        public IActionResult PasswordChange(MemberViewModel model)
+        {
+            DBService dbService = HttpContext.RequestServices.GetService(typeof(DBService)) as DBService;
+            MemberService context = new(dbService);
+
+            if(!context.CheckPassword(model.email, model.password))
+            {
+                return RedirectToAction("PasswordChangeFail", "User");
+            }
+            else
+            {
+                context.ChangePassword(model.email, model.newPassword);
+                return RedirectToAction("PasswordChangeSuccess", "User");
+            }
+        }
+
+        [Authorize]
+        public IActionResult PasswordChangeSuccess()
+        {
+            return View();
+        }
+
+        [Authorize]
+        public IActionResult PasswordChangeFail()
+        {
+            return View();
+        }
+
+        [Authorize]
         public ActionResult DownloadFile(string filePath)
         {
             string fullName = @"C:\hospi\files\" + filePath;

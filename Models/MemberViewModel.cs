@@ -11,6 +11,8 @@ namespace hospi_web_project.Models
 
         public string password { get; set; }
 
+        public string newPassword { get; set; }
+
         public string name { get; set; }
 
         public string birth { get; set; }

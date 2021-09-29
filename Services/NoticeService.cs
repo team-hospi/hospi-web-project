@@ -188,17 +188,6 @@ namespace hospi_web_project.Services
 
                 string sql;
 
-                /*
-                if (temp != null)
-                {
-                    
-                }
-                else
-                {
-                    
-                }
-                */
-
                 sql = "update notice set " +
                     "Title='" + noticeVm.Title + "', " +
                     "Content='" + noticeVm.Content + "' " +

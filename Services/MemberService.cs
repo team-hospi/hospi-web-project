@@ -22,8 +22,6 @@ namespace hospi_web_project.Services
         {
             conn = dbService.GetConnection();
         }
-
-        
         
         public MemberViewModel login(LoginViewModel model)
         {
@@ -76,7 +74,6 @@ namespace hospi_web_project.Services
             }
         }
 
-        [Authorize]
         public MemberViewModel GetMemberInfo(string email)
         {
             try
@@ -105,6 +102,76 @@ namespace hospi_web_project.Services
             {
                 Console.WriteLine(e.StackTrace);
                 return null;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public bool CheckPassword(string email, string pw)
+        {
+            try
+            {
+                conn.Open();
+                string sql = "select Password from member where email=\"" + email + "\";";
+
+                string pw2 = null;
+
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                MySqlDataReader rdr = cmd.ExecuteReader();
+                while (rdr.Read())
+                {
+                    pw2 = (string)rdr["password"];
+                }
+                rdr.Close();
+
+                if(EncryptionTool.SHA256Hash(pw, email) != pw2)
+                {
+                    return false;
+                }
+                else
+                {
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                return false;
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public void ChangePassword(string email, string pw)
+        {
+            try
+            {
+                conn.Open();
+
+                string sql;
+
+                sql = "update member set " +
+                    "Password='" + EncryptionTool.SHA256Hash(pw, email) + "' " +
+                    "where Email='" + email + "'";
+
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                if (cmd.ExecuteNonQuery() == 1)
+                {
+                    Console.WriteLine("Update Success!!");
+                }
+                else
+                {
+                    Console.WriteLine("Update Fail!!");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
             }
             finally
             {
