@@ -12,6 +12,9 @@
     PaymentService paymentContext = new(dbService);
     List<PaymentViewModel> list = paymentContext.GetPaymentList(email);
 
+    DownloadURLService urlContext = new(dbService);
+    string url = urlContext.GetDownloadURL("Hospi");
+
     async Task GetPaymentList()
     {
         foreach (var payment in list)
@@ -23,7 +26,7 @@
                 <td class="text-center">@InputKeyHyphen(payment.ProductKey)</td>
                 <td class="text-center">@payment.RegDate</td>
                 <td class="text-center">
-                    <a href="~/User/DownloadFile?filePath=Hospi.zip" class="file-down" style="color: black;">
+                    <a href="@url" class="file-down" style="color: black;">
                         설치파일<img src="~/image/download_black.svg" style="width: 20px;">
                     </a>
                 </td>
