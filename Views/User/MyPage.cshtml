@@ -163,10 +163,13 @@
             <h4 style="margin-bottom: 15px;">회원탈퇴</h4>
             <hr />
             <p>회원탈퇴를 하시면 모든 개인정보가 삭제됩니다. 탈퇴하시려면 비밀번호 입력 후 회원탈퇴 버튼을 클릭해주세요.</p>
-            <div>
-                <input type="password" class="form-control" id="pw" style="width: 300px; float: left; margin-right: 10px;" placeholder="비밀번호 입력" />
-                <input type="button" class="btn btn-dark" value="회원탈퇴" />
-            </div>
+            <form method="post" asp-controller="User" asp-action="Withdrawal">
+                <div>
+                    <input type="password" class="form-control" id="pw" style="width: 300px; float: left; margin-right: 10px;" placeholder="비밀번호 입력" asp-for="password" />
+                    <button type="submit" class="btn btn-dark">회원탈퇴</button>
+                </div>
+                <input type="hidden" asp-for="email" value="@User.Identity.Name" />
+            </form>
         </section>
     </div>
 </div>

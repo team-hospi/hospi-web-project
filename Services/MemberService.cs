@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -172,6 +173,40 @@ namespace hospi_web_project.Services
             catch (Exception e)
             {
                 Console.WriteLine(e.StackTrace);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public void Withdrawal(string email)
+        {
+            try
+            {
+                conn.Open();
+
+                string sql;
+
+                sql = "delete from member where Email='" + email + "'; "
+                    + "delete from management where Email='" + email + "'; "
+                    + "delete from payment where Email='" + email + "';";
+
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                if (cmd.ExecuteNonQuery() == 1)
+                {
+                    Console.WriteLine("Delete Success!!");
+                }
+                else
+                {
+                    Console.WriteLine("Delete Fail!!");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+                Debug.WriteLine("예외 발생: " + e.Message);
             }
             finally
             {

@@ -25,9 +25,9 @@ namespace hospi_web_project.Controllers
             DBService dbService = HttpContext.RequestServices.GetService(typeof(DBService)) as DBService;
             MemberService context = new(dbService);
 
-            if(!context.CheckPassword(model.email, model.password))
+            if (!context.CheckPassword(model.email, model.password))
             {
-                return RedirectToAction("PasswordChangeFail", "User");
+                return RedirectToAction("PasswordCheckFail", "User");
             }
             else
             {
@@ -43,7 +43,31 @@ namespace hospi_web_project.Controllers
         }
 
         [Authorize]
-        public IActionResult PasswordChangeFail()
+        public IActionResult PasswordCheckFail()
+        {
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public IActionResult Withdrawal(MemberViewModel model)
+        {
+            DBService dbService = HttpContext.RequestServices.GetService(typeof(DBService)) as DBService;
+            MemberService context = new(dbService);
+
+            if (!context.CheckPassword(model.email, model.password))
+            {
+                return RedirectToAction("PasswordCheckFail", "User");
+            }
+            else
+            {
+                context.Withdrawal(model.email);
+                return RedirectToAction("WithdrawalSuccess", "User");
+            }
+        }
+
+        [Authorize]
+        public IActionResult WithdrawalSuccess()
         {
             return View();
         }
