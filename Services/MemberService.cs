@@ -189,8 +189,7 @@ namespace hospi_web_project.Services
                 string sql;
 
                 sql = "delete from member where Email='" + email + "'; "
-                    + "delete from management where Email='" + email + "'; "
-                    + "delete from payment where Email='" + email + "';";
+                    + "delete from management where Email='" + email + "'; ";
 
                 MySqlCommand cmd = new MySqlCommand(sql, conn);
 
