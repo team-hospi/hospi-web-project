@@ -180,6 +180,72 @@ namespace hospi_web_project.Services
             }
         }
 
+        public void UpdateBirth(string email, string birth)
+        {
+            try
+            {
+                conn.Open();
+
+                string sql;
+
+                sql = "update member set " +
+                    "Birth='" + birth + "' " +
+                    "where Email='" + email + "'";
+
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                if (cmd.ExecuteNonQuery() == 1)
+                {
+                    Console.WriteLine("Update Success!!");
+                }
+                else
+                {
+                    Console.WriteLine("Update Fail!!");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
+        public void UpdatePhone(string email, string phone)
+        {
+            try
+            {
+                conn.Open();
+
+                string sql;
+
+                sql = "update member set " +
+                    "Phone='" + phone + "' " +
+                    "where Email='" + email + "'";
+
+                MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+                if (cmd.ExecuteNonQuery() == 1)
+                {
+                    Console.WriteLine("Update Success!!");
+                }
+                else
+                {
+                    Console.WriteLine("Update Fail!!");
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.StackTrace);
+            }
+            finally
+            {
+                conn.Close();
+            }
+        }
+
         public void Withdrawal(string email)
         {
             try

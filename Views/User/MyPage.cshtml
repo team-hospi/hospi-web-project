@@ -120,11 +120,42 @@
                     </tr>
                     <tr>
                         <th scope="row">생년월일</th>
-                        <td colspan="2">@(model.birth)</td>
+                        <td colspan="2">
+                            <div>
+                                <span id="birth" style="margin-right: 10px;">@(model.birth)</span>
+                                <input type="button" id="editBtn1" class="btn btn-dark" value="수정" onclick="editBirth()" />
+                                <input type="button" id="cancelBtn1" class="btn btn-dark" style="display: none;" value="취소" onclick="cancelBirth()" />
+                            </div>
+                            <br />
+                            <div id="editBirthDiv" style="margin-top: 10px; margin-bottom: 20px; display: none">
+                                <iframe id="iframeBirth" name="iframeBirth" style="display:none"></iframe>
+                                <form method="post" asp-controller="User" asp-action="UpdateBirth" target="iframeBirth" onsubmit="return saveBirth();">
+                                    <input type="text" class="form-control" id="birthyear" style="width: 100px; float: left; margin-right: 10px" placeholder="년(4자리)" maxlength="4" asp-for="BirthYear" />
+                                    <input type="text" class="form-control" id="birthmonth" style="width: 50px; float: left; margin-right: 10px " placeholder="월" maxlength="2" asp-for="BirthMonth" />
+                                    <input type="text" class="form-control" id="birthday" style="width: 50px; float: left;" placeholder="일" maxlength="2" asp-for="BirthDay" />
+                                    <input type="hidden" asp-for="email" value="@User.Identity.Name" />
+                                    <button type="submit" style="margin-left: 10px;" class="btn btn-dark">저장</button>
+                                </form>
+                            </div>
+                        </td>
                     </tr>
                     <tr>
                         <th scope="row">휴대전화</th>
-                        <td colspan="2">@(model.phone)</td>
+                        <td colspan="2">
+                            <div>
+                                <span id="phone_span" style="margin-right: 10px;">@(model.phone)</span>
+                                <input type="button" id="editBtn2" class="btn btn-dark" value="수정" onclick="editPhone()" />
+                                <input type="button" id="cancelBtn2" class="btn btn-dark" style="display: none;" value="취소" onclick="cancelPhone()" />
+                            </div>
+                            <div id="editPhoneDiv" style="margin-top: 25px; display: none">
+                                <iframe id="iframePhone" name="iframePhone" style="display:none"></iframe>
+                                <form method="post" asp-controller="User" asp-action="UpdatePhone" target="iframePhone" onsubmit="return savePhone()">
+                                    <input type="text" class="form-control" id="phone_input" style="width: 220px; float: left;" placeholder="번호만 입력해주세요." maxlength="11" asp-for="phone" />
+                                    <input type="hidden" asp-for="email" value="@User.Identity.Name" />
+                                    <button type="submit" style="margin-left: 10px;" class="btn btn-dark">저장</button>
+                                </form>
+                            </div>
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -177,14 +208,4 @@
     </div>
 </div>
 
-<script type="text/javascript">
-    function passwordCheck() {
-        var p1 = document.getElementById('newPW1').value;
-        var p2 = document.getElementById('newPW2').value;
-        if( p1 != p2 ) {
-            alert("비밀번호가 일치하지 않습니다.");
-            return false;
-        }
-        else return true;
-    }
-</script>
+<script src="~/js/myPage.js"></script>

@@ -17,6 +17,12 @@ namespace hospi_web_project.Models
 
         public string birth { get; set; }
 
+        public string BirthYear { get; set; }
+
+        public string BirthMonth { get; set; }
+
+        public string BirthDay { get; set; }
+
         public string sex { get; set; }
 
         public string phone { get; set; }

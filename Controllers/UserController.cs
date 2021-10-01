@@ -50,6 +50,30 @@ namespace hospi_web_project.Controllers
 
         [Authorize]
         [HttpPost]
+        public void UpdateBirth(MemberViewModel model)
+        {
+            DBService dbService = HttpContext.RequestServices.GetService(typeof(DBService)) as DBService;
+            MemberService context = new(dbService);
+
+            string birth = model.BirthYear + "-" + model.BirthMonth + "-" + model.BirthDay;
+
+            context.UpdateBirth(model.email, birth);
+        }
+
+        [Authorize]
+        [HttpPost]
+        public void UpdatePhone(MemberViewModel model)
+        {
+            DBService dbService = HttpContext.RequestServices.GetService(typeof(DBService)) as DBService;
+            MemberService context = new(dbService);
+
+            string phone = model.phone.Substring(0, 3) + "-" + model.phone.Substring(3, 4) + "-" + model.phone.Substring(7, 4);
+
+            context.UpdatePhone(model.email, phone);
+        }
+
+        [Authorize]
+        [HttpPost]
         public IActionResult Withdrawal(MemberViewModel model)
         {
             DBService dbService = HttpContext.RequestServices.GetService(typeof(DBService)) as DBService;
