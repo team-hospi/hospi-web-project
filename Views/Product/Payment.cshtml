@@ -50,14 +50,14 @@
                     </tr>
                     <tr>
                         <th scope="row">이름</th>
-                        <td><input type="text" id="name" class="form-control" style="width: 200px" /></td>
+                        <td><input type="text" id="name" class="form-control" maxlength="10" style="width: 200px" /></td>
                     </tr>
                     <tr>
                         <th scope="row">생년월일</th>
                         <td>
-                            <input type="text" class="form-control" id="birthyear" style="width: 100px; float: left; margin-right: 10px" placeholder="년(4자리)" />
-                            <input type="text" class="form-control" id="birthmonth" style="width: 50px; float: left; margin-right: 10px " placeholder="월" />
-                            <input type="text" class="form-control" id="birthday" style="width: 50px; float: left" placeholder="일" />
+                            <input type="text" class="form-control" id="birthyear" style="width: 100px; float: left; margin-right: 10px" placeholder="년(4자리)" maxlength="4" />
+                            <input type="text" class="form-control" id="birthmonth" style="width: 50px; float: left; margin-right: 10px " placeholder="월" maxlength="2" />
+                            <input type="text" class="form-control" id="birthday" style="width: 50px; float: left" placeholder="일" maxlength="2" />
                         </td>
                     </tr>
                 </table>
