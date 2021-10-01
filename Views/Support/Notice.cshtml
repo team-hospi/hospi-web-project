@@ -1,8 +1,16 @@
 ﻿@{
     ViewData["Title"] = "공지사항";
+
+    DBService dbService = ViewContext.HttpContext.RequestServices.GetService(typeof(DBService)) as DBService;
+    NoticeService context = new(dbService);
+
+    List<ManagerViewModel> managerList = context.GetManagerList();
+
 }
 
 @model List<NoticeViewModel>;
+
+@using hospi_web_project.Services;
 
 <head>
     <link rel="stylesheet" href="~/css/board.css" />
@@ -53,6 +61,17 @@
         </table>
     </div>
     <div class="boardDiv" style="text-align: right; margin-top: 50px;">
-        <a class="btn btn-dark" asp-controller="Support" asp-action="NoticeCreate">등록</a>
+        @{
+            int IsAdmin = 0;
+            for (int i = 0; i < managerList.Count; i++)
+            {
+                if (User.Identity.Name == managerList[i].Email)
+                    IsAdmin = 1;
+            }
+            if (IsAdmin == 1)
+            {
+                <a class="btn btn-dark" asp-controller="Support" asp-action="NoticeCreate">등록</a>
+            }
+          }
     </div>
 </div>
