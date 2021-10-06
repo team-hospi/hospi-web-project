@@ -207,28 +207,46 @@ namespace hospi_web_project.Services
                 conn.Open();
 
                 var inquiryVm = (InquiryBoardViewModel)model;
+                string sql;
+                MySqlCommand cmd = new MySqlCommand();
+                cmd.Connection = conn;
 
-                long FileSize = inquiryVm.File.Length;
-                byte[] rawData = new byte[FileSize];
+                if (inquiryVm.File != null)
+                {
+                    long FileSize = inquiryVm.File.Length;
+                    byte[] rawData = new byte[FileSize];
 
-                inquiryVm.File.OpenReadStream().Read(rawData, 0, (int)FileSize);
-                inquiryVm.File.OpenReadStream().Close();
-                
-                string sql = "insert into inquiry values(null, '" 
+                    inquiryVm.File.OpenReadStream().Read(rawData, 0, (int)FileSize);
+                    inquiryVm.File.OpenReadStream().Close();
+
+                    sql = "insert into inquiry values(null, '"
                     + inquiryVm.Title + "', '"
                     + inquiryVm.Content + "', '"
-                    + DateTime.Now.ToString("yyyy-MM-dd") +"', '"
-                    + inquiryVm.Email +"', 0, " 
+                    + DateTime.Now.ToString("yyyy-MM-dd") + "', '"
+                    + inquiryVm.Email + "', 0, "
                     + "@File, '"
                     + inquiryVm.File.FileName + "', "
                     + inquiryVm.IsPrivate + ", 0, null)";
 
-                MySqlCommand cmd = new MySqlCommand(sql, conn);
+                    cmd.CommandText = sql;
 
-                MySqlParameter blob = new MySqlParameter("@File", MySqlDbType.Blob, rawData.Length);
-                blob.Value = rawData;
+                    MySqlParameter blob = new MySqlParameter("@File", MySqlDbType.Blob, rawData.Length);
+                    blob.Value = rawData;
 
-                cmd.Parameters.Add(blob);
+                    cmd.Parameters.Add(blob);
+                }
+                else
+                {
+                    sql = "insert into inquiry values(null, '"
+                    + inquiryVm.Title + "', '"
+                    + inquiryVm.Content + "', '"
+                    + DateTime.Now.ToString("yyyy-MM-dd") + "', '"
+                    + inquiryVm.Email + "', 0, "
+                    + "null, null, "
+                    + inquiryVm.IsPrivate + ", 0, null)";
+
+                    cmd.CommandText = sql;
+                }
 
                 if (cmd.ExecuteNonQuery() == 1)
                 {
