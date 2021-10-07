@@ -14,8 +14,6 @@
     <link rel="stylesheet" href="~/css/payment.css" />
 </head>
 
-<script src="~/js/payment.js"></script>
-
 <div style="background-color: #8E8E8E; height: 70px">
     <div class="container">
         <p style="line-height: 70px; margin-left: 80px"><a style="color: black;" asp-controller="Home" asp-action="Index">Hospi 홈</a> > <a style="color: black;" asp-controller="Product" asp-action="Windows">Windows</a> > <a style="color: black;" asp-controller="Product" asp-action="Purchase">플랜 및 가격</a> > 구매하기</p>
@@ -61,6 +59,7 @@
                         </td>
                     </tr>
                 </table>
+                <input type="button" onclick="autoInput()" value="시연용" />
             </div>
             <div style="width: 400px; margin-top:20px; float: right">
                 <div>
@@ -88,3 +87,5 @@
             </div>
         </div>
 </div>
+
+<script src="~/js/payment.js"></script>

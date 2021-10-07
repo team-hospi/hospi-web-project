@@ -36,3 +36,16 @@
         return true;
     }
 }
+
+function autoInput() {
+    document.getElementById('card1').value = '1234'
+    document.getElementById('card2').value = '1234'
+    document.getElementById('card3').value = '1234'
+    document.getElementById('card4').value = '1234'
+    document.getElementById('year').value = '2025'
+    document.getElementById('month').value = '03'
+    document.getElementById('name').value = '홍길동'
+    document.getElementById('birthyear').value = '1995'
+    document.getElementById('birthmonth').value = '11'
+    document.getElementById('birthday').value = '11'
+}
