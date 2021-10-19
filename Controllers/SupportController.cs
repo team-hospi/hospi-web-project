@@ -217,7 +217,6 @@ namespace hospi_web_project.Controllers
         }
 
         [HttpGet]
-        [Authorize]
         public ActionResult DownloadFile(int no, string fileName)
         {
             DBService dbService = HttpContext.RequestServices.GetService(typeof(DBService)) as DBService;
